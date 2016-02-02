@@ -1,0 +1,6 @@
+framework module Pods_BearSkill_Example {
+  umbrella header "Pods-BearSkill_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "BearSkill",
+  "version": "0.1.0",
+  "summary": "A short description of BearSkill.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/BearSkill",
+  "license": "MIT",
+  "authors": {
+    "Bear": "648070256@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/BearSkill.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "BearSkill": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

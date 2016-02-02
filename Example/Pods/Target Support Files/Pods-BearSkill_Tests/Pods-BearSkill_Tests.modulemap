@@ -1,0 +1,6 @@
+framework module Pods_BearSkill_Tests {
+  umbrella header "Pods-BearSkill_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
