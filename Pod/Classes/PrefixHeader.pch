@@ -1,0 +1,26 @@
+//
+//  PrefixHeader.pch
+//  AnimationTest
+//
+//  Created by Bear on 15/12/30.
+//  Copyright © 2015年 apple. All rights reserved.
+//
+//  Prefix Add Sample http://www.cnblogs.com/YouXianMing/p/3989155.html
+//  proj -> Building Settings -> Prefix Header
+//  $(SRCROOT)/..file../PrefixHeader.pch
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#import "BearConstants.h"
+#import "BearTextField.h"
+#import "UILabel+BearSet.h"
+#import "UITextField+BearSet.h"
+#import "UIView+BearSet.h"
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */

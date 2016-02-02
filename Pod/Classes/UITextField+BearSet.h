@@ -1,0 +1,16 @@
+//
+//  UITextField+BearSet.h
+//  Bear
+//
+//  Created by Bear on 30/12/24.
+//  Copyright © 2015年 Bear. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UITextField (BearSet)
+
+//  限制输入的位数
+- (void)limitLength:(int)length;
+
+@end
