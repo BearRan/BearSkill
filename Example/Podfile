@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'BearSkill_Example', :exclusive => true do
+  pod 'BearSkill', :path => '../'
+end
+
+target 'BearSkill_Tests', :exclusive => true do
+  pod 'BearSkill', :path => '../'
+
+  pod 'FBSnapshotTestCase'
+end
