@@ -10,6 +10,12 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
+#import "BearConstants.h"
+#import "BearTextField.h"
+#import "UILabel+BearSet.h"
+#import "UITextField+BearSet.h"
+#import "UIView+BearSet.h"
+
 #ifdef __OBJC__
     @import UIKit;
     @import Foundation;

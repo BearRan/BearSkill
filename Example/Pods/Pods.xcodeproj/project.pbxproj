@@ -7,29 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A86B0532B9EF943F898E8CF46F979C /* UITextField+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */; };
 		0A8AD6BC310B1DCAA5B052B591D8CFB6 /* Pods-BearSkill_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */; };
 		163C6E8E5E7CEE1E0BEEB9CA0939DA3A /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 73003A0752F3CABAA497D1FD1F5E4E44 /* UIImage+Diff.m */; };
-		18315FB01C60AEB900682496 /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 18315FA71C60AEB900682496 /* BearConstants.h */; };
-		18315FB11C60AEB900682496 /* BearConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FA81C60AEB900682496 /* BearConstants.m */; };
-		18315FB21C60AEB900682496 /* BearConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FA81C60AEB900682496 /* BearConstants.m */; };
-		18315FB31C60AEB900682496 /* BearTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 18315FA91C60AEB900682496 /* BearTextField.h */; };
-		18315FB41C60AEB900682496 /* BearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAA1C60AEB900682496 /* BearTextField.m */; };
-		18315FB51C60AEB900682496 /* BearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAA1C60AEB900682496 /* BearTextField.m */; };
-		18315FB71C60AEB900682496 /* UILabel+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 18315FAC1C60AEB900682496 /* UILabel+BearSet.h */; };
-		18315FB81C60AEB900682496 /* UILabel+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAD1C60AEB900682496 /* UILabel+BearSet.m */; };
-		18315FB91C60AEB900682496 /* UILabel+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAD1C60AEB900682496 /* UILabel+BearSet.m */; };
-		18315FBA1C60AEB900682496 /* UITextField+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 18315FAE1C60AEB900682496 /* UITextField+BearSet.h */; };
-		18315FBB1C60AEB900682496 /* UITextField+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAF1C60AEB900682496 /* UITextField+BearSet.m */; };
-		18315FBC1C60AEB900682496 /* UITextField+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18315FAF1C60AEB900682496 /* UITextField+BearSet.m */; };
-		186FE9F31C607906005BFC12 /* UIView+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 186FE9F11C607906005BFC12 /* UIView+BearSet.h */; };
-		186FE9F41C607906005BFC12 /* UIView+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FE9F21C607906005BFC12 /* UIView+BearSet.m */; };
-		186FE9F51C607906005BFC12 /* UIView+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 186FE9F21C607906005BFC12 /* UIView+BearSet.m */; };
 		1F118728B3D74089480152A6B660EA9A /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = A729E2AD854B4CEB4EF52289C017EB3B /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		25885EB6F78CEEDB604118DFC9A4D5EA /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F2071FFF5C5B0E9DEB6C3FE43A30CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2393D1A899C707F79A64672C46ED238F /* UIKit.framework */; };
+		318CAE587A4623D5E4D0A7564434FDE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
 		35848D70EAC9237246BDF63457729694 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2523693A8A7BA4278BFC866F16021FFF /* FBSnapshotTestCase.m */; };
-		3EB5B6C9DACD56BD7376CC1B767B8C5A /* BearSkill-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B48E0B6176A961BBCD916D4BC0E9ED /* BearSkill-dummy.m */; };
 		40741907A06C7079DD9A1082E33A2E43 /* Pods-BearSkill_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC0EDD41F2AEC28C4E40291DCFBC637 /* Pods-BearSkill_Example-dummy.m */; };
+		416D18B553357EE3AE61B54ABE31EF4D /* UILabel+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */; };
 		41D8739E2720D3535592391C25507158 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 12CC4BD9C5F6D514C917D7942DF2D2F4 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41E7273A032CE3295965153008350074 /* UITextField+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52B0263F90696E7FD87CB146D5C5E2C1 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CAAAB29C54DB2D5220028C4110E45E6 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		52F7A46AB0053D8BB1D793B917D37BB2 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5208FE4A05C9114818BC72105E5F7 /* SwiftSupport.swift */; };
 		5D14695A69EC4A8DF7488D0FC59C105C /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = E38041D93EDE9398D62F150F8F25DE47 /* FBSnapshotTestCasePlatform.m */; };
@@ -37,22 +26,35 @@
 		788E3D9458FE9540469981BE9A0B227C /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 5999002674B86E70DC7970CEA62F278E /* UIImage+Compare.m */; };
 		7BEF20E09F0E864478905311672F91AB /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC2C5814DCFC7590AC8C46AAB7FCEEF /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		821A26883ED14BDCD7EBADD37D671D17 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE4692BF9A76DAAA67A8FF4DABD27E8 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		873ECB5DA0E5C87A352557B304E9B721 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
+		8767E08A01D9B45BDBF22F37A49FBEFA /* UIView+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */; };
+		8804D724284EDEE2C254C117E95BD9A5 /* UILabel+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D549E01DA1D5104335CCEABFF870005 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
 		915719324D77BD3C17F65858B24E8A13 /* Pods-BearSkill_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9712AAE64B49FE8400923B5309F49ED7 /* Pods-BearSkill_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DB3A9908163628D349B18129F9831A5 /* BearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */; };
 		AA8501741ABB8D75C6C47DE086BACD37 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFD97972C24EE7435D0E04686569BBE /* FBSnapshotTestController.m */; };
 		AD4D905241DED4AEAD67447088ACB23D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 853C84AC883B6FC690E82525E7ECB377 /* XCTest.framework */; };
+		B70510B9B6DA096A4ED2F95DE83987A9 /* UIView+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C369865D201B3BEA56EA09AF759773E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
 		C6829D5B4D8CB71D4FC4469F9D48E01A /* Pods-BearSkill_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E616D7BB20960AA928294748DF64F3EC /* Pods-BearSkill_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF449EEFF208843ED90888E6BBB3E50 /* BearSkill-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC2BD0A04199B280AD93F459968CAFC2 /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF90F95FC2B36AB64D2FB3AF22E996D2 /* FBSnapshotTestCase-dummy.m */; };
 		CF9DB2096C715EA61E263021EE406DB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528444EFC68619AD1FEB8A7CD4A01BA /* QuartzCore.framework */; };
-		D8C28D86E82B70281201B160B64B00CA /* BearSkill.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */; };
-		DD386CD52FD377C4C16451FDE4639863 /* BearSkill-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF449EEFF208843ED90888E6BBB3E50 /* BearSkill-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2E2D76A64ECA8D8B4C5C68262822771 /* BearSkill.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */; };
+		DFCB39B26AED498ABC5303FE967A5025 /* BearConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */; };
+		E75755354D05B5620364B784FD6F9D52 /* BearTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDD91D0CC316AC322E1607D3749F1C0A /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121BCE99CCFB208275F3437CCF6EBB6 /* UIImage+Snapshot.m */; };
 		EE6AB1165D6AE73D1B4B489D5C4E2F4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
+		EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B48E0B6176A961BBCD916D4BC0E9ED /* BearSkill-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2420B38139D77CA39F39D4CE0893133B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFA838021FDB72BA21D38BB9BEBE33B7;
+			remoteInfo = "BearSkill-BearSkill";
+		};
 		469C3DC6DAFAF3108008EEF35044B5B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -60,31 +62,25 @@
 			remoteGlobalIDString = A5C935B614DD08342117AD0B06959CB9;
 			remoteInfo = FBSnapshotTestCase;
 		};
-		A75649F9050B48CF537C29B71EC18D6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 10F3A123D91CDE05F3008E58D6EB4B2F;
-			remoteInfo = "BearSkill-BearSkill";
-		};
 		D416343BB568DB3BD972CEC54D28208A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 24756B517C819CB4C19963AABF566098;
+			remoteGlobalIDString = 6201FB915FDE3E7F61EF36E46433B97A;
 			remoteInfo = BearSkill;
 		};
 		E31899AE039CB8F6FC31F836AA97E043 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 24756B517C819CB4C19963AABF566098;
+			remoteGlobalIDString = 6201FB915FDE3E7F61EF36E46433B97A;
 			remoteInfo = BearSkill;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0345D737618C6A063BD152389ACCBF87 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
+		0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BearTextField.m; sourceTree = "<group>"; };
 		0528444EFC68619AD1FEB8A7CD4A01BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		0EE4692BF9A76DAAA67A8FF4DABD27E8 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		0F01AA0F45B0B5CC535F9884FF44262A /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
@@ -92,23 +88,15 @@
 		10692C8F5089374829067AAFDFC5DC26 /* Pods-BearSkill_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		11525320FF58ED6E6E432B8F6DECAFD4 /* BearSkill.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BearSkill.modulemap; sourceTree = "<group>"; };
 		12CC4BD9C5F6D514C917D7942DF2D2F4 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
-		18315FA71C60AEB900682496 /* BearConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearConstants.h; sourceTree = "<group>"; };
-		18315FA81C60AEB900682496 /* BearConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearConstants.m; sourceTree = "<group>"; };
-		18315FA91C60AEB900682496 /* BearTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearTextField.h; sourceTree = "<group>"; };
-		18315FAA1C60AEB900682496 /* BearTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearTextField.m; sourceTree = "<group>"; };
-		18315FAC1C60AEB900682496 /* UILabel+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+BearSet.h"; sourceTree = "<group>"; };
-		18315FAD1C60AEB900682496 /* UILabel+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BearSet.m"; sourceTree = "<group>"; };
-		18315FAE1C60AEB900682496 /* UITextField+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BearSet.h"; sourceTree = "<group>"; };
-		18315FAF1C60AEB900682496 /* UITextField+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BearSet.m"; sourceTree = "<group>"; };
-		186FE9F11C607906005BFC12 /* UIView+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BearSet.h"; sourceTree = "<group>"; };
-		186FE9F21C607906005BFC12 /* UIView+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BearSet.m"; sourceTree = "<group>"; };
 		190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Tests-dummy.m"; sourceTree = "<group>"; };
 		1A5591F10A968B80A90D38D4F877DD7C /* BearSkill-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-prefix.pch"; sourceTree = "<group>"; };
 		1BC1811B75B0CF5A27DBA6B79AC2E3D6 /* Pods-BearSkill_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UILabel+BearSet.h"; sourceTree = "<group>"; };
 		2393D1A899C707F79A64672C46ED238F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2523693A8A7BA4278BFC866F16021FFF /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		267A5CF8CEE6B919A883C18B675B58F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31280E86D37E5468C9A42B55BC91B094 /* Pods-BearSkill_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BearSkill_Example-frameworks.sh"; sourceTree = "<group>"; };
+		3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BearConstants.h; sourceTree = "<group>"; };
 		34AAC0A375AC370EEF26C6B22006633D /* Pods-BearSkill_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BearSkill_Example.modulemap"; sourceTree = "<group>"; };
 		36B48E0B6176A961BBCD916D4BC0E9ED /* BearSkill-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BearSkill-dummy.m"; sourceTree = "<group>"; };
 		383E54DA7D103B7B33BDF867281DDE07 /* Pods-BearSkill_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BearSkill_Tests.modulemap"; sourceTree = "<group>"; };
@@ -122,6 +110,7 @@
 		5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BearSkill.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BearSkill.xcconfig; sourceTree = "<group>"; };
 		60D2FC25B60496B6239E3F557642927C /* BearSkill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BearSkill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BearSet.m"; sourceTree = "<group>"; };
 		67B33FE69B1F714E3EF4E1C90A0DBC12 /* Pods-BearSkill_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BearSkill_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6A53C92566643D37006BA2361EF4890D /* Pods-BearSkill_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FBCBDF7674AD2BE7100DCF56E505393 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,10 +118,13 @@
 		7AF449EEFF208843ED90888E6BBB3E50 /* BearSkill-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-umbrella.h"; sourceTree = "<group>"; };
 		7BC0EDD41F2AEC28C4E40291DCFBC637 /* Pods-BearSkill_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Example-dummy.m"; sourceTree = "<group>"; };
 		7CAAAB29C54DB2D5220028C4110E45E6 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BearTextField.h; sourceTree = "<group>"; };
 		853C84AC883B6FC690E82525E7ECB377 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9712AAE64B49FE8400923B5309F49ED7 /* Pods-BearSkill_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BearSkill_Example-umbrella.h"; sourceTree = "<group>"; };
+		A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BearConstants.m; sourceTree = "<group>"; };
 		A729E2AD854B4CEB4EF52289C017EB3B /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
 		B3D08C65AB18ACF0D05C7C79DB5737E4 /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BearSet.m"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BB0CC5C2A659ECE73AFAEF51C56BA736 /* Pods-BearSkill_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BearSkill_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BB2E1B277A9D57761133D9D396C77111 /* Pods-BearSkill_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +132,8 @@
 		BD9D88D6EFE4A35E5916EA6AEF7F95C6 /* Pods-BearSkill_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BearSkill_Example-resources.sh"; sourceTree = "<group>"; };
 		BFFD97972C24EE7435D0E04686569BBE /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
 		C0DCB8E9B325C4AD7C94293A129C0A7A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+BearSet.h"; sourceTree = "<group>"; };
+		CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextField+BearSet.h"; sourceTree = "<group>"; };
 		D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D49358567332D15161820866D116CF22 /* Pods-BearSkill_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BearSkill_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		D7EE4C2C7CF2B2E7808E0F724152872B /* Pods-BearSkill_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BearSkill_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -147,15 +141,15 @@
 		E38041D93EDE9398D62F150F8F25DE47 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
 		E616D7BB20960AA928294748DF64F3EC /* Pods-BearSkill_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BearSkill_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E8BA6A74655583B85348CE7A4690E8C0 /* Pods_BearSkill_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BearSkill_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+BearSet.m"; sourceTree = "<group>"; };
 		FDE5208FE4A05C9114818BC72105E5F7 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5495C9B8F482B04069D7A069CFD0DD21 /* Frameworks */ = {
+		1F3A073E6380B63C2EB1CFCDBA8625C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873ECB5DA0E5C87A352557B304E9B721 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,10 +169,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		677C9B81E197E02A194D1844E2BBF281 /* Frameworks */ = {
+		6D6DA3B55FA9BCC7948EE4226D3C8664 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				318CAE587A4623D5E4D0A7564434FDE4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,14 +224,6 @@
 				5121BCE99CCFB208275F3437CCF6EBB6 /* UIImage+Snapshot.m */,
 			);
 			name = Core;
-			sourceTree = "<group>";
-		};
-		5BC946C9475C49EC2A5F3700EFD61158 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				D73A10C364895178FDDE81E92009E9A5 /* Classes */,
-			);
-			path = Pod;
 			sourceTree = "<group>";
 		};
 		6D172A44643FE8EF2DFFA81EF057CBE6 /* Targets Support Files */ = {
@@ -303,7 +290,7 @@
 		8F653403D0DFD4DFED757929DEB5D04A /* BearSkill */ = {
 			isa = PBXGroup;
 			children = (
-				5BC946C9475C49EC2A5F3700EFD61158 /* Pod */,
+				B63B778E7137D44A31570927BEA1288D /* Pod */,
 				91EF14396DAEB0D230EC1B53E73B6F0F /* Support Files */,
 			);
 			name = BearSkill;
@@ -322,6 +309,23 @@
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/BearSkill";
+			sourceTree = "<group>";
+		};
+		9706148E9AB00B751E256657E696BF22 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */,
+				A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */,
+				7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */,
+				0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */,
+				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
+				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
+				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
+				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
+				CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */,
+				FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		A78CE87681B42105A65DA44E0F79FC82 /* Support Files */ = {
@@ -355,6 +359,14 @@
 			path = "Target Support Files/Pods-BearSkill_Example";
 			sourceTree = "<group>";
 		};
+		B63B778E7137D44A31570927BEA1288D /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				9706148E9AB00B751E256657E696BF22 /* Classes */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
 		CD3FB7D37E46A5379C926728A416D78E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,23 +376,6 @@
 				853C84AC883B6FC690E82525E7ECB377 /* XCTest.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		D73A10C364895178FDDE81E92009E9A5 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				18315FA71C60AEB900682496 /* BearConstants.h */,
-				18315FA81C60AEB900682496 /* BearConstants.m */,
-				18315FA91C60AEB900682496 /* BearTextField.h */,
-				18315FAA1C60AEB900682496 /* BearTextField.m */,
-				18315FAC1C60AEB900682496 /* UILabel+BearSet.h */,
-				18315FAD1C60AEB900682496 /* UILabel+BearSet.m */,
-				18315FAE1C60AEB900682496 /* UITextField+BearSet.h */,
-				18315FAF1C60AEB900682496 /* UITextField+BearSet.m */,
-				186FE9F11C607906005BFC12 /* UIView+BearSet.h */,
-				186FE9F21C607906005BFC12 /* UIView+BearSet.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		EA1D9BECFD0699D124E9CAE735315C09 /* Development Pods */ = {
@@ -410,6 +405,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		642BE2D2AAFB5E9AE4C78E25CE4860D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25885EB6F78CEEDB604118DFC9A4D5EA /* BearConstants.h in Headers */,
+				C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */,
+				E75755354D05B5620364B784FD6F9D52 /* BearTextField.h in Headers */,
+				8804D724284EDEE2C254C117E95BD9A5 /* UILabel+BearSet.h in Headers */,
+				41E7273A032CE3295965153008350074 /* UITextField+BearSet.h in Headers */,
+				B70510B9B6DA096A4ED2F95DE83987A9 /* UIView+BearSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A3BB9E32BDAD9EDB00EDFE657BDB001 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -420,19 +428,6 @@
 				1F118728B3D74089480152A6B660EA9A /* UIImage+Compare.h in Headers */,
 				52B0263F90696E7FD87CB146D5C5E2C1 /* UIImage+Diff.h in Headers */,
 				723FDDFD804188090511DEFA8309A06B /* UIImage+Snapshot.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		834C751154BEA9CBEDAB8F1C56B47294 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				18315FB31C60AEB900682496 /* BearTextField.h in Headers */,
-				186FE9F31C607906005BFC12 /* UIView+BearSet.h in Headers */,
-				18315FB71C60AEB900682496 /* UILabel+BearSet.h in Headers */,
-				18315FB01C60AEB900682496 /* BearConstants.h in Headers */,
-				DD386CD52FD377C4C16451FDE4639863 /* BearSkill-umbrella.h in Headers */,
-				18315FBA1C60AEB900682496 /* UITextField+BearSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,36 +442,19 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		10F3A123D91CDE05F3008E58D6EB4B2F /* BearSkill-BearSkill */ = {
+		6201FB915FDE3E7F61EF36E46433B97A /* BearSkill */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5657BA87C5B66CCBBFDA1EF35641B7C3 /* Build configuration list for PBXNativeTarget "BearSkill-BearSkill" */;
+			buildConfigurationList = 7B6E4AE7DC0EAE4FE100B22B98C8362F /* Build configuration list for PBXNativeTarget "BearSkill" */;
 			buildPhases = (
-				7A5168B1E7EE94512969D5F174DAAE37 /* Sources */,
-				677C9B81E197E02A194D1844E2BBF281 /* Frameworks */,
-				21E2514336E29536A39D794ED8750F3A /* Resources */,
+				B6F166BF0825CA666533B0F996BA96FD /* Sources */,
+				6D6DA3B55FA9BCC7948EE4226D3C8664 /* Frameworks */,
+				731186D82794A780C649DC6937DA0962 /* Resources */,
+				642BE2D2AAFB5E9AE4C78E25CE4860D5 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = "BearSkill-BearSkill";
-			productName = "BearSkill-BearSkill";
-			productReference = 5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-		24756B517C819CB4C19963AABF566098 /* BearSkill */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2C93C9832BB4F3FC92C63858C3767B3A /* Build configuration list for PBXNativeTarget "BearSkill" */;
-			buildPhases = (
-				DA580B62BE7C9671C29AA4FDB94C594C /* Sources */,
-				5495C9B8F482B04069D7A069CFD0DD21 /* Frameworks */,
-				7FF3FE09980DBD9679DA0927F746EF4C /* Resources */,
-				834C751154BEA9CBEDAB8F1C56B47294 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				60DFF1F1A72B93FD211042FBB2F0CC82 /* PBXTargetDependency */,
+				5BB7FDAC98640318D15F4D0CEF555D9C /* PBXTargetDependency */,
 			);
 			name = BearSkill;
 			productName = BearSkill;
@@ -518,6 +496,23 @@
 			productReference = E8BA6A74655583B85348CE7A4690E8C0 /* Pods_BearSkill_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		CFA838021FDB72BA21D38BB9BEBE33B7 /* BearSkill-BearSkill */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8EFF900FC8F22F0D7A23F21214CF69C /* Build configuration list for PBXNativeTarget "BearSkill-BearSkill" */;
+			buildPhases = (
+				311C8612D24B62461DCC9FB5DB9424D1 /* Sources */,
+				1F3A073E6380B63C2EB1CFCDBA8625C8 /* Frameworks */,
+				72B1023AE7A18C8EA9E8CCE89ABBF431 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BearSkill-BearSkill";
+			productName = "BearSkill-BearSkill";
+			productReference = 5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E12CAB9A42C2D4CABF072B4B471C1584 /* Pods-BearSkill_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C44A5CB5668882D03996554E6A64E3E /* Build configuration list for PBXNativeTarget "Pods-BearSkill_Tests" */;
@@ -558,8 +553,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				24756B517C819CB4C19963AABF566098 /* BearSkill */,
-				10F3A123D91CDE05F3008E58D6EB4B2F /* BearSkill-BearSkill */,
+				6201FB915FDE3E7F61EF36E46433B97A /* BearSkill */,
+				CFA838021FDB72BA21D38BB9BEBE33B7 /* BearSkill-BearSkill */,
 				A5C935B614DD08342117AD0B06959CB9 /* FBSnapshotTestCase */,
 				BFD4C6CB95E692EEE3D4B6B129D9BD77 /* Pods-BearSkill_Example */,
 				E12CAB9A42C2D4CABF072B4B471C1584 /* Pods-BearSkill_Tests */,
@@ -568,18 +563,18 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		21E2514336E29536A39D794ED8750F3A /* Resources */ = {
+		72B1023AE7A18C8EA9E8CCE89ABBF431 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7FF3FE09980DBD9679DA0927F746EF4C /* Resources */ = {
+		731186D82794A780C649DC6937DA0962 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8C28D86E82B70281201B160B64B00CA /* BearSkill.bundle in Resources */,
+				D2E2D76A64ECA8D8B4C5C68262822771 /* BearSkill.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,15 +596,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7A5168B1E7EE94512969D5F174DAAE37 /* Sources */ = {
+		311C8612D24B62461DCC9FB5DB9424D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				186FE9F51C607906005BFC12 /* UIView+BearSet.m in Sources */,
-				18315FB21C60AEB900682496 /* BearConstants.m in Sources */,
-				18315FB51C60AEB900682496 /* BearTextField.m in Sources */,
-				18315FBC1C60AEB900682496 /* UITextField+BearSet.m in Sources */,
-				18315FB91C60AEB900682496 /* UILabel+BearSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,16 +611,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA580B62BE7C9671C29AA4FDB94C594C /* Sources */ = {
+		B6F166BF0825CA666533B0F996BA96FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18315FBB1C60AEB900682496 /* UITextField+BearSet.m in Sources */,
-				3EB5B6C9DACD56BD7376CC1B767B8C5A /* BearSkill-dummy.m in Sources */,
-				18315FB41C60AEB900682496 /* BearTextField.m in Sources */,
-				18315FB11C60AEB900682496 /* BearConstants.m in Sources */,
-				186FE9F41C607906005BFC12 /* UIView+BearSet.m in Sources */,
-				18315FB81C60AEB900682496 /* UILabel+BearSet.m in Sources */,
+				DFCB39B26AED498ABC5303FE967A5025 /* BearConstants.m in Sources */,
+				EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */,
+				9DB3A9908163628D349B18129F9831A5 /* BearTextField.m in Sources */,
+				416D18B553357EE3AE61B54ABE31EF4D /* UILabel+BearSet.m in Sources */,
+				09A86B0532B9EF943F898E8CF46F979C /* UITextField+BearSet.m in Sources */,
+				8767E08A01D9B45BDBF22F37A49FBEFA /* UIView+BearSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,19 +644,19 @@
 		5BB08B302724826396EF72168CCA24D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BearSkill;
-			target = 24756B517C819CB4C19963AABF566098 /* BearSkill */;
+			target = 6201FB915FDE3E7F61EF36E46433B97A /* BearSkill */;
 			targetProxy = E31899AE039CB8F6FC31F836AA97E043 /* PBXContainerItemProxy */;
 		};
-		60DFF1F1A72B93FD211042FBB2F0CC82 /* PBXTargetDependency */ = {
+		5BB7FDAC98640318D15F4D0CEF555D9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "BearSkill-BearSkill";
-			target = 10F3A123D91CDE05F3008E58D6EB4B2F /* BearSkill-BearSkill */;
-			targetProxy = A75649F9050B48CF537C29B71EC18D6C /* PBXContainerItemProxy */;
+			target = CFA838021FDB72BA21D38BB9BEBE33B7 /* BearSkill-BearSkill */;
+			targetProxy = 2420B38139D77CA39F39D4CE0893133B /* PBXContainerItemProxy */;
 		};
 		7F6BD97C3C1581BE230F7CB80989BE51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BearSkill;
-			target = 24756B517C819CB4C19963AABF566098 /* BearSkill */;
+			target = 6201FB915FDE3E7F61EF36E46433B97A /* BearSkill */;
 			targetProxy = D416343BB568DB3BD972CEC54D28208A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -745,7 +735,19 @@
 			};
 			name = Debug;
 		};
-		75DAC28E523C8BA0FCAFED3EA89D0556 /* Release */ = {
+		183919FB4134EF88F4160AC4EE332D87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = BearSkill;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		2A0370E2A8431E5511A285709CF36C36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
 			buildSettings = {
@@ -769,6 +771,45 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		40A2FE397A51DD75B9F5DA4660A9459C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BearSkill/BearSkill-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BearSkill/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BearSkill/BearSkill.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = BearSkill;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6077EAD069B72821E96EA97D29F0B2A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = BearSkill;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -796,18 +837,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8A80F370AC5690B0B5B70C85E4106309 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = BearSkill;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -839,18 +868,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B1868A281188530A0D6C03E367A7A000 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = BearSkill;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
@@ -972,33 +989,6 @@
 			};
 			name = Debug;
 		};
-		F8489224164E5C22BFF53742B652E5D9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60CF4C63DED62487FB7632CC517B91A5 /* BearSkill.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BearSkill/BearSkill-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BearSkill/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BearSkill/BearSkill.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = BearSkill;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1020,15 +1010,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C93C9832BB4F3FC92C63858C3767B3A /* Build configuration list for PBXNativeTarget "BearSkill" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8489224164E5C22BFF53742B652E5D9 /* Debug */,
-				75DAC28E523C8BA0FCAFED3EA89D0556 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1038,20 +1019,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5657BA87C5B66CCBBFDA1EF35641B7C3 /* Build configuration list for PBXNativeTarget "BearSkill-BearSkill" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B1868A281188530A0D6C03E367A7A000 /* Debug */,
-				8A80F370AC5690B0B5B70C85E4106309 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5C44A5CB5668882D03996554E6A64E3E /* Build configuration list for PBXNativeTarget "Pods-BearSkill_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A01934A1D17E2971BEBC1BBF770DABA0 /* Debug */,
 				B81325FA16C0939476F1016EC6D7E7CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B6E4AE7DC0EAE4FE100B22B98C8362F /* Build configuration list for PBXNativeTarget "BearSkill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A2FE397A51DD75B9F5DA4660A9459C /* Debug */,
+				2A0370E2A8431E5511A285709CF36C36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8EFF900FC8F22F0D7A23F21214CF69C /* Build configuration list for PBXNativeTarget "BearSkill-BearSkill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				183919FB4134EF88F4160AC4EE332D87 /* Debug */,
+				6077EAD069B72821E96EA97D29F0B2A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,5 +1,5 @@
 PODS:
-  - BearSkill (0.1.0)
+  - BearSkill (0.0.2)
   - FBSnapshotTestCase (2.0.7):
     - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
   - FBSnapshotTestCase/Core (2.0.7)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BearSkill: 2b2c7dc6f82f29fcd7ce5eaff1e42f73c96ebade
+  BearSkill: 6c964b865acb1a09d99a2dfbee06e4c64961378f
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
 
 COCOAPODS: 0.39.0

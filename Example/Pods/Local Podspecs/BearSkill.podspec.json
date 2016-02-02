@@ -1,16 +1,16 @@
 {
   "name": "BearSkill",
-  "version": "0.1.0",
-  "summary": "A short description of BearSkill.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/BearSkill",
+  "version": "0.0.2",
+  "summary": "BearSkill contain some methods used frequently in project.",
+  "description": "BearSkill contain some methods used frequently in project. And many other methods about layout.",
+  "homepage": "https://github.com/BearRan/BearSkill",
   "license": "MIT",
   "authors": {
     "Bear": "648070256@qq.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/BearSkill.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/BearRan/BearSkill.git",
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "7.0"
