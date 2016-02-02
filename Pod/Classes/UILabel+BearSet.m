@@ -7,6 +7,7 @@
 //
 
 #import "UILabel+BearSet.h"
+#import "UIView+BearSet.h"
 
 @implementation UILabel (BearSet)
 
