@@ -23,7 +23,7 @@
     view.backgroundColor = [UIColor blueColor];
     [self.view addSubview:view];
     
-    [view setmyCenterY:100];
+    [view setCenterY:100];
     
 }
 

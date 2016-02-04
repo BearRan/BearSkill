@@ -28,15 +28,15 @@
 //   根据宽度自适应
 - (void)setLabelSizeToFitWidth:(int)width
 {
-    [self setMyWidth:0];
-    [self setMyHeight:0];
+    [self setWidth:0];
+    [self setHeight:0];
     self.numberOfLines = 0;
     [self sizeToFit];
     CGFloat textHeight = CGRectGetHeight(self.frame);
     int label_Width = [UILabel getTitleTextWidth:self.text font:self.font];
     int rows = ((label_Width % width) == 0 ? label_Width/width: label_Width/width+1);
-    [self setMyWidth:width];
-    [self setMyHeight:rows * textHeight];
+    [self setWidth:width];
+    [self setHeight:rows * textHeight];
 }
 
 //  中心不变，自适应
