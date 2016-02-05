@@ -1,5 +1,5 @@
 //
-//  UIView+MySet.h
+//  UIView+BearSet.h
 //
 //  Created by bear on 15/11/25.
 //  Copyright (c) 2015年 Bear. All rights reserved.
@@ -26,6 +26,46 @@ typedef enum {
 }kDIRECTION;
 
 
+//  offParameter结构体
+struct OffPara
+{
+    CGFloat offStart;
+    CGFloat offEnd;
+    BOOL    autoCalu;
+};
+typedef struct OffPara OffPara;
+
+//  offParameter内联
+CG_INLINE OffPara
+OffParaMake(CGFloat offStart, CGFloat offEnd, BOOL autoCalu)
+{
+    OffPara offPara;
+    offPara.offStart    = offStart;
+    offPara.offEnd      = offEnd;
+    offPara.autoCalu    = autoCalu;
+    return offPara;
+}
+
+
+//  gapParameter结构体
+struct GapPara
+{
+    CGFloat gapDistance;
+    BOOL    autoCalu;
+};
+typedef struct GapPara GapPara;
+
+//  gapParameter内联
+CG_INLINE GapPara
+GapParaMake(CGFloat gapDistance, BOOL autoCalu)
+{
+    GapPara gapPara;
+    gapPara.gapDistance = gapDistance;
+    gapPara.autoCalu    = autoCalu;
+    return gapPara;
+}
+
+
 @interface UIView (MySet)
 
 /**
@@ -36,13 +76,13 @@ typedef enum {
 - (void)blurEffectWithStyle:(UIBlurEffectStyle)style Alpha:(CGFloat)alpha;
 
 // 设置边框
-- (void)setBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
+- (void)setMyBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
 
 // 自定义分割线View OffY
-- (void)setSeparatorLineOffY:(int)offStart offEnd:(int)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor offY:(CGFloat)offY;
+- (void)setMySeparatorLineOffY:(int)offStart offEnd:(int)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor offY:(CGFloat)offY;
 
 // 自定义底部分割线View
-- (void)setSeparatorLine:(CGFloat)offStart offEnd:(CGFloat)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
+- (void)setMySeparatorLine:(CGFloat)offStart offEnd:(CGFloat)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
 
 // 通过view，画任意方向的线
 - (void)drawLine:(CGPoint)startPoint endPoint:(CGPoint)endPoint lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
@@ -105,7 +145,7 @@ typedef enum {
  *
  *  当前view和父类view的 X轴／Y轴／中心点 对其
  */
-- (void)setCenterToParentViewWithAxis:(kAXIS)axis;
+- (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis;
 
 
 /**
@@ -113,81 +153,46 @@ typedef enum {
  *
  *  当前view和指定view的 X轴／Y轴／中心点 对其
  */
-- (void)setCenterToView:(UIView *)destinationView withAxis:(kAXIS)axis;
-
-
-
-/**
- *  相对布局关系参考图
- *
- *
- *  self与destinationView 是是是是是 父子类关系
- *  大方框为destinationView，大方框为self的父类view
- *
- *     ----------     ----------     ----------     ----------
- *    |   self   |   |          |   |          |   |          |
- *    |          |   |          |   |          |   |          |
- *    |          |   |          |   |self      |   |      self|
- *    |          |   |          |   |          |   |          |
- *    |          |   |   self   |   |          |   |          |
- *     ----------     ----------     ----------     ----------
- *
- *
- *  关系： up             down          left           right
- *
- *
- *
- *  self与destinationView 非非非非 父子类关系
- *  大方框为destinationView和self所共有的父类view
- *
- *     ----------     ----------     ----------     ----------
- *    |   self   |   |   dest   |   |          |   |          |
- *    |          |   |          |   |          |   |          |
- *    |          |   |          |   |self  dest|   |dest  self|
- *    |          |   |          |   |          |   |          |
- *    |   dest   |   |   self   |   |          |   |          |
- *     ----------     ----------     ----------     ----------
- *
- *
- *  关系： up             down          left            right
- */
-
-/**
- *  view与view的相对位置
- *
- *  direction:          方位
- *  destinationView:    目标view
- *  parentRelation:     是否为父子类关系
- *  distance:           距离
- *  center:             是否对应居中
- *
- *  此方法用于设置view与view之间的相对位置
- *  self与destinationView非父子类关系时: 可以设置self相对于destinationView的 上／下／左／右 的边距
- *  self与destinationView是父子类关系时: 可以设置self相对于父类view的 上／下／左／右 的间距
- *  注：parentRelation==YES时，destinationView可以设为nil。
- */
-- (void)setRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center;
-
+- (void)BearSetCenterToView:(UIView *)destinationView withAxis:(kAXIS)axis;
 
 
 /**
  *  view与view的相对位置
- *
- *  带sizeToFit
  */
-- (void)setRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit;
+- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center;
 
 
+/**
+ *  view的相对布局，带sizeToFit
+ */
+- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit;
 
 
+/**
+ *  根据子view自动布局 自动计算:起始点，结束点，间距（三值相等）
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
++ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center;
 
-//  Bear根据子view自动布局-scrollView
-+ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray parentScrollView:(UIScrollView *)parentScrollView offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd center:(BOOL)center layoutAxis:(kLAYOUT_AXIS)layoutAxis;
 
-//  Bear根据子view自动布局
+/**
+ *  根据子view自动布局 需要设置:起始点，结束点; 自动计算:间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd;
 
-//  Bear根据子view自动布局-根据间距自动布局
+
+/**
+ *  根据子view自动布局 需要设置:间距; 自动计算:起始点，结束点
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center gapDistance:(CGFloat)gapDistance;
+
+
+/**
+ *  根据子view自动布局 需要设置:起始点，结束点，间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
+ */
++ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd gapDistance:(CGFloat)gapDistance;
 
 @end

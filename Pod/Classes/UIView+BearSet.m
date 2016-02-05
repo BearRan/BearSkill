@@ -1,5 +1,5 @@
 //
-//  UIView+MySet.m
+//  UIView+BearSet.m
 //
 //  Created by bear on 15/11/25.
 //  Copyright (c) 2015年 Bear. All rights reserved.
@@ -43,7 +43,7 @@
  *
  *  设置边框颜色和宽度
  */
-- (void)setBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth
+- (void)setMyBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth
 {
     self.layer.borderColor = borderColor.CGColor;
     self.layer.borderWidth = borderWidth;
@@ -55,7 +55,7 @@
  *
  *  根据offY在任意位置画横向分割线
  */
-- (void)setSeparatorLineOffY:(int)offStart offEnd:(int)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor offY:(CGFloat)offY
+- (void)setMySeparatorLineOffY:(int)offStart offEnd:(int)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor offY:(CGFloat)offY
 {
     int parentView_width    = CGRectGetWidth(self.frame);
     
@@ -76,7 +76,7 @@
  *
  *  自动在底部横向分割线
  */
-- (void)setSeparatorLine:(CGFloat)offStart offEnd:(CGFloat)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor
+- (void)setMySeparatorLine:(CGFloat)offStart offEnd:(CGFloat)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor
 {
     CGFloat parentView_height   = CGRectGetHeight(self.frame);
     CGFloat parentView_width    = CGRectGetWidth(self.frame);
@@ -431,7 +431,7 @@
  *
  *  当前view和父类view的 X轴／Y轴／中心点 对其
  */
-- (void)setCenterToParentViewWithAxis:(kAXIS)axis
+- (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis
 {
     UIView *parentView = self.superview;
     switch (axis) {
@@ -458,7 +458,7 @@
  *
  *  当前view和指定view的 X轴／Y轴／中心点 对其
  */
-- (void)setCenterToView:(UIView *)destinationView withAxis:(kAXIS)axis
+- (void)BearSetCenterToView:(UIView *)destinationView withAxis:(kAXIS)axis
 {
     if (!destinationView) {
         NSLog(@"!!! setCenterWithAxis: 目标view为nil");
@@ -489,8 +489,44 @@
 }
 
 
+
 /**
- *  view与view的相对位置
+ *  相对布局关系参考图
+ *
+ *
+ *  self与destinationView 是是是是是 父子类关系
+ *  大方框为destinationView，大方框为self的父类view
+ *
+ *     ----------     ----------     ----------     ----------
+ *    |   self   |   |          |   |          |   |          |
+ *    |          |   |          |   |          |   |          |
+ *    |          |   |          |   |self      |   |      self|
+ *    |          |   |          |   |          |   |          |
+ *    |          |   |   self   |   |          |   |          |
+ *     ----------     ----------     ----------     ----------
+ *
+ *
+ *  关系： up             down          left           right
+ *
+ *
+ *
+ *  self与destinationView 非非非非 父子类关系
+ *  大方框为destinationView和self所共有的父类view
+ *
+ *     ----------     ----------     ----------     ----------
+ *    |   self   |   |   dest   |   |          |   |          |
+ *    |          |   |          |   |          |   |          |
+ *    |          |   |          |   |self  dest|   |dest  self|
+ *    |          |   |          |   |          |   |          |
+ *    |   dest   |   |   self   |   |          |   |          |
+ *     ----------     ----------     ----------     ----------
+ *
+ *
+ *  关系： up             down          left            right
+ */
+
+/**
+ *  view的相对布局
  *
  *  direction:          方位
  *  destinationView:    目标view
@@ -503,27 +539,11 @@
  *  self与destinationView是父子类关系时: 可以设置self相对于父类view的 上／下／左／右 的间距
  *  注：parentRelation==YES时，destinationView可以设为nil。
  */
-- (void)setRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center
+- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center
 {
     CGRect tempRect = self.frame;
     
-    /**
-     *  在父类view中
-     *
-     *  self与destinationView 是是是是是 父子类关系
-     *  大方框为destinationView，大方框为self的父类view
-     *
-     *     ----------     ----------     ----------     ----------
-     *    |   self   |   |          |   |          |   |          |
-     *    |          |   |          |   |          |   |          |
-     *    |          |   |          |   |self      |   |      self|
-     *    |          |   |          |   |          |   |          |
-     *    |          |   |   self   |   |          |   |          |
-     *     ----------     ----------     ----------     ----------
-     *
-     *
-     *  关系： up             down          left           right
-     */
+    //  self与destinationView 是是是是是 父子类关系
     if (parentRelation) {
         if (!destinationView) {
             destinationView = [self superview];
@@ -536,7 +556,7 @@
                 tempRect.origin.y = distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToParentViewWithAxis:kAXIS_X];
+                    [self BearSetCenterToParentViewWithAxis:kAXIS_X];
                 }
             }
                 break;
@@ -546,7 +566,7 @@
                 tempRect.origin.y = CGRectGetHeight(destinationView.frame) - CGRectGetHeight(self.frame) - distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToParentViewWithAxis:kAXIS_X];
+                    [self BearSetCenterToParentViewWithAxis:kAXIS_X];
                 }
             }
                 break;
@@ -556,7 +576,7 @@
                 tempRect.origin.x = distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToParentViewWithAxis:kAXIS_Y];
+                    [self BearSetCenterToParentViewWithAxis:kAXIS_Y];
                 }
             }
                 break;
@@ -566,7 +586,7 @@
                 tempRect.origin.x = CGRectGetWidth(destinationView.frame) - CGRectGetWidth(self.frame) - distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToParentViewWithAxis:kAXIS_Y];
+                    [self BearSetCenterToParentViewWithAxis:kAXIS_Y];
                 }
             }
                 break;
@@ -576,30 +596,14 @@
         }
     }
     
-    /*
-     *  不在父类view中，其他view
-     *
-     *  self与destinationView 非非非非 父子类关系
-     *  大方框为destinationView和self所共有的父类view
-     *
-     *     ----------     ----------     ----------     ----------
-     *    |   self   |   |   dest   |   |          |   |          |
-     *    |          |   |          |   |          |   |          |
-     *    |          |   |          |   |self  dest|   |dest  self|
-     *    |          |   |          |   |          |   |          |
-     *    |   dest   |   |   self   |   |          |   |          |
-     *     ----------     ----------     ----------     ----------
-     *
-     *
-     *  关系： up             down          left            right
-     */
+    //  self与destinationView 非非非非 父子类关系
     else{
         switch (direction) {
             case kDIR_UP:
                 tempRect.origin.y = CGRectGetMinY(destinationView.frame) - distance - CGRectGetHeight(self.frame);
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToView:destinationView withAxis:kAXIS_Y];
+                    [self BearSetCenterToView:destinationView withAxis:kAXIS_Y];
                 }
                 break;
                 
@@ -607,7 +611,7 @@
                 tempRect.origin.y = CGRectGetMaxY(destinationView.frame) + distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToView:destinationView withAxis:kAXIS_Y];
+                    [self BearSetCenterToView:destinationView withAxis:kAXIS_Y];
                 }
                 break;
                 
@@ -615,7 +619,7 @@
                 tempRect.origin.x = CGRectGetMinX(destinationView.frame) - distance - CGRectGetWidth(self.frame);
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToView:destinationView withAxis:kAXIS_X];
+                    [self BearSetCenterToView:destinationView withAxis:kAXIS_X];
                 }
                 break;
                 
@@ -623,7 +627,7 @@
                 tempRect.origin.x = CGRectGetMaxX(destinationView.frame) + distance;
                 self.frame = tempRect;
                 if (center) {
-                    [self setCenterToView:destinationView withAxis:kAXIS_X];
+                    [self BearSetCenterToView:destinationView withAxis:kAXIS_X];
                 }
                 break;
                 
@@ -636,324 +640,142 @@
 
 
 /**
- *  view与view的相对位置
- *
- *  带sizeToFit
+ *  view的相对布局，带sizeToFit
  */
-- (void)setRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit
+- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit
 {
     if (sizeToFit) {
         [self sizeToFit];
     }
     
-    [self setRelativeLayoutWithDirection:direction destinationView:destinationView parentRelation:parentRelation distance:direction center:center];
+    [self BearSetRelativeLayoutWithDirection:direction destinationView:destinationView parentRelation:parentRelation distance:direction center:center];
 }
 
 
 
-
-
-
-
-
-#pragma mark Bear根据子view自动布局-scrollView
-/*
- viewArray:         装有子类view的数组
- parentView:        父类的view
- offStart:          起始点和边框的距离
- offEnd:            结束点和边框的距离
- center: 是否和父类的view剧中对其（YES：剧中对其，NO：不剧中对齐）
- layoutAxis:   是否水平自动布局（YES：水平方向自动布局，NO：垂直方向自动布局）
- offDistanceEqualViewDistance 边距和view之间的距离是否相等
+/**
+ *  根据子view自动布局 自动计算:起始点，结束点，间距（三值相等）
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ *
+ *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
+ *  offStart:       起始点和边框的距离
+ *  offEnd:         结束点和边框的距离
+ *  gapDistance:    view之间的间距
  */
-+ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray parentScrollView:(UIScrollView *)parentScrollView offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd center:(BOOL)center layoutAxis:(kLAYOUT_AXIS)layoutAxis
-{
-    int widthAllSubView = 0;  //所有子view的宽总和
-    
-    if (layoutAxis == kLAYOUT_AXIS_X) {
-        
-        /*
-         水平方向自动布局
-         */
-        //获取所有子类view的宽度总和
-        for (UIView *tempSubView in viewArray) {
-            widthAllSubView += tempSubView.frame.size.width;
-        }
-        
-        if (parentScrollView.contentSize.width - widthAllSubView >= offStart + offEnd) {
-            /*
-             可以使用宽度自动布局
-             */
-            CGFloat deltaX = (parentScrollView.contentSize.width - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-            CGFloat tempX = offStart;//用于存储子view临时的X起点
-            
-            for (int i = 0; i < [viewArray count]; i++) {
-                UIView *tempSubView = viewArray[i];
-                
-                //给子view重新设定x起点
-                CGRect tempFrame = tempSubView.frame;
-                tempFrame.origin.x = tempX;
-                tempSubView.frame = tempFrame;
-                
-                if (center) {
-                    //竖直方向相对于父类view剧中
-                    tempSubView.center = CGPointMake(tempSubView.center.x, parentScrollView.contentSize.height/2);
-                }
-                //tempX加上当前子view的width和deltaX
-                tempX = tempX + CGRectGetWidth(tempSubView.bounds) + deltaX;
-            }
-        }else{
-            
-            /*
-             无法使用自动布局
-             */
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view宽总和:%d\noffStart:%f\noffStart:%f\n父类view宽总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentScrollView.contentSize.width);
-        }
-    }else{
-        
-        /*
-         垂直方向自动布局
-         */
-        //获取所有子类view的高度总和
-        for (UIView *tempSubView in viewArray) {
-            widthAllSubView += tempSubView.frame.size.height;
-        }
-        
-        if (parentScrollView.contentSize.height - widthAllSubView >= offStart + offEnd) {
-            /*
-             可以使用高度自动布局
-             */
-            CGFloat deltaX = (parentScrollView.contentSize.height - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-            CGFloat tempX = offStart;//用于存储子view临时的X起点
-            
-            for (int i = 0; i < [viewArray count]; i++) {
-                UIView *tempSubView = viewArray[i];
-                
-                //给子view重新设定x起点
-                CGRect tempFrame = tempSubView.frame;
-                tempFrame.origin.y = tempX;
-                tempSubView.frame = tempFrame;
-                
-                if (center) {
-                    //竖直方向相对于父类view剧中
-                    tempSubView.center = CGPointMake(parentScrollView.contentSize.width/2, tempSubView.center.y);
-                }
-                //tempX加上当前子view的width和deltaX
-                tempX = tempX + CGRectGetHeight(tempSubView.bounds) + deltaX;
-            }
-        }else{
-            
-            /*
-             无法使用自动布局
-             */
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view高总和:%d\noffStart:%f\noffStart:%f\n父类view高总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentScrollView.contentSize.height);
-        }
-    }
-}
-
-
-
-
-//  验证subView数组的父类view是否一致
-+ (BOOL)validateParentViewConsistentOfArray:(NSMutableArray *)viewArray
-{
-    UIView *parentView = [viewArray[0] superview];
-    for (UIView *tempSubView in viewArray) {
-        if (![parentView isEqual:[tempSubView superview]]) {
-            NSLog(@"!!! 父类view不同，无法自动布局");
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center
 {
     [self BearAutoLayViewArray:viewArray
                     layoutAxis:layoutAxis
                         center:center
-                      offStart:0
-                        offEnd:0
-                   gapDistance:0
+                       offPara:OffParaMake(0, 0, YES)
+                       gapPara:GapParaMake(0, YES)
                 superSizeToFit:NO];
 }
 
 
 /**
- *  根据子view自动布局
+ *  根据子view自动布局 需要设置:起始点，结束点; 自动计算:间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
  *
  *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
  *  offStart:       起始点和边框的距离
  *  offEnd:         结束点和边框的距离
- *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
- *  layoutAxis:     布局轴向（kLAYOUT_AXIS_X：水平方向自动布局，kLAYOUT_AXIS_Y：垂直方向自动布局）
  */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd
 {
-    
     [self BearAutoLayViewArray:viewArray
                     layoutAxis:layoutAxis
                         center:center
-                      offStart:offStart
-                        offEnd:offEnd
-                   gapDistance:0
+                       offPara:OffParaMake(offStart, offEnd, NO)
+                       gapPara:GapParaMake(0, YES)
                 superSizeToFit:NO];
-    
-    
-    
-    
-    
-    int widthAllSubView = 0;  //所有子view的宽总和
-    
-    UIView *parentView = [viewArray[0] superview];
-    for (UIView *tempSubView in viewArray) {
-        if (![parentView isEqual:[tempSubView superview]]) {
-            NSLog(@"!!! 父类view不同，无法自动布局");
-            return;
-        }
-    }
-    
-    if (layoutAxis == kLAYOUT_AXIS_X) {
-        
-        /*
-         水平方向自动布局
-         */
-        //获取所有子类view的宽度总和
-        for (UIView *tempSubView in viewArray) {
-            widthAllSubView += tempSubView.width;
-        }
-        
-        if (parentView.width - widthAllSubView >= offStart + offEnd) {
-            /*
-             可以使用宽度自动布局
-             */
-            
-            CGFloat deltaX = (parentView.width - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-            CGFloat tempX = offStart;//用于存储子view临时的X起点
-            
-            for (int i = 0; i < [viewArray count]; i++) {
-                UIView *tempSubView = viewArray[i];
-                
-                //给子view重新设定x起点
-                [tempSubView setX:tempX];
-                
-                if (center) {
-                    //竖直方向相对于父类view剧中
-                    tempSubView.center = CGPointMake(tempSubView.center.x, parentView.height/2);
-                }
-                //tempX加上当前子view的width和deltaX
-                tempX = tempX + tempSubView.width + deltaX;
-            }
-        }else{
-            
-            /*
-             无法使用自动布局
-             */
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view宽总和:%d\noffStart:%f\noffStart:%f\n父类view宽总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentView.width);
-        }
-    }else{
-        
-        /*
-         垂直方向自动布局
-         */
-        //获取所有子类view的高度总和
-        for (UIView *tempSubView in viewArray) {
-            widthAllSubView += tempSubView.height;
-        }
-        
-        if (CGRectGetHeight(parentView.bounds) - widthAllSubView >= offStart + offEnd) {
-            /*
-             可以使用高度自动布局
-             */
-            CGFloat deltaX = (parentView.height - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-            CGFloat tempX = offStart;//用于存储子view临时的X起点
-            
-            for (int i = 0; i < [viewArray count]; i++) {
-                UIView *tempSubView = viewArray[i];
-                
-                //给子view重新设定x起点
-                [tempSubView setY:tempX];
-                
-                if (center) {
-                    //竖直方向相对于父类view剧中
-                    tempSubView.center = CGPointMake(parentView.width/2, tempSubView.center.y);
-                }
-                //tempX加上当前子view的width和deltaX
-                tempX = tempX + tempSubView.height + deltaX;
-            }
-        }else{
-            
-            /*
-             无法使用自动布局
-             */
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view高总和:%d\noffStart:%f\noffStart:%f\n父类view高总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentView.height);
-        }
-    }
 }
 
 
-
+/**
+ *  根据子view自动布局 需要设置:间距; 自动计算:起始点，结束点
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ *
+ *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
+ *  gapDistance:    view之间的间距
+ */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center gapDistance:(CGFloat)gapDistance
 {
-    
-    UIView *parentView = [viewArray[0] superview];
-    for (UIView *tempView in viewArray) {
-        if (![parentView isEqual:[tempView superview]]) {
-            NSLog(@"!!! 父类view不同，无法自动布局");
-            return;
-        }
-    }
-    
-    CGFloat offStart    = 0;
-    CGFloat offEnd      = 0;
-    
-    if (layoutAxis == kLAYOUT_AXIS_X) {
-        CGFloat widthTotal = 0;
-        for (UIView *tempView in viewArray) {
-            widthTotal += CGRectGetWidth(tempView.frame);
-        }
-        offStart = (CGRectGetWidth(parentView.frame) - widthTotal - ([viewArray count] - 1) * gapDistance)/2;
-        offEnd = offStart;
-    }
-    else{
-        CGFloat heightTotal = 0;
-        for (UIView *tempView in viewArray) {
-            heightTotal += CGRectGetHeight(tempView.frame);
-        }
-        offStart = (CGRectGetHeight(parentView.frame) - heightTotal - ([viewArray count] - 1) * gapDistance)/2;
-        offEnd = offStart;
-    }
-    
     [self BearAutoLayViewArray:viewArray
                     layoutAxis:layoutAxis
                         center:center
-                      offStart:offStart
-                        offEnd:offEnd
-                   gapDistance:gapDistance
+                       offPara:OffParaMake(0, 0, YES)
+                       gapPara:GapParaMake(gapDistance, NO)
                 superSizeToFit:NO];
 }
 
 
-
+/**
+ *  根据子view自动布局 需要设置:起始点，结束点，间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
+ *
+ *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
+ *  offStart:       起始点和边框的距离
+ *  offEnd:         结束点和边框的距离
+ *  gapDistance:    view之间的间距
+ */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd gapDistance:(CGFloat)gapDistance
 {
     [self BearAutoLayViewArray:viewArray
                     layoutAxis:layoutAxis
                         center:center
-                      offStart:offStart
-                        offEnd:offEnd
-                   gapDistance:gapDistance
+                       offPara:OffParaMake(offStart, offEnd, NO)
+                       gapPara:GapParaMake(gapDistance, NO)
                 superSizeToFit:YES];
 }
 
 
 
-+ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd gapDistance:(CGFloat)gapDistance superSizeToFit:(BOOL)superSizeToFit
+/**
+ *  根据子view自动布局
+ *
+ *  说明：
+ *      自动布局核心代码
+ *
+ *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
+ *  OffPara:        边距参数
+ *                      offStart:       起始点和边框的距离
+ *                      offEnd:         结束点和边框的距离
+ *                      autoCalu:       自动计算offStart和offEnd，边距参数可以都填为0
+ *  gapPara:        间距参数
+ *                      gapDistance:    view之间的间距
+ *                      autoCalu:       自动计算gapDistance，间距参数可以填为0
+ *  superSizeToFit: 父类view自适应
+ */
++ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray
+                  layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                      center:(BOOL)center
+                     offPara:(OffPara)offPara
+                     gapPara:(GapPara)gapPara
+              superSizeToFit:(BOOL)superSizeToFit
+
 {
-    int widthAllSubView = 0;  //所有子view的宽总和
-    
-    UIView *parentView = [viewArray[0] superview];
+    id parentView = [viewArray[0] superview];
     for (UIView *tempSubView in viewArray) {
         if (![parentView isEqual:[tempSubView superview]]) {
             NSLog(@"!!! 父类view不同，无法自动布局");
@@ -961,65 +783,129 @@
         }
     }
     
-    //  水平方向自动布局
+    
+    //  参数设置
+    int widthAllSubView     = 0;    //所有子view的宽／高总和
+    CGFloat needDistance    = 0;    //需要的宽度／高度
     if (layoutAxis == kLAYOUT_AXIS_X) {
         
         for (UIView *tempSubView in viewArray) {
             widthAllSubView += tempSubView.width;
         }
-        CGFloat needWidth = offStart + offEnd + widthAllSubView + ([viewArray count] - 1) * gapDistance;
+        needDistance = offPara.offStart + offPara.offEnd + widthAllSubView + ([viewArray count] - 1) * gapPara.gapDistance;
+    }
+    else if(layoutAxis == kLAYOUT_AXIS_Y) {
+        
+        for (UIView *tempSubView in viewArray) {
+            widthAllSubView += tempSubView.height;
+        }
+        needDistance = offPara.offStart + offPara.offEnd + widthAllSubView + ([viewArray count] - 1) * gapPara.gapDistance;
+    }
+    
+    
+    //  父类view适应和参数设置
+    CGFloat containerWidth;
+    CGFloat containerHeight;
+    if ([parentView isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *tempView_Scroll = (UIScrollView *)parentView;
+        containerWidth  = tempView_Scroll.contentSize.width;
+        containerHeight = tempView_Scroll.contentSize.height;
         
         if (superSizeToFit == YES) {
-            [parentView setWidth:needWidth];
+            CGSize tempSize = tempView_Scroll.contentSize;
+            if (layoutAxis == kLAYOUT_AXIS_X) {
+                tempSize.width = needDistance;
+            }
+            else if(layoutAxis == kLAYOUT_AXIS_Y) {
+                tempSize.height = needDistance;
+            }
+            tempView_Scroll.contentSize = tempSize;
         }
-        if (parentView.width < needWidth) {
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view宽总和:%d\noffStart:%f\noffStart:%f\n父类view宽总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentView.width);
-        }
+    }
+    else{
+        UIView *tempView = (UIView *)parentView;
+        containerWidth  = tempView.width;
+        containerHeight = tempView.height;
         
-        CGFloat deltaX = (parentView.width - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-        CGFloat tempX = offStart;//用于存储子view临时的X起点
-        
-        for (int i = 0; i < [viewArray count]; i++) {
-            
-            UIView *tempSubView = viewArray[i];
-            [tempSubView setX:tempX];
-            tempX += tempSubView.width + deltaX;
-            
-            if (center) {
-                tempSubView.center = CGPointMake(tempSubView.center.x, parentView.height/2);
+        if (superSizeToFit == YES) {
+            if (layoutAxis == kLAYOUT_AXIS_X) {
+                [tempView setWidth:needDistance];
+            }
+            else if(layoutAxis == kLAYOUT_AXIS_Y) {
+                [tempView setHeight:needDistance];
             }
         }
     }
     
-    //  垂直方向自动布局
-    else{
+    //  自动布局
+    if (layoutAxis == kLAYOUT_AXIS_X) {
         
-        //获取所有子类view的高度总和
-        for (UIView *tempSubView in viewArray) {
-            widthAllSubView += tempSubView.height;
-        }
-        CGFloat needHeight = offStart + offEnd + widthAllSubView + ([viewArray count] - 1) * gapDistance;
-        
-        if (superSizeToFit == YES) {
-            [parentView setWidth:needHeight];
-        }
-        if (parentView.height < needHeight) {
-            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view高总和:%d\noffStart:%f\noffStart:%f\n父类view高总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offStart, offEnd, parentView.height);
+        if (containerWidth < needDistance) {
+            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view宽总和:%d\noffStart:%f\noffStart:%f\n父类view宽总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offPara.offStart, offPara.offEnd, containerWidth);
+            return;
         }
         
+        if (offPara.autoCalu == YES && gapPara.autoCalu == YES) {
+            offPara.offStart    = (containerWidth - widthAllSubView)/([viewArray count] + 1);
+            offPara.offEnd      = offPara.offStart;
+            gapPara.gapDistance = offPara.offStart;
+        }
         
-        CGFloat deltaX = (parentView.height - widthAllSubView - offStart - offEnd)/([viewArray count] - 1);//子view的x间距
-        CGFloat tempX = offStart;//用于存储子view临时的X起点
+        else if (offPara.autoCalu == YES && gapPara.autoCalu == NO) {
+            CGFloat gapDistancelAll = gapPara.gapDistance * ([viewArray count] - 1);
+            offPara.offStart    = (containerWidth - widthAllSubView - gapDistancelAll) / 2;
+            offPara.offEnd      = offPara.offEnd;
+        }
         
+        else if (offPara.autoCalu == NO && gapPara.autoCalu == YES) {
+            gapPara.gapDistance = (containerWidth - widthAllSubView - offPara.offStart - offPara.offEnd)/([viewArray count] - 1);
+        }
+        
+        CGFloat tempX = offPara.offStart;//用于存储子view临时的X起点
+        for (int i = 0; i < [viewArray count]; i++) {
+            
+            UIView *tempSubView = viewArray[i];
+            [tempSubView setX:tempX];
+            tempX += tempSubView.width + gapPara.gapDistance;
+            
+            if (center) {
+                tempSubView.center = CGPointMake(tempSubView.center.x, containerHeight/2);
+            }
+        }
+    }
+    else if(layoutAxis == kLAYOUT_AXIS_Y) {
+        
+        if (containerHeight < needDistance) {
+            NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view高总和:%d\noffStart:%f\noffStart:%f\n父类view高总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offPara.offStart, offPara.offEnd, containerHeight);
+            return;
+        }
+        
+        if (offPara.autoCalu == YES && gapPara.autoCalu == YES) {
+            offPara.offStart    = (containerHeight - widthAllSubView)/([viewArray count] + 1);
+            offPara.offEnd      = offPara.offStart;
+            gapPara.gapDistance = offPara.offStart;
+        }
+        
+        else if (offPara.autoCalu == YES && gapPara.autoCalu == NO) {
+            CGFloat gapDistancelAll = gapPara.gapDistance * ([viewArray count] - 1);
+            offPara.offStart    = (containerHeight - widthAllSubView - gapDistancelAll) / 2;
+            offPara.offEnd      = offPara.offEnd;
+        }
+        
+        else if (offPara.autoCalu == NO && gapPara.autoCalu == YES) {
+            gapPara.gapDistance = (containerHeight - widthAllSubView - offPara.offStart - offPara.offEnd)/([viewArray count] - 1);
+        }
+        
+        CGFloat tempX = offPara.offStart;//用于存储子view临时的X起点
         for (int i = 0; i < [viewArray count]; i++) {
             
             UIView *tempSubView = viewArray[i];
             [tempSubView setY:tempX];
-            tempX += tempSubView.height + deltaX;
+            tempX += tempSubView.height + gapPara.gapDistance;
             
             if (center) {
                 //竖直方向相对于父类view剧中
-                tempSubView.center = CGPointMake(parentView.width/2, tempSubView.center.y);
+                tempSubView.center = CGPointMake(containerWidth/2, tempSubView.center.y);
             }
         }
     }
