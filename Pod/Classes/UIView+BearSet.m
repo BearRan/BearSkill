@@ -6,7 +6,7 @@
 //
 #import "UIView+BearSet.h"
 
-@implementation UIView (MySet)
+@implementation UIView (BearSet)
 
 
 #pragma mark - 界面处理，设置属性，画线的一些方法
@@ -644,11 +644,11 @@
  */
 - (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit
 {
-    if (sizeToFit) {
+    if (sizeToFit == YES) {
         [self sizeToFit];
     }
     
-    [self BearSetRelativeLayoutWithDirection:direction destinationView:destinationView parentRelation:parentRelation distance:direction center:center];
+    [self BearSetRelativeLayoutWithDirection:direction destinationView:destinationView parentRelation:parentRelation distance:distance center:center];
 }
 
 
@@ -808,6 +808,8 @@
     CGFloat containerHeight;
     if ([parentView isKindOfClass:[UIScrollView class]]) {
         UIScrollView *tempView_Scroll = (UIScrollView *)parentView;
+        containerWidth  = tempView_Scroll.contentSize.width;
+        containerHeight = tempView_Scroll.contentSize.height;
         
         if (superSizeToFit == YES) {
             CGSize tempSize = tempView_Scroll.contentSize;
@@ -819,12 +821,11 @@
             }
             tempView_Scroll.contentSize = tempSize;
         }
-        
-        containerWidth  = tempView_Scroll.contentSize.width;
-        containerHeight = tempView_Scroll.contentSize.height;
     }
     else{
         UIView *tempView = (UIView *)parentView;
+        containerWidth  = tempView.width;
+        containerHeight = tempView.height;
         
         if (superSizeToFit == YES) {
             if (layoutAxis == kLAYOUT_AXIS_X) {
@@ -834,9 +835,6 @@
                 [tempView setHeight:needDistance];
             }
         }
-        
-        containerWidth  = tempView.width;
-        containerHeight = tempView.height;
     }
     
     //  自动布局

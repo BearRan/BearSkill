@@ -66,7 +66,7 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 }
 
 
-@interface UIView (MySet)
+@interface UIView (BearSet)
 
 /**
  *  普通的方法
