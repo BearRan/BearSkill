@@ -105,7 +105,6 @@ View与View之间的相对布局
  - - (CGSize)size;  
  - - (CGFloat)centerX; 
  - - (CGFloat)centerY;  
- - 
  
 //Setter 
 - - (void)setX:(CGFloat)x; 
@@ -125,9 +124,11 @@ View与View之间的相对布局
 - - (void)setHeight\_DonotMoveCenter:(CGFloat)height;
 - - (void)setSize\_DonotMoveCenter:(CGSize)size; 
 - - (void)sizeToFit\_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain; 
-\*\* \* 和父类view剧中 \* 
-\* 当前view和父类view的 X轴／Y轴／中心点 对其 \*
+
+和父类view剧中
+当前view和父类view的 X轴／Y轴／中心点 对其
 - - (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis; 
-\*\* \* 和指定的view剧中 \* 
-\* 当前view和指定view的 X轴／Y轴／中心点 对其 \*
+
+和指定的view剧中
+当前view和指定view的 X轴／Y轴／中心点 对其
 - - (void)BearSetCenterToView:(UIView \*)destinationView withAxis:(kAXIS)axis;
