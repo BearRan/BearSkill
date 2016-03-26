@@ -62,15 +62,18 @@ BearSkill纯代码搭建iOS界面
 
 ![MenuBallAnimation.png](READMEResource/20160215151353143.gif)
 
-`​`/\*\* \* 根据子view自动布局 需要设置:起始点，结束点; 自动计算:间距 \* 说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局 \*/ + (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd;
+`​`/\*\* \* 根据子view自动布局 需要设置:起始点，结束点; 自动计算:间距 \* 说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局 \*/ 
++ (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd;
 
 ![MenuBallAnimation.png](READMEResource/20160215151826629.gif)
 
-`​`/\*\* \* 根据子view自动布局 需要设置:间距; 自动计算:起始点，结束点 \* 说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局 \*/ + (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center gapDistance:(CGFloat)gapDistance;
+`​`/\*\* \* 根据子view自动布局 需要设置:间距; 自动计算:起始点，结束点 \* 说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局 \*/ 
++ (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center gapDistance:(CGFloat)gapDistance;
 
 ![MenuBallAnimation.png](READMEResource/20160215152216443.gif)
 
-`​`/\*\* \* 根据子view自动布局 需要设置:起始点，结束点，间距 \* 说明： 在父类view尺寸不等于需求尺寸时，会自动变化 \*/ + (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd gapDistance:(CGFloat)gapDistance;
+`​`/\*\* \* 根据子view自动布局 需要设置:起始点，结束点，间距 \* 说明： 在父类view尺寸不等于需求尺寸时，会自动变化 \*/ 
++ (void)BearAutoLayViewArray:(NSMutableArray \*)viewArray layoutAxis:(kLAYOUT\_AXIS)layoutAxis center:(BOOL)center offStart:(CGFloat)offStart offEnd:(CGFloat)offEnd gapDistance:(CGFloat)gapDistance;
 
 ![MenuBallAnimation.png](READMEResource/20160215152421681.gif)
 
@@ -105,7 +108,7 @@ View与View之间的相对布局
  - 
  
 //Setter 
-- (void)setX:(CGFloat)x; 
+- - (void)setX:(CGFloat)x; 
 - - (void)setMaxX:(CGFloat)maxX; 
 - - (void)setMaxX\_DontMoveMinX:(CGFloat)maxX;  
 - - (void)setY:(CGFloat)y; 
@@ -122,7 +125,9 @@ View与View之间的相对布局
 - - (void)setHeight\_DonotMoveCenter:(CGFloat)height;
 - - (void)setSize\_DonotMoveCenter:(CGSize)size; 
 - - (void)sizeToFit\_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain; 
-- /\*\* \* 和父类view剧中 \* \* 当前view和父类view的 X轴／Y轴／中心点 对其 \*/ 
+\*\* \* 和父类view剧中 \* 
+\* 当前view和父类view的 X轴／Y轴／中心点 对其 \*
 - - (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis; 
-- /\*\* \* 和指定的view剧中 \* \* 当前view和指定view的 X轴／Y轴／中心点 对其 \*/ 
+\*\* \* 和指定的view剧中 \* 
+\* 当前view和指定view的 X轴／Y轴／中心点 对其 \*
 - - (void)BearSetCenterToView:(UIView \*)destinationView withAxis:(kAXIS)axis;
