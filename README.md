@@ -90,13 +90,39 @@ View与View之间的相对布局
 
 不一一解释了，都是看了名字就知道的参数
 
-`​`​`​`​`​`​// Getter
+// Getter
 
- - (CGFloat)x; 
+ - - (CGFloat)x; 
  - - (CGFloat)y; 
  - - (CGFloat)maxX; 
  - - (CGFloat)maxY;
  - - (CGFloat)width; 
  - - (CGFloat)height; 
  - - (CGPoint)origin;
- - - (CGSize)size;  - (CGFloat)centerX; - (CGFloat)centerY;  //Setter - (void)setX:(CGFloat)x; - (void)setMaxX:(CGFloat)maxX; - (void)setMaxX\_DontMoveMinX:(CGFloat)maxX;  - (void)setY:(CGFloat)y; - (void)setMaxY:(CGFloat)maxY; - (void)setMaxY\_DontMoveMinY:(CGFloat)maxY;  - (void)setWidth:(CGFloat)width; - (void)setHeight:(CGFloat)height; - (void)setOrigin:(CGPoint)point; - (void)setOrigin:(CGPoint)point sizeToFit:(BOOL)sizeToFit; - (void)setSize:(CGSize)size;  - (void)setCenterX:(CGFloat)x; - (void)setCenterY:(CGFloat)y;  - (void)setWidth\_DonotMoveCenter:(CGFloat)width; - (void)setHeight\_DonotMoveCenter:(CGFloat)height; - (void)setSize\_DonotMoveCenter:(CGSize)size; - (void)sizeToFit\_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain;  /\*\* \* 和父类view剧中 \* \* 当前view和父类view的 X轴／Y轴／中心点 对其 \*/ - (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis;  /\*\* \* 和指定的view剧中 \* \* 当前view和指定view的 X轴／Y轴／中心点 对其 \*/ - (void)BearSetCenterToView:(UIView \*)destinationView withAxis:(kAXIS)axis;
+ - - (CGSize)size;  
+ - - (CGFloat)centerX; 
+ - - (CGFloat)centerY;  
+ - 
+ 
+//Setter 
+- (void)setX:(CGFloat)x; 
+- - (void)setMaxX:(CGFloat)maxX; 
+- - (void)setMaxX\_DontMoveMinX:(CGFloat)maxX;  
+- - (void)setY:(CGFloat)y; 
+- - (void)setMaxY:(CGFloat)maxY; 
+- - (void)setMaxY\_DontMoveMinY:(CGFloat)maxY;  
+- - (void)setWidth:(CGFloat)width; 
+- - (void)setHeight:(CGFloat)height; 
+- - (void)setOrigin:(CGPoint)point; 
+- - (void)setOrigin:(CGPoint)point sizeToFit:(BOOL)sizeToFit; 
+- - (void)setSize:(CGSize)size;  
+- - (void)setCenterX:(CGFloat)x; 
+- - (void)setCenterY:(CGFloat)y;  
+- - (void)setWidth\_DonotMoveCenter:(CGFloat)width; 
+- - (void)setHeight\_DonotMoveCenter:(CGFloat)height;
+- - (void)setSize\_DonotMoveCenter:(CGSize)size; 
+- - (void)sizeToFit\_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain; 
+- /\*\* \* 和父类view剧中 \* \* 当前view和父类view的 X轴／Y轴／中心点 对其 \*/ 
+- - (void)BearSetCenterToParentViewWithAxis:(kAXIS)axis; 
+- /\*\* \* 和指定的view剧中 \* \* 当前view和指定view的 X轴／Y轴／中心点 对其 \*/ 
+- - (void)BearSetCenterToView:(UIView \*)destinationView withAxis:(kAXIS)axis;
