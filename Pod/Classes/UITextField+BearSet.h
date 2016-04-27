@@ -10,7 +10,6 @@
 
 @interface UITextField (BearSet)
 
-//  限制输入的位数
-- (void)limitLength:(int)length;
+@property (copy, nonatomic) NSNumber    *limitLength;
 
 @end

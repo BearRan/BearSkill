@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+
 //  NotificationCenter字段
-static NSString *ConvertUserStatus = @"convertUserStatus";
+static NSString *NotificationTest = @"NotificationTest";
 
 
 //  UserDefaults字段
-static NSString *udGuestId = @"guestId";          //当前用户id
+static NSString *usTest = @"usTest";
+
 
 
 /**
@@ -29,6 +32,7 @@ static NSString *udGuestId = @"guestId";          //当前用户id
 #define UDDELETE(key)       [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 
 
+
 /**
  *  Bear自定义log
  */
@@ -41,12 +45,27 @@ static NSString *udGuestId = @"guestId";          //当前用户id
 #endif
 
 
+
+/**
+ *  判断系统版本
+ *
+ *
+ */
+#define SystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define over_iOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
+#define over_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
+#define over_iOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
+
+
+
 /**
  *  RGB
  */
 #define RGB(r, g, b)                [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 #define RGBAlpha(r, g, b, alpha)    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:alpha]
 #define UIColorFromHEX(rgbValue)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 
 /**
