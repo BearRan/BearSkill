@@ -820,6 +820,8 @@
                 tempSize.height = needDistance;
             }
             tempView_Scroll.contentSize = tempSize;
+            containerWidth  = tempView_Scroll.contentSize.width;
+            containerHeight = tempView_Scroll.contentSize.height;
         }
     }
     else{
@@ -834,6 +836,8 @@
             else if(layoutAxis == kLAYOUT_AXIS_Y) {
                 [tempView setHeight:needDistance];
             }
+            containerWidth  = tempView.width;
+            containerHeight = tempView.height;
         }
     }
     
