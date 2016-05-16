@@ -23,6 +23,8 @@ static const void *cellFrameDictKey = &cellFrameDictKey;
     objc_setAssociatedObject(self, cellFrameDictKey, cellFrameDict, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
+//  根据indexPath获取对应的高度
+//  如果之前没有记录，默认返回10
 - (CGFloat)getHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.cellFrameDict) {
@@ -38,6 +40,24 @@ static const void *cellFrameDictKey = &cellFrameDictKey;
     return 10;
 }
 
+//  根据indexPath获取对应的frame
+//  如果之前没有记录，默认返回(0, 0, 10, 10)
+- (CGRect)getFrameForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.cellFrameDict) {
+        self.cellFrameDict = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString *indexPathStr = [self indexPathToStr:indexPath];
+    if ([self.cellFrameDict objectForKey:indexPathStr]) {
+        CGRect tempRect = [[self.cellFrameDict objectForKey:indexPathStr] CGRectValue];
+        return tempRect;
+    }
+    
+    return CGRectMake(0, 0, 10, 10);
+}
+
+//  将cell的frame存储到对应的indexPath
 - (void)recordingFrame:(CGRect)frame forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.cellFrameDict) {
