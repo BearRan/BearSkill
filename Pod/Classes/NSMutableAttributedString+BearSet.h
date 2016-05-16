@@ -6,6 +6,13 @@
 //
 //
 
+
+//
+//  富文本设置
+//  适用于 UILabel, UITextField, UITextView
+//  适用于所有的AttributeString
+//
+
 #import <Foundation/Foundation.h>
 
 @interface NSMutableAttributedString (BearSet)
