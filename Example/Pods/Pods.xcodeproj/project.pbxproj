@@ -12,6 +12,8 @@
 		163C6E8E5E7CEE1E0BEEB9CA0939DA3A /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 73003A0752F3CABAA497D1FD1F5E4E44 /* UIImage+Diff.m */; };
 		187C85231CE963EF001EA35F /* UITableView+BearStoreCellHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */; };
 		187C85241CE963EF001EA35F /* UITableView+BearStoreCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */; };
+		187C852A1CE974C9001EA35F /* NSMutableAttributedString+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 187C85281CE974C9001EA35F /* NSMutableAttributedString+BearSet.h */; };
+		187C852B1CE974C9001EA35F /* NSMutableAttributedString+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */; };
 		1F118728B3D74089480152A6B660EA9A /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = A729E2AD854B4CEB4EF52289C017EB3B /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		25885EB6F78CEEDB604118DFC9A4D5EA /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F2071FFF5C5B0E9DEB6C3FE43A30CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2393D1A899C707F79A64672C46ED238F /* UIKit.framework */; };
@@ -32,7 +34,6 @@
 		8804D724284EDEE2C254C117E95BD9A5 /* UILabel+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D549E01DA1D5104335CCEABFF870005 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
 		915719324D77BD3C17F65858B24E8A13 /* Pods-BearSkill_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9712AAE64B49FE8400923B5309F49ED7 /* Pods-BearSkill_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DB3A9908163628D349B18129F9831A5 /* BearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */; };
 		AA8501741ABB8D75C6C47DE086BACD37 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFD97972C24EE7435D0E04686569BBE /* FBSnapshotTestController.m */; };
 		AD4D905241DED4AEAD67447088ACB23D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 853C84AC883B6FC690E82525E7ECB377 /* XCTest.framework */; };
 		B70510B9B6DA096A4ED2F95DE83987A9 /* UIView+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,7 +44,6 @@
 		CF9DB2096C715EA61E263021EE406DB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0528444EFC68619AD1FEB8A7CD4A01BA /* QuartzCore.framework */; };
 		D2E2D76A64ECA8D8B4C5C68262822771 /* BearSkill.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5F2179364EBE9DD2060B328C8124AD6B /* BearSkill.bundle */; };
 		DFCB39B26AED498ABC5303FE967A5025 /* BearConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */; };
-		E75755354D05B5620364B784FD6F9D52 /* BearTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDD91D0CC316AC322E1607D3749F1C0A /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121BCE99CCFB208275F3437CCF6EBB6 /* UIImage+Snapshot.m */; };
 		EE6AB1165D6AE73D1B4B489D5C4E2F4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
 		EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B48E0B6176A961BBCD916D4BC0E9ED /* BearSkill-dummy.m */; };
@@ -82,7 +82,6 @@
 
 /* Begin PBXFileReference section */
 		0345D737618C6A063BD152389ACCBF87 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
-		0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BearTextField.m; sourceTree = "<group>"; };
 		0528444EFC68619AD1FEB8A7CD4A01BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		0EE4692BF9A76DAAA67A8FF4DABD27E8 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		0F01AA0F45B0B5CC535F9884FF44262A /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
@@ -92,6 +91,8 @@
 		12CC4BD9C5F6D514C917D7942DF2D2F4 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+BearStoreCellHeight.h"; sourceTree = "<group>"; };
 		187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+BearStoreCellHeight.m"; sourceTree = "<group>"; };
+		187C85281CE974C9001EA35F /* NSMutableAttributedString+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+BearSet.h"; sourceTree = "<group>"; };
+		187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BearSet.m"; sourceTree = "<group>"; };
 		190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Tests-dummy.m"; sourceTree = "<group>"; };
 		1A5591F10A968B80A90D38D4F877DD7C /* BearSkill-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-prefix.pch"; sourceTree = "<group>"; };
 		1BC1811B75B0CF5A27DBA6B79AC2E3D6 /* Pods-BearSkill_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		7AF449EEFF208843ED90888E6BBB3E50 /* BearSkill-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-umbrella.h"; sourceTree = "<group>"; };
 		7BC0EDD41F2AEC28C4E40291DCFBC637 /* Pods-BearSkill_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Example-dummy.m"; sourceTree = "<group>"; };
 		7CAAAB29C54DB2D5220028C4110E45E6 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BearTextField.h; sourceTree = "<group>"; };
 		853C84AC883B6FC690E82525E7ECB377 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9712AAE64B49FE8400923B5309F49ED7 /* Pods-BearSkill_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BearSkill_Example-umbrella.h"; sourceTree = "<group>"; };
 		A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BearConstants.m; sourceTree = "<group>"; };
@@ -322,14 +322,14 @@
 				A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */,
 				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
 				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
-				7ECFCCD4E2AD51CF632D78843CCA0642 /* BearTextField.h */,
-				0403D42D689175CB3C90FC7DB4B891C3 /* BearTextField.m */,
 				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
 				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
 				CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */,
 				FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */,
 				187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */,
 				187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */,
+				187C85281CE974C9001EA35F /* NSMutableAttributedString+BearSet.h */,
+				187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 				25885EB6F78CEEDB604118DFC9A4D5EA /* BearConstants.h in Headers */,
 				187C85231CE963EF001EA35F /* UITableView+BearStoreCellHeight.h in Headers */,
 				C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */,
-				E75755354D05B5620364B784FD6F9D52 /* BearTextField.h in Headers */,
+				187C852A1CE974C9001EA35F /* NSMutableAttributedString+BearSet.h in Headers */,
 				8804D724284EDEE2C254C117E95BD9A5 /* UILabel+BearSet.h in Headers */,
 				41E7273A032CE3295965153008350074 /* UITextField+BearSet.h in Headers */,
 				B70510B9B6DA096A4ED2F95DE83987A9 /* UIView+BearSet.h in Headers */,
@@ -623,9 +623,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFCB39B26AED498ABC5303FE967A5025 /* BearConstants.m in Sources */,
+				187C852B1CE974C9001EA35F /* NSMutableAttributedString+BearSet.m in Sources */,
 				EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */,
 				187C85241CE963EF001EA35F /* UITableView+BearStoreCellHeight.m in Sources */,
-				9DB3A9908163628D349B18129F9831A5 /* BearTextField.m in Sources */,
 				416D18B553357EE3AE61B54ABE31EF4D /* UILabel+BearSet.m in Sources */,
 				09A86B0532B9EF943F898E8CF46F979C /* UITextField+BearSet.m in Sources */,
 				8767E08A01D9B45BDBF22F37A49FBEFA /* UIView+BearSet.m in Sources */,

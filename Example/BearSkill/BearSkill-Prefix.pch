@@ -11,7 +11,6 @@
 #endif
 
 #import "BearConstants.h"
-#import "BearTextField.h"
 #import "UILabel+BearSet.h"
 #import "UITextField+BearSet.h"
 #import "UIView+BearSet.h"

@@ -6,6 +6,11 @@
 //
 //
 
+
+//
+//  本方法可以方便记录UITableViewCell的高度
+//
+
 #import <UIKit/UIKit.h>
 
 @interface UITableView (BearStoreCellHeight)
