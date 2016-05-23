@@ -72,25 +72,41 @@ static NSString *usTest = @"usTest";
  *  屏幕尺寸
  */
 
-//  6p
+//  6p (物理点)
 #define WIDTH6P 414.0
 #define HEIGHT6P 736.0
 
-//  6（设备分辨率）
-#define WIDTH6 750.0
-#define HEIGHT6 1334.0
+//  6p_N (像素点)
+#define NWIDTH6P 1242.0
+#define NHEIGHT6P 2208.0
 
-//  6（逻辑分辨率）
-#define NWIDTH6 375.0
-#define NHEIGHT6 667.0
+
+//  6
+#define WIDTH6 375.0
+#define HEIGHT6 667.0
+
+//  6_N
+#define NWIDTH6 750.0
+#define NHEIGHT6 1334.0
+
 
 //  5 | 5c | 5s
 #define WIDTH5 320.0
 #define HEIGHT5 568.0
 
+//  5 | 5c | 5s _N
+#define NWIDTH5 640.0
+#define NHEIGHT5 1136.0
+
+
 //  4|4s
 #define WIDTH4 320.0
 #define HEIGHT4 480.0
+
+//  4|4s _N
+#define NWIDTH4 640.0
+#define NHEIGHT4 960.0
+
 
 //  屏幕宽高
 #define WIDTH ([UIScreen  mainScreen].bounds.size.width)
