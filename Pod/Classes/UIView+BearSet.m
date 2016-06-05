@@ -673,6 +673,8 @@
                         center:center
                        offPara:OffParaMake(0, 0, YES)
                        gapPara:GapParaMake(0, YES)
+                      gapArray:nil
+                     gapDisAll:nil
                 superSizeToFit:NO];
 }
 
@@ -696,6 +698,8 @@
                         center:center
                        offPara:OffParaMake(offStart, offEnd, NO)
                        gapPara:GapParaMake(0, YES)
+                      gapArray:nil
+                     gapDisAll:nil
                 superSizeToFit:NO];
 }
 
@@ -718,6 +722,8 @@
                         center:center
                        offPara:OffParaMake(0, 0, YES)
                        gapPara:GapParaMake(gapDistance, NO)
+                      gapArray:nil
+                     gapDisAll:nil
                 superSizeToFit:NO];
 }
 
@@ -742,6 +748,32 @@
                         center:center
                        offPara:OffParaMake(offStart, offEnd, NO)
                        gapPara:GapParaMake(gapDistance, NO)
+                      gapArray:nil
+                     gapDisAll:nil
+                superSizeToFit:YES];
+}
+
+/**
+ *  根据子view自动布局 需要设置:gapArray间距比例数组，间距总和
+ *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
+ *
+ *  viewArray:      装有子类view的数组
+ *  layoutAxis:     布局轴向
+ *                      kLAYOUT_AXIS_X: 水平方向自动布局
+ *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
+ *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
+ *  gapArray:       间距比例数组（包括OffStart，OffEnd）
+ *  gapDisAll:      间距总和
+ */
++ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center gapAray:(NSArray *)gapArray gapDisAll:(CGFloat)gapDisAll
+{
+    [self BearAutoLayViewArray:viewArray
+                    layoutAxis:layoutAxis
+                        center:center
+                       offPara:OffParaMake(0, 0, NO)
+                       gapPara:GapParaMake(0, NO)
+                      gapArray:[NSMutableArray arrayWithArray:gapArray]
+                     gapDisAll:[NSNumber numberWithFloat:gapDisAll]
                 superSizeToFit:YES];
 }
 
@@ -765,6 +797,8 @@
  *  gapPara:        间距参数
  *                      gapDistance:    view之间的间距
  *                      autoCalu:       自动计算gapDistance，间距参数可以填为0
+ *  gapArray:       间距比例数组，包括offStart和offEnd
+ *  gapDisAll:      所有间距总和，包括offStart和offEnd
  *  superSizeToFit: 父类view自适应
  */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray
@@ -772,9 +806,13 @@
                       center:(BOOL)center
                      offPara:(OffPara)offPara
                      gapPara:(GapPara)gapPara
+                    gapArray:(NSMutableArray *)gapArray
+                   gapDisAll:(NSNumber *)gapDisAll
               superSizeToFit:(BOOL)superSizeToFit
 
 {
+    
+    //  检测viewArray里的元素是否都在同一个view上
     id parentView = [viewArray[0] superview];
     for (UIView *tempSubView in viewArray) {
         if (![parentView isEqual:[tempSubView superview]]) {
@@ -785,20 +823,24 @@
     
     
     //  参数设置
-    int widthAllSubView     = 0;    //所有子view的宽／高总和
-    CGFloat needDistance    = 0;    //需要的宽度／高度
-    if (layoutAxis == kLAYOUT_AXIS_X) {
-        
-        for (UIView *tempSubView in viewArray) {
+    int widthAllSubView         = 0;    //所有子view的宽／高总和
+    CGFloat needDistance        = 0;    //需要的宽度／高度
+    CGFloat subViewWidthMax_X   = 0;    //子类view宽度／高度最大值
+    
+    for (UIView *tempSubView in viewArray) {
+        if (layoutAxis == kLAYOUT_AXIS_X) {
             widthAllSubView += tempSubView.width;
+            subViewWidthMax_X = tempSubView.maxY > subViewWidthMax_X ? tempSubView.maxY : subViewWidthMax_X;
         }
-        needDistance = offPara.offStart + offPara.offEnd + widthAllSubView + ([viewArray count] - 1) * gapPara.gapDistance;
-    }
-    else if(layoutAxis == kLAYOUT_AXIS_Y) {
-        
-        for (UIView *tempSubView in viewArray) {
+        else if(layoutAxis == kLAYOUT_AXIS_Y) {
             widthAllSubView += tempSubView.height;
+            subViewWidthMax_X = tempSubView.maxX > subViewWidthMax_X ? tempSubView.maxX : subViewWidthMax_X;
         }
+    }
+    
+    if (gapArray && gapDisAll) {
+        needDistance = widthAllSubView + [gapDisAll floatValue];
+    }else{
         needDistance = offPara.offStart + offPara.offEnd + widthAllSubView + ([viewArray count] - 1) * gapPara.gapDistance;
     }
     
@@ -815,9 +857,11 @@
             CGSize tempSize = tempView_Scroll.contentSize;
             if (layoutAxis == kLAYOUT_AXIS_X) {
                 tempSize.width = needDistance;
+                tempSize.height = subViewWidthMax_X > tempSize.height ? subViewWidthMax_X : tempSize.height;
             }
             else if(layoutAxis == kLAYOUT_AXIS_Y) {
                 tempSize.height = needDistance;
+                tempSize.width = subViewWidthMax_X > tempSize.width ? subViewWidthMax_X : tempSize.width;
             }
             tempView_Scroll.contentSize = tempSize;
             containerWidth  = tempView_Scroll.contentSize.width;
@@ -832,9 +876,11 @@
         if (superSizeToFit == YES) {
             if (layoutAxis == kLAYOUT_AXIS_X) {
                 [tempView setWidth:needDistance];
+                [tempView setHeight:subViewWidthMax_X > tempView.height ? subViewWidthMax_X : tempView.height];
             }
             else if(layoutAxis == kLAYOUT_AXIS_Y) {
                 [tempView setHeight:needDistance];
+                [tempView setWidth:subViewWidthMax_X > tempView.width ? subViewWidthMax_X : tempView.width];
             }
             containerWidth  = tempView.width;
             containerHeight = tempView.height;
@@ -865,12 +911,48 @@
             gapPara.gapDistance = (containerWidth - widthAllSubView - offPara.offStart - offPara.offEnd)/([viewArray count] - 1);
         }
         
-        CGFloat tempX = offPara.offStart;//用于存储子view临时的X起点
+        //  gap数组
+        if (!gapArray) {
+            gapArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [viewArray count] + 2 - 1; i++) {
+                
+                //  offStart
+                if (i == 0) {
+                    [gapArray addObject:[NSNumber numberWithFloat:offPara.offStart]];
+                }
+                //  offEnd
+                else if (i == [viewArray count] + 1 - 1){
+                    [gapArray addObject:[NSNumber numberWithFloat:offPara.offEnd]];
+                }
+                //  gapDis
+                else{
+                    [gapArray addObject:[NSNumber numberWithFloat:gapPara.gapDistance]];
+                }
+            }
+        }
+        
+        //  gap比例兑换
+        if (gapDisAll) {
+            
+            //  获取gap份数总和
+            CGFloat tempAllGapWidth = 0;
+            for (NSNumber *tempPerNum in gapArray) {
+                tempAllGapWidth += [tempPerNum floatValue];
+            }
+            
+            //  根据对应比例换算成宽度
+            for (int i = 0; i < [gapArray count]; i++) {
+                CGFloat gapWidth = (1.0 * [gapArray[i] floatValue] / tempAllGapWidth) * [gapDisAll floatValue];
+                gapArray[i] = [NSNumber numberWithFloat:gapWidth];
+            }
+        }
+        
+        CGFloat tempX = [gapArray[0] floatValue];//用于存储子view临时的X起点
         for (int i = 0; i < [viewArray count]; i++) {
             
             UIView *tempSubView = viewArray[i];
             [tempSubView setX:tempX];
-            tempX += tempSubView.width + gapPara.gapDistance;
+            tempX += tempSubView.width + [gapArray[i + 1] floatValue];
             
             if (center) {
                 tempSubView.center = CGPointMake(tempSubView.center.x, containerHeight/2);
@@ -900,12 +982,48 @@
             gapPara.gapDistance = (containerHeight - widthAllSubView - offPara.offStart - offPara.offEnd)/([viewArray count] - 1);
         }
         
-        CGFloat tempX = offPara.offStart;//用于存储子view临时的X起点
+        //  gap数组
+        if (!gapArray) {
+            gapArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [viewArray count] + 2 - 1; i++) {
+                
+                //  offStart
+                if (i == 0) {
+                    [gapArray addObject:[NSNumber numberWithFloat:offPara.offStart]];
+                }
+                //  offEnd
+                else if (i == [viewArray count] + 1 - 1){
+                    [gapArray addObject:[NSNumber numberWithFloat:offPara.offEnd]];
+                }
+                //  gapDis
+                else{
+                    [gapArray addObject:[NSNumber numberWithFloat:gapPara.gapDistance]];
+                }
+            }
+        }
+        
+        //  gap比例兑换
+        if (gapDisAll) {
+            
+            //  获取gap份数总和
+            CGFloat tempAllGapWidth = 0;
+            for (NSNumber *tempPerNum in gapArray) {
+                tempAllGapWidth += [tempPerNum floatValue];
+            }
+            
+            //  根据对应比例换算成宽度
+            for (int i = 0; i < [gapArray count]; i++) {
+                CGFloat gapWidth = (1.0 * [gapArray[i] floatValue] / tempAllGapWidth) * [gapDisAll floatValue];
+                gapArray[i] = [NSNumber numberWithFloat:gapWidth];
+            }
+        }
+        
+        CGFloat tempX = [gapArray[0] floatValue];//用于存储子view临时的X起点
         for (int i = 0; i < [viewArray count]; i++) {
             
             UIView *tempSubView = viewArray[i];
             [tempSubView setY:tempX];
-            tempX += tempSubView.height + gapPara.gapDistance;
+            tempX += tempSubView.height + [gapArray[i + 1] floatValue];
             
             if (center) {
                 //竖直方向相对于父类view剧中
