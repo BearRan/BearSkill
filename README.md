@@ -1,3 +1,5 @@
+# BearSkill Origin
+
 # README
 
 # BearSkill
@@ -33,30 +35,29 @@ Introduction
 
 ## Constants / 常用常量和方法
 * BearConstants
--->iOS开发中常用的各种方法，常量。屏幕宽高，UserDefault宏等
+  * iOS开发中常用的各种方法，常量。屏幕宽高，UserDefault宏等
 
 
 ## Layout / 非约束性布局
 * UIView+BearSet
--->非约束性布局和一些常用的布局思路，详情见链接
--->http://blog.csdn.net/xiongbaoxr/article/details/50668260
+  * 非约束性布局和一些常用的布局思路
+  * 详情见链接:http://blog.csdn.net/xiongbaoxr/article/details/50668260
 
 * UITableView+BearStoreCellHeight
--->UITableView自动记录Cell高度，获取cell高度，告别手动管理
+  * UITableView自动记录Cell高度，获取cell高度，告别手动管理
 
 
 
 ## UI&Extend / UI和扩展
 * BearCutOutView
--->对UIView挖空特定的形状
+  * 对UIView挖空特定的形状
 
 * UITextField+BearLimitLength
--->限制UITextField输入字符数量，详情见链接
--->http://blog.csdn.net/xiongbaoxr/article/details/51525061
+  * 限制UITextField输入字符数量
+  * 详情见链接:http://blog.csdn.net/xiongbaoxr/article/details/51525061
 
 
 
 ## AttributeString / 富文本处理
 * NSMutableAttributedString+BearSet
--->便携式富文本处理，支持正则表达式。也可直接设置行间距。
-
+  * 便携式富文本处理，支持正则表达式。也可直接设置行间距。
