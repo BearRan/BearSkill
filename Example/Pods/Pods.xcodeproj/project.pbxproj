@@ -216,6 +216,39 @@
 			name = SpecialUI;
 			sourceTree = "<group>";
 		};
+		18D634551D07F90600051CC7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */,
+				A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		18D634561D07F95000051CC7 /* AttributeString */ = {
+			isa = PBXGroup;
+			children = (
+				187C85281CE974C9001EA35F /* NSMutableAttributedString+BearSet.h */,
+				187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */,
+			);
+			name = AttributeString;
+			sourceTree = "<group>";
+		};
+		18D634571D07F97100051CC7 /* UI&Layout */ = {
+			isa = PBXGroup;
+			children = (
+				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
+				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
+				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
+				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
+				CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */,
+				FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */,
+				187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */,
+				187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */,
+			);
+			name = "UI&Layout";
+			sourceTree = "<group>";
+		};
 		329CC004AB83B695DB001E6BBD6F7707 /* SwiftSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,19 +364,10 @@
 		9706148E9AB00B751E256657E696BF22 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18D634551D07F90600051CC7 /* Constants */,
+				18D634571D07F97100051CC7 /* UI&Layout */,
+				18D634561D07F95000051CC7 /* AttributeString */,
 				18D634501D07F4E700051CC7 /* SpecialUI */,
-				3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */,
-				A258A1044CDA0F199CB000209E18A12A /* BearConstants.m */,
-				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
-				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
-				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
-				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
-				CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */,
-				FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */,
-				187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */,
-				187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */,
-				187C85281CE974C9001EA35F /* NSMutableAttributedString+BearSet.h */,
-				187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
