@@ -16,6 +16,8 @@
 		187C852B1CE974C9001EA35F /* NSMutableAttributedString+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */; };
 		18D634531D07F4FC00051CC7 /* BearCutOutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634511D07F4FC00051CC7 /* BearCutOutView.h */; };
 		18D634541D07F4FC00051CC7 /* BearCutOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634521D07F4FC00051CC7 /* BearCutOutView.m */; };
+		18D6345B1D08017D00051CC7 /* UITextField+BearLimitLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634591D08017D00051CC7 /* UITextField+BearLimitLength.h */; };
+		18D6345C1D08017D00051CC7 /* UITextField+BearLimitLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6345A1D08017D00051CC7 /* UITextField+BearLimitLength.m */; };
 		1F118728B3D74089480152A6B660EA9A /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = A729E2AD854B4CEB4EF52289C017EB3B /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		25885EB6F78CEEDB604118DFC9A4D5EA /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3492A2DDF4DB61B8DC386C93FC2AD4ED /* BearConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F2071FFF5C5B0E9DEB6C3FE43A30CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2393D1A899C707F79A64672C46ED238F /* UIKit.framework */; };
@@ -97,6 +99,8 @@
 		187C85291CE974C9001EA35F /* NSMutableAttributedString+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BearSet.m"; sourceTree = "<group>"; };
 		18D634511D07F4FC00051CC7 /* BearCutOutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearCutOutView.h; sourceTree = "<group>"; };
 		18D634521D07F4FC00051CC7 /* BearCutOutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearCutOutView.m; sourceTree = "<group>"; };
+		18D634591D08017D00051CC7 /* UITextField+BearLimitLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BearLimitLength.h"; sourceTree = "<group>"; };
+		18D6345A1D08017D00051CC7 /* UITextField+BearLimitLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BearLimitLength.m"; sourceTree = "<group>"; };
 		190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Tests-dummy.m"; sourceTree = "<group>"; };
 		1A5591F10A968B80A90D38D4F877DD7C /* BearSkill-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-prefix.pch"; sourceTree = "<group>"; };
 		1BC1811B75B0CF5A27DBA6B79AC2E3D6 /* Pods-BearSkill_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,13 +211,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		18D634501D07F4E700051CC7 /* SpecialUI */ = {
+		18D634501D07F4E700051CC7 /* UI&Extend */ = {
 			isa = PBXGroup;
 			children = (
 				18D634511D07F4FC00051CC7 /* BearCutOutView.h */,
 				18D634521D07F4FC00051CC7 /* BearCutOutView.m */,
+				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
+				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
+				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
+				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
+				18D634591D08017D00051CC7 /* UITextField+BearLimitLength.h */,
+				18D6345A1D08017D00051CC7 /* UITextField+BearLimitLength.m */,
 			);
-			name = SpecialUI;
+			name = "UI&Extend";
 			sourceTree = "<group>";
 		};
 		18D634551D07F90600051CC7 /* Constants */ = {
@@ -234,19 +244,15 @@
 			name = AttributeString;
 			sourceTree = "<group>";
 		};
-		18D634571D07F97100051CC7 /* UI&Layout */ = {
+		18D634571D07F97100051CC7 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				1D021F89896CA6FD6D9A763F63ABA9F9 /* UILabel+BearSet.h */,
-				6686A806CB8F294B562D318DDF1835D4 /* UILabel+BearSet.m */,
-				CD44436A66C2F40E18200BF741FAC71D /* UITextField+BearSet.h */,
-				B79E7DEE8ACBD1333232F00921DB4896 /* UITextField+BearSet.m */,
 				CC00E091C57BDD3D77AD2B4F6DEB09FF /* UIView+BearSet.h */,
 				FD73792D6AE144DF04DF7DEC227C9224 /* UIView+BearSet.m */,
 				187C85211CE963EF001EA35F /* UITableView+BearStoreCellHeight.h */,
 				187C85221CE963EF001EA35F /* UITableView+BearStoreCellHeight.m */,
 			);
-			name = "UI&Layout";
+			name = Layout;
 			sourceTree = "<group>";
 		};
 		329CC004AB83B695DB001E6BBD6F7707 /* SwiftSupport */ = {
@@ -365,9 +371,9 @@
 			isa = PBXGroup;
 			children = (
 				18D634551D07F90600051CC7 /* Constants */,
-				18D634571D07F97100051CC7 /* UI&Layout */,
+				18D634571D07F97100051CC7 /* Layout */,
+				18D634501D07F4E700051CC7 /* UI&Extend */,
 				18D634561D07F95000051CC7 /* AttributeString */,
-				18D634501D07F4E700051CC7 /* SpecialUI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -457,6 +463,7 @@
 				187C85231CE963EF001EA35F /* UITableView+BearStoreCellHeight.h in Headers */,
 				C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */,
 				187C852A1CE974C9001EA35F /* NSMutableAttributedString+BearSet.h in Headers */,
+				18D6345B1D08017D00051CC7 /* UITextField+BearLimitLength.h in Headers */,
 				8804D724284EDEE2C254C117E95BD9A5 /* UILabel+BearSet.h in Headers */,
 				41E7273A032CE3295965153008350074 /* UITextField+BearSet.h in Headers */,
 				B70510B9B6DA096A4ED2F95DE83987A9 /* UIView+BearSet.h in Headers */,
@@ -668,6 +675,7 @@
 				18D634541D07F4FC00051CC7 /* BearCutOutView.m in Sources */,
 				416D18B553357EE3AE61B54ABE31EF4D /* UILabel+BearSet.m in Sources */,
 				09A86B0532B9EF943F898E8CF46F979C /* UITextField+BearSet.m in Sources */,
+				18D6345C1D08017D00051CC7 /* UITextField+BearLimitLength.m in Sources */,
 				8767E08A01D9B45BDBF22F37A49FBEFA /* UIView+BearSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
