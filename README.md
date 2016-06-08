@@ -61,3 +61,12 @@ Introduction
 ## AttributeString / 富文本处理
 * NSMutableAttributedString+BearSet
   * 便携式富文本处理，支持正则表达式。也可直接设置行间距。
+  
+  
+
+---
+# 历史版本：
+* 0.1.0
+  1. 新增BearCutOutView挖空UIView的方法
+  2. 将原先UITextField+BearSet方法整理更名为UITextField+BearLimitLength，并保留原来名称兼容此前版本
+  3. 整理项目结构并进行分类
