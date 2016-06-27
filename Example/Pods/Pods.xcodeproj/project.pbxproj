@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09312FCD1D215E4100AACE69 /* BearAlertBtnsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 09312FC71D215E4100AACE69 /* BearAlertBtnsView.h */; };
+		09312FCE1D215E4100AACE69 /* BearAlertBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09312FC81D215E4100AACE69 /* BearAlertBtnsView.m */; };
+		09312FCF1D215E4100AACE69 /* BearAlertContentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 09312FC91D215E4100AACE69 /* BearAlertContentView.h */; };
+		09312FD01D215E4100AACE69 /* BearAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09312FCA1D215E4100AACE69 /* BearAlertContentView.m */; };
+		09312FD11D215E4100AACE69 /* BearAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 09312FCB1D215E4100AACE69 /* BearAlertView.h */; };
+		09312FD21D215E4100AACE69 /* BearAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09312FCC1D215E4100AACE69 /* BearAlertView.m */; };
 		0A8AD6BC310B1DCAA5B052B591D8CFB6 /* Pods-BearSkill_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */; };
 		163C6E8E5E7CEE1E0BEEB9CA0939DA3A /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 73003A0752F3CABAA497D1FD1F5E4E44 /* UIImage+Diff.m */; };
 		18D634601D0814FD00051CC7 /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D6345E1D0814FD00051CC7 /* BearConstants.h */; };
@@ -87,6 +93,12 @@
 /* Begin PBXFileReference section */
 		0345D737618C6A063BD152389ACCBF87 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
 		0528444EFC68619AD1FEB8A7CD4A01BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		09312FC71D215E4100AACE69 /* BearAlertBtnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearAlertBtnsView.h; sourceTree = "<group>"; };
+		09312FC81D215E4100AACE69 /* BearAlertBtnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearAlertBtnsView.m; sourceTree = "<group>"; };
+		09312FC91D215E4100AACE69 /* BearAlertContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearAlertContentView.h; sourceTree = "<group>"; };
+		09312FCA1D215E4100AACE69 /* BearAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearAlertContentView.m; sourceTree = "<group>"; };
+		09312FCB1D215E4100AACE69 /* BearAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearAlertView.h; sourceTree = "<group>"; };
+		09312FCC1D215E4100AACE69 /* BearAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearAlertView.m; sourceTree = "<group>"; };
 		0EE4692BF9A76DAAA67A8FF4DABD27E8 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		0F01AA0F45B0B5CC535F9884FF44262A /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 		0F0647E82E60D286F4FC49F95C347CFE /* Pods_BearSkill_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BearSkill_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +215,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09312FC61D215E4100AACE69 /* BearAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				09312FCB1D215E4100AACE69 /* BearAlertView.h */,
+				09312FCC1D215E4100AACE69 /* BearAlertView.m */,
+				09312FC91D215E4100AACE69 /* BearAlertContentView.h */,
+				09312FCA1D215E4100AACE69 /* BearAlertContentView.m */,
+				09312FC71D215E4100AACE69 /* BearAlertBtnsView.h */,
+				09312FC81D215E4100AACE69 /* BearAlertBtnsView.m */,
+			);
+			name = BearAlertView;
+			path = "UI&Extend/BearAlertView";
+			sourceTree = "<group>";
+		};
 		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +240,7 @@
 		18D634501D07F4E700051CC7 /* UI&Extend */ = {
 			isa = PBXGroup;
 			children = (
+				09312FC61D215E4100AACE69 /* BearAlertView */,
 				18D634621D08156900051CC7 /* BearCutOutView.h */,
 				18D634631D08156900051CC7 /* BearCutOutView.m */,
 				18D634641D08156900051CC7 /* UILabel+BearSet.h */,
@@ -459,7 +486,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09312FCF1D215E4100AACE69 /* BearAlertContentView.h in Headers */,
 				18D634761D08157D00051CC7 /* UITableView+BearStoreCellHeight.h in Headers */,
+				09312FD11D215E4100AACE69 /* BearAlertView.h in Headers */,
+				09312FCD1D215E4100AACE69 /* BearAlertBtnsView.h in Headers */,
 				18D6346C1D08156900051CC7 /* UILabel+BearSet.h in Headers */,
 				C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */,
 				18D6347C1D08159300051CC7 /* NSMutableAttributedString+BearSet.h in Headers */,
@@ -671,12 +701,15 @@
 				18D634791D08157D00051CC7 /* UIView+BearSet.m in Sources */,
 				18D634711D08156900051CC7 /* UITextField+BearSet.m in Sources */,
 				18D6346F1D08156900051CC7 /* UITextField+BearLimitLength.m in Sources */,
+				09312FD01D215E4100AACE69 /* BearAlertContentView.m in Sources */,
 				EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */,
 				18D6346B1D08156900051CC7 /* BearCutOutView.m in Sources */,
 				18D634771D08157D00051CC7 /* UITableView+BearStoreCellHeight.m in Sources */,
+				09312FCE1D215E4100AACE69 /* BearAlertBtnsView.m in Sources */,
 				18D6346D1D08156900051CC7 /* UILabel+BearSet.m in Sources */,
 				18D634611D0814FD00051CC7 /* BearConstants.m in Sources */,
 				18D6347D1D08159300051CC7 /* NSMutableAttributedString+BearSet.m in Sources */,
+				09312FD21D215E4100AACE69 /* BearAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
