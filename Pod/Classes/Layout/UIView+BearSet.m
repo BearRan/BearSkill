@@ -890,7 +890,7 @@
     //  自动布局
     if (layoutAxis == kLAYOUT_AXIS_X) {
         
-        if (containerWidth < needDistance) {
+        if (ceil(containerWidth) < ceil(needDistance)) {
             NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view宽总和:%d\noffStart:%f\noffStart:%f\n父类view宽总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offPara.offStart, offPara.offEnd, containerWidth);
             return;
         }
@@ -961,7 +961,7 @@
     }
     else if(layoutAxis == kLAYOUT_AXIS_Y) {
         
-        if (containerHeight < needDistance) {
+        if (ceil(containerHeight) < ceil(needDistance)) {
             NSLog(@"\n=======================\n宽度超出，无法自动布局。\n子类view个数:%lu\n子类view高总和:%d\noffStart:%f\noffStart:%f\n父类view高总和:%f\n=======================",(unsigned long)[viewArray count], widthAllSubView, offPara.offStart, offPara.offEnd, containerHeight);
             return;
         }
