@@ -22,22 +22,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:view];
-    
-    
-    NSMutableArray *subViewArray = [NSMutableArray new];
-    for (int i = 0; i < 6; i++) {
-        UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        view1.backgroundColor = [UIColor orangeColor];
-        [view addSubview:view1];
-        [subViewArray addObject:subViewArray];
-    }
-    
-    
-    
-    
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    view.backgroundColor = [UIColor blueColor];
+//    [self.view addSubview:view];
+//    
 //    [view setCenterY:100];
 //    
 //    UIButton btn_1 = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];

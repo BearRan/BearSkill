@@ -654,7 +654,7 @@
 
 
 /**
- *  根据子view自动布局 -- 自动计算:起始点，结束点，间距（三值相等）
+ *  根据子view自动布局 自动计算:起始点，结束点，间距（三值相等）
  *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
  *
  *  viewArray:      装有子类view的数组
@@ -680,7 +680,7 @@
 
 
 /**
- *  根据子view自动布局 -- 需要设置:起始点，结束点; -- 自动计算:间距
+ *  根据子view自动布局 需要设置:起始点，结束点; 自动计算:间距
  *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
  *
  *  viewArray:      装有子类view的数组
@@ -705,7 +705,7 @@
 
 
 /**
- *  根据子view自动布局 -- 需要设置:间距; -- 自动计算:起始点，结束点
+ *  根据子view自动布局 需要设置:间距; 自动计算:起始点，结束点
  *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
  *
  *  viewArray:      装有子类view的数组
@@ -729,7 +729,7 @@
 
 
 /**
- *  根据子view自动布局 -- 需要设置:起始点，结束点，间距
+ *  根据子view自动布局 需要设置:起始点，结束点，间距
  *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
  *
  *  viewArray:      装有子类view的数组
@@ -754,7 +754,7 @@
 }
 
 /**
- *  根据子view自动布局 -- 需要设置:gapArray间距比例数组，间距总和
+ *  根据子view自动布局 需要设置:gapArray间距比例数组，间距总和
  *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
  *
  *  viewArray:      装有子类view的数组
@@ -775,29 +775,6 @@
                       gapArray:[NSMutableArray arrayWithArray:gapArray]
                      gapDisAll:[NSNumber numberWithFloat:gapDisAll]
                 superSizeToFit:YES];
-}
-
-/**
- *  根据子view自动布局 -- 需要设置:gapArray间距比例数组; -- 自动计算：间距总和
- *  说明： 在父类view尺寸不等于需求尺寸时，无法自动布局
- *
- *  viewArray:      装有子类view的数组
- *  layoutAxis:     布局轴向
- *                      kLAYOUT_AXIS_X: 水平方向自动布局
- *                      kLAYOUT_AXIS_Y: 垂直方向自动布局
- *  center:         是否和父类的view居中对其（水平方向布局 则 垂直方向居中；垂直方向布局 则 水平方向居中）
- *  gapArray:       间距比例数组（包括OffStart，OffEnd）
- */
-+ (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center gapAray:(NSArray *)gapArray
-{
-    [self BearAutoLayViewArray:viewArray
-                    layoutAxis:layoutAxis
-                        center:center
-                       offPara:OffParaMake(0, 0, NO)
-                       gapPara:GapParaMake(0, NO)
-                      gapArray:[NSMutableArray arrayWithArray:gapArray]
-                     gapDisAll:nil
-                superSizeToFit:NO];
 }
 
 
@@ -844,10 +821,6 @@
         }
     }
     
-    //  tempParentView
-    UIView *tempParentView = (UIView *)parentView;
-    CGFloat parentView_height   = CGRectGetHeight(tempParentView.frame);
-    CGFloat parentView_width    = CGRectGetWidth(tempParentView.frame);
     
     //  参数设置
     int widthAllSubView         = 0;    //所有子view的宽／高总和
@@ -865,30 +838,9 @@
         }
     }
     
-    //  有gapArray,gapDisAll
     if (gapArray && gapDisAll) {
         needDistance = widthAllSubView + [gapDisAll floatValue];
-    }
-    //  只有gapArray，自动计算gapDisAll
-    else if (gapArray){
-        
-        CGFloat gapDisAll_folat = 0;
-        if (layoutAxis == kLAYOUT_AXIS_X) {
-            gapDisAll_folat = parentView_width - widthAllSubView;
-        }
-        else if(layoutAxis == kLAYOUT_AXIS_Y) {
-            gapDisAll_folat = parentView_height - widthAllSubView;
-        }
-        
-        if (gapDisAll_folat < 0) {
-            NSLog(@"!!!自动计算出的gapDisAll_folat为负值，无法自动布局!");
-            return;
-        }
-        
-        gapDisAll = [NSNumber numberWithFloat:gapDisAll_folat];
-        needDistance = widthAllSubView - gapDisAll_folat;
-    }
-    else{
+    }else{
         needDistance = offPara.offStart + offPara.offEnd + widthAllSubView + ([viewArray count] - 1) * gapPara.gapDistance;
     }
     
@@ -935,8 +887,8 @@
         }
     }
     
-    containerWidth = floor(containerWidth);
-    needDistance = ceil(needDistance);
+    containerWidth = (int)containerWidth;
+    needDistance = (int)needDistance;
     
     //  自动布局
     if (layoutAxis == kLAYOUT_AXIS_X) {
