@@ -53,7 +53,7 @@ static const void *limitBlockKey = &limitBlockKey;
 //  限制输入的位数
 - (void)limitLengthEvent
 {
-    if ([self.text length] > [self.limitLength intValue]) {
+    if ([self.text length] >= [self.limitLength intValue]) {
         self.text = [self.text substringToIndex:[self.limitLength intValue]];
         
         if (self.limitDone_block) {
