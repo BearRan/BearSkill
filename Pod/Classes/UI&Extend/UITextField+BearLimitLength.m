@@ -1,3 +1,4 @@
+
 //
 //  UITextField+BearLimitLength.m
 //  Pods
@@ -32,12 +33,14 @@ static const void *limitBlockKey = &limitBlockKey;
 //  limitBlock set&get
 - (LimitDone_Block)limitDone_block
 {
-    return objc_getAssociatedObject(self, limitBlockKey);
+    __weak typeof(self) weakSelf = self;
+    return objc_getAssociatedObject(weakSelf, limitBlockKey);
 }
 
 - (void)setLimitDone_block:(LimitDone_Block)limitDone_block
 {
-    objc_setAssociatedObject(self, limitBlockKey, limitDone_block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    __weak typeof(self) weakSelf = self;
+    objc_setAssociatedObject(weakSelf, limitBlockKey, limitDone_block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 

@@ -23,8 +23,6 @@
 		18D6346D1D08156900051CC7 /* UILabel+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634651D08156900051CC7 /* UILabel+BearSet.m */; };
 		18D6346E1D08156900051CC7 /* UITextField+BearLimitLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634661D08156900051CC7 /* UITextField+BearLimitLength.h */; };
 		18D6346F1D08156900051CC7 /* UITextField+BearLimitLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634671D08156900051CC7 /* UITextField+BearLimitLength.m */; };
-		18D634701D08156900051CC7 /* UITextField+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634681D08156900051CC7 /* UITextField+BearSet.h */; };
-		18D634711D08156900051CC7 /* UITextField+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634691D08156900051CC7 /* UITextField+BearSet.m */; };
 		18D634761D08157D00051CC7 /* UITableView+BearStoreCellHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634721D08157D00051CC7 /* UITableView+BearStoreCellHeight.h */; };
 		18D634771D08157D00051CC7 /* UITableView+BearStoreCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634731D08157D00051CC7 /* UITableView+BearStoreCellHeight.m */; };
 		18D634781D08157D00051CC7 /* UIView+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634741D08157D00051CC7 /* UIView+BearSet.h */; };
@@ -113,8 +111,6 @@
 		18D634651D08156900051CC7 /* UILabel+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+BearSet.m"; path = "UI&Extend/UILabel+BearSet.m"; sourceTree = "<group>"; };
 		18D634661D08156900051CC7 /* UITextField+BearLimitLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+BearLimitLength.h"; path = "UI&Extend/UITextField+BearLimitLength.h"; sourceTree = "<group>"; };
 		18D634671D08156900051CC7 /* UITextField+BearLimitLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+BearLimitLength.m"; path = "UI&Extend/UITextField+BearLimitLength.m"; sourceTree = "<group>"; };
-		18D634681D08156900051CC7 /* UITextField+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+BearSet.h"; path = "UI&Extend/UITextField+BearSet.h"; sourceTree = "<group>"; };
-		18D634691D08156900051CC7 /* UITextField+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+BearSet.m"; path = "UI&Extend/UITextField+BearSet.m"; sourceTree = "<group>"; };
 		18D634721D08157D00051CC7 /* UITableView+BearStoreCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+BearStoreCellHeight.h"; path = "Layout/UITableView+BearStoreCellHeight.h"; sourceTree = "<group>"; };
 		18D634731D08157D00051CC7 /* UITableView+BearStoreCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+BearStoreCellHeight.m"; path = "Layout/UITableView+BearStoreCellHeight.m"; sourceTree = "<group>"; };
 		18D634741D08157D00051CC7 /* UIView+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+BearSet.h"; path = "Layout/UIView+BearSet.h"; sourceTree = "<group>"; };
@@ -247,8 +243,6 @@
 				18D634651D08156900051CC7 /* UILabel+BearSet.m */,
 				18D634661D08156900051CC7 /* UITextField+BearLimitLength.h */,
 				18D634671D08156900051CC7 /* UITextField+BearLimitLength.m */,
-				18D634681D08156900051CC7 /* UITextField+BearSet.h */,
-				18D634691D08156900051CC7 /* UITextField+BearSet.m */,
 			);
 			name = "UI&Extend";
 			sourceTree = "<group>";
@@ -496,7 +490,6 @@
 				18D634781D08157D00051CC7 /* UIView+BearSet.h in Headers */,
 				18D6346E1D08156900051CC7 /* UITextField+BearLimitLength.h in Headers */,
 				18D634601D0814FD00051CC7 /* BearConstants.h in Headers */,
-				18D634701D08156900051CC7 /* UITextField+BearSet.h in Headers */,
 				18D6346A1D08156900051CC7 /* BearCutOutView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,7 +692,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D634791D08157D00051CC7 /* UIView+BearSet.m in Sources */,
-				18D634711D08156900051CC7 /* UITextField+BearSet.m in Sources */,
 				18D6346F1D08156900051CC7 /* UITextField+BearLimitLength.m in Sources */,
 				09312FD01D215E4100AACE69 /* BearAlertContentView.m in Sources */,
 				EF171ED9C965C21C5022C5602F58FD0F /* BearSkill-dummy.m in Sources */,
