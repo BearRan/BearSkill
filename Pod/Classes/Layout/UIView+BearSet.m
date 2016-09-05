@@ -936,9 +936,9 @@
     }
     
     //  为了防止 由1以下的精度误差 导致无法自动布局的问题，进行下面处理
-    containerWidth = floor(containerWidth);
-    containerHeight = floor(containerHeight);
-    needDistance = ceil(needDistance);
+    containerWidth = ceil(containerWidth);
+    containerHeight = ceil(containerHeight);
+    needDistance = floor(needDistance);
     
     //  自动布局
     if (layoutAxis == kLAYOUT_AXIS_X) {
