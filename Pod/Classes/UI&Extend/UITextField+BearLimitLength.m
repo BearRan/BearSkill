@@ -46,7 +46,7 @@ static const void *limitBlockKey = &limitBlockKey;
 //  增加限制位数的通知
 - (void)addLimitLengthObserver:(int)length
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitLengthEvent) name:UITextFieldTextDidChangeNotification object:nil];
+    [self addTarget:self action:@selector(limitLengthEvent) forControlEvents:UIControlEventEditingChanged];
 }
 
 //  限制输入的位数
