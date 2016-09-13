@@ -33,21 +33,19 @@ static const void *limitBlockKey = &limitBlockKey;
 //  limitBlock set&get
 - (LimitDone_Block)limitDone_block
 {
-    __weak typeof(self) weakSelf = self;
-    return objc_getAssociatedObject(weakSelf, limitBlockKey);
+    return objc_getAssociatedObject(self, limitBlockKey);
 }
 
 - (void)setLimitDone_block:(LimitDone_Block)limitDone_block
 {
-    __weak typeof(self) weakSelf = self;
-    objc_setAssociatedObject(weakSelf, limitBlockKey, limitDone_block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, limitBlockKey, limitDone_block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 
 //  增加限制位数的通知
 - (void)addLimitLengthObserver:(int)length
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitLengthEvent) name:UITextFieldTextDidChangeNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitLengthEvent) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 //  限制输入的位数
@@ -62,9 +60,9 @@ static const void *limitBlockKey = &limitBlockKey;
     }
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self];
-}
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self];
+//}
 
 @end
