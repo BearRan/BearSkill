@@ -8,7 +8,8 @@
 //
 
 #import "UITextField+BearLimitLength.h"
-#import "objc/runtime.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 static const void *limitLengthKey = &limitLengthKey;
 static const void *limitBlockKey = &limitBlockKey;
@@ -60,9 +61,23 @@ static const void *limitBlockKey = &limitBlockKey;
     }
 }
 
-//- (void)dealloc
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self];
-//}
+
+//  dealloc替换
+//  参考：https://github.com/zhigang1992/ZGParallelView/issues/8
++ (void)load
+{
+    Method origMethod = class_getInstanceMethod([self class], NSSelectorFromString(@"dealloc"));
+    Method newMethod = class_getInstanceMethod([self class], @selector(my_dealloc));
+    method_exchangeImplementations(origMethod, newMethod);
+}
+
+- (void)my_dealloc
+{
+    // do your logic here
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self];
+    
+    //this calls original dealloc method
+    [self my_dealloc];
+}
 
 @end
