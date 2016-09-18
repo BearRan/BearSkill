@@ -13,12 +13,20 @@
 
 + (void)openURL:(NSString *)openURL
 {
+    NSURL *url;
+    
     if (over_iOS10) {
-         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
     }
     else{
-        NSURL *url = [NSURL URLWithString:openURL];
+        url = [NSURL URLWithString:openURL];
+    }
+    
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+    }
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"无法进行跳转，请手动前往设置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     }
 }
 
