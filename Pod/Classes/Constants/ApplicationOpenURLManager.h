@@ -15,6 +15,7 @@ static NSString *kPrefs_ = @"";
 
 @interface ApplicationOpenURLManager : NSObject
 
-+ (void)openURL:(NSString *)openURL;
+//  打开系统设置
++ (void)openPrefsURL:(NSString *)openURL;
 
 @end

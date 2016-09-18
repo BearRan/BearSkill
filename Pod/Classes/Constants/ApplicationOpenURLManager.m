@@ -11,7 +11,8 @@
 
 @implementation ApplicationOpenURLManager
 
-+ (void)openURL:(NSString *)openURL
+//  打开系统设置
++ (void)openPrefsURL:(NSString *)openURL
 {
     NSURL *url;
     
