@@ -56,6 +56,7 @@ static NSString *usTest = @"usTest";
 #define over_iOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
 #define over_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 #define over_iOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
+#define over_iOS10 [[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0
 
 
 

@@ -29,6 +29,8 @@
 		18D634791D08157D00051CC7 /* UIView+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D634751D08157D00051CC7 /* UIView+BearSet.m */; };
 		18D6347C1D08159300051CC7 /* NSMutableAttributedString+BearSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D6347A1D08159300051CC7 /* NSMutableAttributedString+BearSet.h */; };
 		18D6347D1D08159300051CC7 /* NSMutableAttributedString+BearSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6347B1D08159300051CC7 /* NSMutableAttributedString+BearSet.m */; };
+		18F5A57C1D8E84C200058B09 /* ApplicationOpenURLManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A57A1D8E84C200058B09 /* ApplicationOpenURLManager.h */; };
+		18F5A57D1D8E84C200058B09 /* ApplicationOpenURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A57B1D8E84C200058B09 /* ApplicationOpenURLManager.m */; };
 		1F118728B3D74089480152A6B660EA9A /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = A729E2AD854B4CEB4EF52289C017EB3B /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		28F2071FFF5C5B0E9DEB6C3FE43A30CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2393D1A899C707F79A64672C46ED238F /* UIKit.framework */; };
 		318CAE587A4623D5E4D0A7564434FDE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31B096AB4A0164C61B63F0E59AD76C9 /* Foundation.framework */; };
@@ -117,6 +119,8 @@
 		18D634751D08157D00051CC7 /* UIView+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+BearSet.m"; path = "Layout/UIView+BearSet.m"; sourceTree = "<group>"; };
 		18D6347A1D08159300051CC7 /* NSMutableAttributedString+BearSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+BearSet.h"; path = "AttributeString/NSMutableAttributedString+BearSet.h"; sourceTree = "<group>"; };
 		18D6347B1D08159300051CC7 /* NSMutableAttributedString+BearSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+BearSet.m"; path = "AttributeString/NSMutableAttributedString+BearSet.m"; sourceTree = "<group>"; };
+		18F5A57A1D8E84C200058B09 /* ApplicationOpenURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationOpenURLManager.h; path = Constants/ApplicationOpenURLManager.h; sourceTree = "<group>"; };
+		18F5A57B1D8E84C200058B09 /* ApplicationOpenURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationOpenURLManager.m; path = Constants/ApplicationOpenURLManager.m; sourceTree = "<group>"; };
 		190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BearSkill_Tests-dummy.m"; sourceTree = "<group>"; };
 		1A5591F10A968B80A90D38D4F877DD7C /* BearSkill-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BearSkill-prefix.pch"; sourceTree = "<group>"; };
 		1BC1811B75B0CF5A27DBA6B79AC2E3D6 /* Pods-BearSkill_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 			children = (
 				18D6345E1D0814FD00051CC7 /* BearConstants.h */,
 				18D6345F1D0814FD00051CC7 /* BearConstants.m */,
+				18F5A57A1D8E84C200058B09 /* ApplicationOpenURLManager.h */,
+				18F5A57B1D8E84C200058B09 /* ApplicationOpenURLManager.m */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09312FCF1D215E4100AACE69 /* BearAlertContentView.h in Headers */,
+				18F5A57C1D8E84C200058B09 /* ApplicationOpenURLManager.h in Headers */,
 				18D634761D08157D00051CC7 /* UITableView+BearStoreCellHeight.h in Headers */,
 				09312FD11D215E4100AACE69 /* BearAlertView.h in Headers */,
 				09312FCD1D215E4100AACE69 /* BearAlertBtnsView.h in Headers */,
@@ -701,6 +708,7 @@
 				18D6346D1D08156900051CC7 /* UILabel+BearSet.m in Sources */,
 				18D634611D0814FD00051CC7 /* BearConstants.m in Sources */,
 				18D6347D1D08159300051CC7 /* NSMutableAttributedString+BearSet.m in Sources */,
+				18F5A57D1D8E84C200058B09 /* ApplicationOpenURLManager.m in Sources */,
 				09312FD21D215E4100AACE69 /* BearAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
