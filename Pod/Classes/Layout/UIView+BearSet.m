@@ -11,6 +11,15 @@
 
 #pragma mark - 界面处理，设置属性，画线的一些方法
 
+// 描边
+- (void)setLine:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius borderWidth:(CGFloat)borderWidth
+{
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.masksToBounds = YES;
+    self.layer.borderColor = [color CGColor];
+    self.layer.borderWidth = borderWidth;
+}
+
 
 //  毛玻璃效果处理
 - (void)blurEffectWithStyle:(UIBlurEffectStyle)style Alpha:(CGFloat)alpha
@@ -425,6 +434,40 @@
 
 
 #pragma mark 设置布局方法
+
+/**
+ *  保持宽高比，自动设置Size
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ */
+- (void)BearSetSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue
+{
+    
+    if (referWidth == nil) {
+        referWidth = [NSNumber numberWithFloat:self.width];
+    }
+    
+    if (referHeight == nil) {
+        referHeight = [NSNumber numberWithFloat:self.height];
+    }
+    
+    CGFloat tempWidth;
+    CGFloat tempHeight;
+    
+    if (setSort == kSetNeed_Width) {
+        tempWidth = [setValue floatValue];
+        tempHeight = (1.0 * [referHeight floatValue] / [referWidth floatValue]) * [setValue floatValue];
+    }
+    else if (setSort == kSetNeed_Height){
+        tempHeight = [setValue floatValue];
+        tempWidth = (1.0 * [referWidth floatValue] / [referHeight floatValue]) * [setValue floatValue];
+    }
+    
+    [self setSize:CGSizeMake(tempWidth, tempHeight)];
+}
+
 
 /**
  *  和父类view剧中

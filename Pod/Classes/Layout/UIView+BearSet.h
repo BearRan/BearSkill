@@ -25,6 +25,10 @@ typedef enum {
     kDIR_DOWN,
 }kDIRECTION;
 
+typedef enum {
+    kSetNeed_Width,
+    kSetNeed_Height,
+}SetNeedWHSort;
 
 //  offParameter结构体
 struct OffPara
@@ -71,6 +75,9 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 /**
  *  普通的方法
  */
+
+// 描边
+- (void)setLine:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius borderWidth:(CGFloat)borderWidth;
 
 // 毛玻璃效果处理
 - (void)blurEffectWithStyle:(UIBlurEffectStyle)style Alpha:(CGFloat)alpha;
@@ -138,6 +145,16 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 - (void)setHeight_DonotMoveCenter:(CGFloat)height;
 - (void)setSize_DonotMoveCenter:(CGSize)size;
 - (void)sizeToFit_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain;
+
+
+/**
+ *  保持宽高比，自动设置Size
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ */
+- (void)BearSetSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
 
 
 /**
