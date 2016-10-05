@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BearSkill"
-  s.version          = "0.1.9"
+  s.version          = "0.1.10"
   s.summary          = "BearSkill contain some methods used frequently in project."
 
 # This description is used to generate tags and improve search results.
@@ -27,13 +27,13 @@ BearSkill contain some methods used frequently in project. And many other method
   s.source           = { :git => "https://github.com/BearRan/BearSkill.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'BearSkill' => ['Pod/Assets/*.png']
-  }
+#s.resource_bundles = {
+#   'BearSkill' => ['Pod/Assets/*.png']
+# }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

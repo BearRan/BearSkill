@@ -1,12 +1,17 @@
-source 'https://github.com/CocoaPods/Specs.git'
+
+
+
+
 use_frameworks!
 
-target 'BearSkill_Example', :exclusive => true do
-  pod 'BearSkill', :path => '../'
-end
-
-target 'BearSkill_Tests', :exclusive => true do
-  pod 'BearSkill', :path => '../'
-
-  pod 'FBSnapshotTestCase'
+target 'BearSkill_Example' do
+    pod 'BearSkill', :path => '../'
+    #    pod 'BearAnimation', :git => 'git@github.com:BearRan/BearAnimation.git'
+    
+    target 'BearSkill_Tests' do
+        inherit! :search_paths
+        
+        pod 'RazzleDazzle', git: 'git@github.com:raphaelcruzeiro/RazzleDazzle.git', branch: 'swift3'
+        #pod 'FBSnapshotTestCase'
+    end
 end
