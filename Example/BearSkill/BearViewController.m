@@ -37,6 +37,11 @@
 //    [self.view addSubview:btn_2];
 }
 
+- (void)test
+{
+    
+}
+    
 //- (void)didReceiveMemoryWarning
 //{
 //    [super didReceiveMemoryWarning];
