@@ -75,4 +75,25 @@
     [self addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
 }
 
+//  设置删除线
+- (void)setDeleteLine
+{
+    NSString *string = self.string;
+    
+    [self setDeleteLineWithRange:NSMakeRange(0, [string length]) lineColor:[UIColor grayColor]];
+}
+
+- (void)setDeleteLineWithLineColor:(UIColor *)lineColor
+{
+    NSString *string = self.string;
+    
+    [self setDeleteLineWithRange:NSMakeRange(0, [string length]) lineColor:lineColor];
+}
+
+- (void)setDeleteLineWithRange:(NSRange)range lineColor:(UIColor *)lineColor
+{
+    [self addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:range];
+    [self addAttribute:NSStrikethroughColorAttributeName value:lineColor range:range];
+}
+
 @end

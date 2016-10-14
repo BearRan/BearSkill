@@ -29,4 +29,9 @@
 //  设置行间距
 - (void)setLineSpacing:(CGFloat)spacing;
 
+//  设置删除线
+- (void)setDeleteLine;
+- (void)setDeleteLineWithLineColor:(UIColor *)lineColor;
+- (void)setDeleteLineWithRange:(NSRange)range lineColor:(UIColor *)lineColor;
+
 @end
