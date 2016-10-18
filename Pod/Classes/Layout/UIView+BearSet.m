@@ -226,7 +226,6 @@
     border.strokeColor = dashColor.CGColor;
     border.fillColor = [UIColor clearColor].CGColor;
     border.lineWidth = lineWidth;
-    border.lineCap = @"square";
     border.lineDashPattern = dashPattern;
     [self.layer addSublayer:border];
 }
