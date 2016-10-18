@@ -91,13 +91,35 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 // 自定义底部分割线View
 - (void)setMySeparatorLine:(CGFloat)offStart offEnd:(CGFloat)offEnd lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
 
-// 通过view，画任意方向的线
-- (void)drawLine:(CGPoint)startPoint endPoint:(CGPoint)endPoint lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
-
+/**
+ *  画线--View
+ *  通过view，画横向／纵向的线
+ *
+ *  @param startPoint 起点
+ *  @param endPoint   终点
+ *  @param lineWidth  线宽
+ *  @param lineColor  线颜色
+ *
+ *  @return view上绘制的线view
+ */
+- (UIView *)drawLine:(CGPoint)startPoint
+            endPoint:(CGPoint)endPoint
+           lineWidth:(CGFloat)lineWidth
+           lineColor:(UIColor *)lineColor;
 
 // 通过layer，画任意方向的线
 - (void)drawLineWithLayer:(CGPoint)startPoint endPoint:(CGPoint)endPoint lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor;
 
+/**
+ *  在View中绘制虚线
+ *
+ *  @param axis        横向／纵向绘制虚线
+ *  @param dashColor   虚线颜色
+ *  @param dashPattern 虚线间距数组，默认@[@3, @3]
+ */
+- (void)drawDashLineWithAxis:(kLAYOUT_AXIS)axis
+                   dashColor:(UIColor *)dashColor
+                 dashPattern:(NSArray<NSNumber *> *)dashPattern;
 
 
 

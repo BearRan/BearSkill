@@ -104,10 +104,19 @@
 
 /**
  *  画线--View
+ *  通过view，画横向／纵向的线
  *
- *  通过view，画任意方向的线
+ *  @param startPoint 起点
+ *  @param endPoint   终点
+ *  @param lineWidth  线宽
+ *  @param lineColor  线颜色
+ *
+ *  @return view上绘制的线view
  */
-- (void) drawLine:(CGPoint)startPoint endPoint:(CGPoint)endPoint lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor
+- (UIView *)drawLine:(CGPoint)startPoint
+            endPoint:(CGPoint)endPoint
+           lineWidth:(CGFloat)lineWidth
+           lineColor:(UIColor *)lineColor
 {
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = lineColor;
@@ -124,6 +133,7 @@
     
     [self addSubview:lineView];
     
+    return lineView;
 }
 
 
@@ -162,6 +172,63 @@
     CGContextRestoreGState(context);
     
     [self setNeedsDisplay];
+}
+
+
+/**
+ *  在View中绘制虚线
+ *
+ *  @param axis        横向／纵向绘制虚线
+ *  @param dashColor   虚线颜色
+ *  @param dashPattern 虚线间距数组，默认@[@3, @3]
+ */
+- (void)drawDashLineWithAxis:(kLAYOUT_AXIS)axis
+                   dashColor:(UIColor *)dashColor
+                 dashPattern:(NSArray<NSNumber *> *)dashPattern
+{
+    CAShapeLayer *border = [CAShapeLayer layer];
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    CGFloat centerX = self.width / 2.0;
+    CGFloat centerY = self.height / 2.0;
+    CGFloat lineWidth;
+    
+    switch (axis) {
+        case kLAYOUT_AXIS_X:
+        {
+            [path moveToPoint:CGPointMake(0, centerY)];
+            [path addLineToPoint:CGPointMake(self.width, centerY)];
+            lineWidth = self.height;
+        }
+            break;
+            
+        case kLAYOUT_AXIS_Y:
+        {
+            [path moveToPoint:CGPointMake(centerX, 0)];
+            [path addLineToPoint:CGPointMake(centerX, self.height)];
+            lineWidth = self.width;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (!dashColor) {
+        dashColor = [UIColor blackColor];
+    }
+    
+    if (!dashPattern) {
+        dashPattern = @[@3, @3];
+    }
+    
+    border.path = path.CGPath;
+    border.strokeColor = dashColor.CGColor;
+    border.fillColor = [UIColor clearColor].CGColor;
+    border.lineWidth = lineWidth;
+    border.lineCap = @"square";
+    border.lineDashPattern = dashPattern;
+    [self.layer addSublayer:border];
 }
 
 
