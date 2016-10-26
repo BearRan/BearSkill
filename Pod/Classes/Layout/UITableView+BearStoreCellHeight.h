@@ -28,4 +28,7 @@
 //  将cell的frame存储到对应的indexPath
 - (void)recordingFrame:(CGRect)frame forRowAtIndexPath:(NSIndexPath *)indexPath;
 
+//  将cell的Height存储到对应的indexPath
+- (void)recordingHeight:(CGFloat)height forRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

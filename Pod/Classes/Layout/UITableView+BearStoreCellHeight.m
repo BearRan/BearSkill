@@ -8,6 +8,7 @@
 
 #import "UITableView+BearStoreCellHeight.h"
 #import "objc/runtime.h"
+#import "BearConstants.h"
 
 static const void *cellFrameDictKey = &cellFrameDictKey;
 
@@ -70,6 +71,13 @@ static const void *cellFrameDictKey = &cellFrameDictKey;
     NSMutableDictionary *tempDict = [self.cellFrameDict mutableCopy];
     [tempDict setObject:tempRect_Value forKey:indexPath_Key];
     self.cellFrameDict = tempDict;
+}
+
+//  将cell的Height存储到对应的indexPath
+- (void)recordingHeight:(CGFloat)height forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect frame = CGRectMake(0, 0, WIDTH, height);
+    [self recordingFrame:frame forRowAtIndexPath:indexPath];
 }
 
 
