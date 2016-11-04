@@ -431,7 +431,7 @@
     self.center = tempCenter;
 }
 
-//  不移动中心－设置height
+//  不移动中心－设置size
 - (void)setSize_DonotMoveCenter:(CGSize)size
 {
     CGPoint tempCenter = self.center;
