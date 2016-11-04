@@ -439,6 +439,14 @@
     self.center = tempCenter;
 }
 
+//  不移动中心－siztToFit
+- (void)sizeToFit_DonotMoveCenter
+{
+    CGPoint tempCenter = self.center;
+    [self sizeToFit];
+    self.center = tempCenter;
+}
+
 //  不移动某一侧 siztToFit
 - (void)sizeToFit_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain
 {

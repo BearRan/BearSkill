@@ -166,6 +166,7 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 - (void)setWidth_DonotMoveCenter:(CGFloat)width;
 - (void)setHeight_DonotMoveCenter:(CGFloat)height;
 - (void)setSize_DonotMoveCenter:(CGSize)size;
+- (void)sizeToFit_DonotMoveCenter;
 - (void)sizeToFit_DonotMoveSide:(kDIRECTION)dir centerRemain:(BOOL)centerRemain;
 
 
