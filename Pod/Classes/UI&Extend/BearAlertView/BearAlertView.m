@@ -208,7 +208,7 @@ static NSString *kAnimationKey_ShowUDAlertViewScale = @"AnimationKey_ShowUDAlert
 }
 
 //  自定义模式下专用 kAlertViewCustomType_AllDiy
-- (void)allDiyTypeSetContentView:(UIView *)contentView
+- (void)setAllDiyTypeContentView:(UIView *)contentView
 {
     if (_alertViewCustomType != kAlertViewCustomType_AllDiy) {
         return;

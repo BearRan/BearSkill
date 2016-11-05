@@ -46,7 +46,7 @@ typedef void (^AnimationClose_FinishBlock)();
 - (instancetype)initWithAlertCustomType:(AlertViewCustomType)alertCustomType;
 
 //  自定义模式下专用 kAlertViewCustomType_AllDiy
-- (void)allDiyTypeSetContentView:(UIView *)contentView;
+- (void)setAllDiyTypeContentView:(UIView *)contentView;
 
 /**
  *  设置contentView
