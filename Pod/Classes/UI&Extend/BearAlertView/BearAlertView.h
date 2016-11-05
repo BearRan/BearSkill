@@ -22,6 +22,12 @@ typedef enum {
     kAlertViewAnimationState_Process,       //动画进行中
 }AlertViewAnimationState;
 
+//  AlertView自定义样式
+typedef enum {
+    kAlertViewCustomType_ContentAndBtns,    //BearAlertContentView+BearAlertBtnsView自定义
+    kAlertViewCustomType_AllDiy,            //全部自定义
+}AlertViewCustomType;
+
 
 typedef void (^kAlertViewBlock)();
 typedef void (^AnimationFinishBlock)();
@@ -35,6 +41,12 @@ typedef void (^AnimationClose_FinishBlock)();
 @property (copy, nonatomic)     AnimationClose_FinishBlock  animationClose_FinishBlock; //消退动画完成block
 @property (strong, nonatomic)   BearAlertContentView    *normalAlertContentView;
 @property (strong, nonatomic)   BearAlertBtnsView       *normalAlertBtnsView;
+@property (assign, nonatomic)   AlertViewCustomType     alertViewCustomType;
+
+- (instancetype)initWithAlertCustomType:(AlertViewCustomType)alertCustomType;
+
+//  自定义模式下专用 kAlertViewCustomType_AllDiy
+- (void)allDiyTypeSetContentView:(UIView *)contentView;
 
 /**
  *  设置contentView
