@@ -177,6 +177,9 @@ static NSString *usTest = @"usTest";
  */
 + (void)requestClearMessage:(NSNumber *)notificationId success:(void (^) ())success failure:(void (^) ())failure;
 
+//  延时block
++ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)())dealBlock;
+
 @end
 
 

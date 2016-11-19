@@ -186,6 +186,18 @@
     }
 }
 
+//  延时block
++ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)())dealBlock
+{
+    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime *NSEC_PER_SEC));
+    dispatch_after(timer, dispatch_get_main_queue(), ^{
+        
+        if (dealBlock) {
+            dealBlock();
+        }
+    });
+}
+
 @end
 
 
