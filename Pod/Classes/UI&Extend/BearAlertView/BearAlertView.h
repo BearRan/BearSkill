@@ -38,10 +38,13 @@ typedef void (^AnimationClose_FinishBlock)();
 
 @property (assign, nonatomic)   BOOL clickBtnCancel;         //点击按钮，消失Alert
 @property (assign, nonatomic)   BOOL tapBgCancel;           //触摸背景，消失Alert
+@property (strong, nonatomic)   UITapGestureRecognizer *tapGesture;
 @property (copy, nonatomic)     AnimationClose_FinishBlock  animationClose_FinishBlock; //消退动画完成block
 @property (strong, nonatomic)   BearAlertContentView    *normalAlertContentView;
 @property (strong, nonatomic)   BearAlertBtnsView       *normalAlertBtnsView;
 @property (assign, nonatomic)   AlertViewCustomType     alertViewCustomType;
+
+@property (strong, nonatomic)   UIView                  *bgView;
 
 - (instancetype)initWithAlertCustomType:(AlertViewCustomType)alertCustomType;
 

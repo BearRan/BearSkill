@@ -22,7 +22,6 @@ static NSString *kAnimationKey_ShowUDAlertViewScale = @"AnimationKey_ShowUDAlert
 
 @interface BearAlertView () <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIView            *bgView;
 @property (strong, nonatomic) UIView            *alertView;
 @property (strong, nonatomic) UIView            *alertContentView;
 @property (strong, nonatomic) UIView            *alertBtnsView;
@@ -66,10 +65,7 @@ static NSString *kAnimationKey_ShowUDAlertViewScale = @"AnimationKey_ShowUDAlert
     _bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
     [self addSubview:_bgView];
     
-    //  触摸手势
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgTappedDismiss)];
-    tapGesture.numberOfTapsRequired = 1;
-    [_bgView addGestureRecognizer:tapGesture];
+    self.tapBgCancel = NO;
     
     //  AlertView
     _alertView = [[UIView alloc] init];
@@ -283,8 +279,22 @@ static NSString *kAnimationKey_ShowUDAlertViewScale = @"AnimationKey_ShowUDAlert
  */
 - (void)bgTappedDismiss
 {
-    if (_tapBgCancel) {
-        [self animationClose_udAlertView];
+    [self animationClose_udAlertView];
+}
+
+- (void)setTapBgCancel:(BOOL)tapBgCancel
+{
+    _tapBgCancel = tapBgCancel;
+    
+    if (_tapGesture) {
+        [_bgView removeGestureRecognizer:_tapGesture];
+    }
+    
+    if (!tapBgCancel) {
+        //  触摸手势
+        _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgTappedDismiss)];
+        _tapGesture.numberOfTapsRequired = 1;
+        [_bgView addGestureRecognizer:_tapGesture];
     }
 }
 
