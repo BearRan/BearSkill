@@ -105,7 +105,7 @@
 //  从URL获取图片
 + (UIImage *)getImageFromURL:(NSString *)imageURL
 {
-    if ([imageURL rangeOfString:@"http://"].location != NSNotFound) {
+    if ([imageURL rangeOfString:@"http://"].location != NSNotFound || [imageURL rangeOfString:@"https://"].location != NSNotFound) {
         __block UIImage *image = [[UIImage alloc] init];
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
