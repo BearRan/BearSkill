@@ -30,6 +30,14 @@ typedef enum {
     kSetNeed_Height,
 }SetNeedWHSort;
 
+//  设置对齐类型
+typedef enum {
+    kSetAlignmentType_Idle,     //  不处理对齐方式
+    kSetAlignmentType_Center,   //  剧中对齐
+    kSetAlignmentType_Start,    //  上／左对齐
+    kSetAlignmentType_End,      //  下／右对齐
+}SetAlignmentType;
+
 //  offParameter结构体
 struct OffPara
 {
@@ -199,7 +207,7 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 /**
  *  view与view的相对位置
  */
-- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center;
+- (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center; 
 
 
 /**
@@ -207,6 +215,8 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
  */
 - (void)BearSetRelativeLayoutWithDirection:(kDIRECTION)direction destinationView:(UIView *)destinationView parentRelation:(BOOL)parentRelation distance:(CGFloat)distance center:(BOOL)center sizeToFit:(BOOL)sizeToFit;
 
+
+#pragma mark - AutoLay V1
 
 /**
  *  根据子view自动布局 -- 自动计算:起始点，结束点，间距（三值相等）
@@ -247,5 +257,78 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
  *  说明： 在父类view尺寸不等于需求尺寸时，无法自动布局
  */
 + (void)BearAutoLayViewArray:(NSMutableArray *)viewArray layoutAxis:(kLAYOUT_AXIS)layoutAxis center:(BOOL)center gapAray:(NSArray *)gapArray;
+
+
+
+#pragma mark - AutoLay V2
+
+/**
+ *  根据子view自动布局 -- 自动计算:起始点，结束点，间距（三值相等）
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis;
+
+
+/**
+ *  根据子view自动布局 -- 需要设置:起始点，结束点; -- 自动计算:间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis
+                      offStart:(CGFloat)offStart
+                        offEnd:(CGFloat)offEnd;
+
+
+/**
+ *  根据子view自动布局 -- 需要设置:间距; -- 自动计算:起始点，结束点
+ *  说明： 在父类view尺寸不等于需求尺寸时，会显示日志并且取消布局
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis
+                   gapDistance:(CGFloat)gapDistance;
+
+
+/**
+ *  根据子view自动布局 -- 需要设置:起始点，结束点，间距
+ *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis
+                      offStart:(CGFloat)offStart
+                        offEnd:(CGFloat)offEnd
+                   gapDistance:(CGFloat)gapDistance;
+
+
+/**
+ *  根据子view自动布局 -- 需要设置:gapArray间距比例数组，间距总和
+ *  说明： 在父类view尺寸不等于需求尺寸时，会自动变化
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis
+                       gapAray:(NSArray *)gapArray
+                     gapDisAll:(CGFloat)gapDisAll;
+
+
+/**
+ *  根据子view自动布局 -- 需要设置:gapArray间距比例数组; -- 自动计算：间距总和
+ *  说明： 在父类view尺寸不等于需求尺寸时，无法自动布局
+ */
++ (void)BearV2AutoLayViewArray:(NSMutableArray *)viewArray
+                    layoutAxis:(kLAYOUT_AXIS)layoutAxis
+                 alignmentType:(SetAlignmentType)alignmentType
+               alignmentOffDis:(CGFloat)alignmentOffDis
+                       gapAray:(NSArray *)gapArray;
+
 
 @end
