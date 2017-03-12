@@ -11,22 +11,22 @@
 #import "BearAlertContentView.h"
 
 //  动效方式
-typedef enum {
+typedef NS_ENUM(NSUInteger, AlertViewAnimation) {
     kAlertViewAnimation_VerticalSpring,     //直线弹簧动效
     kAlertViewAnimation_CenterScale,        //中心缩放动效
-}AlertViewAnimation;
+};
 
 //  动画执行状态
-typedef enum {
+typedef NS_ENUM(NSUInteger, AlertViewAnimationState) {
     kAlertViewAnimationState_Null,          //无状态，
     kAlertViewAnimationState_Process,       //动画进行中
-}AlertViewAnimationState;
+};
 
 //  AlertView自定义样式
-typedef enum {
+typedef NS_ENUM(NSUInteger, AlertViewCustomType) {
     kAlertViewCustomType_ContentAndBtns,    //BearAlertContentView+BearAlertBtnsView自定义
     kAlertViewCustomType_AllDiy,            //全部自定义
-}AlertViewCustomType;
+};
 
 
 typedef void (^kAlertViewBlock)();

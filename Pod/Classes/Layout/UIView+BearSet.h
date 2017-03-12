@@ -7,36 +7,36 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, kAXIS) {
     kAXIS_Y,
     kAXIS_X,
     kAXIS_X_Y,
-}kAXIS;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, kLAYOUT_AXIS) {
     kLAYOUT_AXIS_Y,
     kLAYOUT_AXIS_X,
-}kLAYOUT_AXIS;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, kDIRECTION) {
     kDIR_LEFT,
     kDIR_RIGHT,
     kDIR_UP,
     kDIR_DOWN,
-}kDIRECTION;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, SetNeedWHSort) {
     kSetNeed_Width,
     kSetNeed_Height,
-}SetNeedWHSort;
+};
 
 //  设置对齐类型
-typedef enum {
+typedef NS_ENUM(NSUInteger, SetAlignmentType) {
     kSetAlignmentType_Idle,     //  不处理对齐方式
     kSetAlignmentType_Center,   //  剧中对齐
     kSetAlignmentType_Start,    //  上／左对齐
     kSetAlignmentType_End,      //  下／右对齐
-}SetAlignmentType;
+};
 
 //  offParameter结构体
 struct OffPara
