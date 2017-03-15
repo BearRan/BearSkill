@@ -8,7 +8,7 @@
 
 #import "UITableView+BearStoreCellHeight.h"
 #import "objc/runtime.h"
-#import "BearConstants.h"
+#import "BearDefines.h"
 
 static const void *cellFrameDictKey = &cellFrameDictKey;
 

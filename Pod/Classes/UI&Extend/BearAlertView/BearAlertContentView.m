@@ -7,7 +7,7 @@
 //
 
 #import "BearAlertContentView.h"
-#import "BearConstants.h"
+#import "BearDefines.h"
 #import "UIView+BearSet.h"
 
 @implementation BearAlertContentView
