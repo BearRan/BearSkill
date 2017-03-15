@@ -105,6 +105,7 @@
 		10692C8F5089374829067AAFDFC5DC26 /* Pods-BearSkill_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		11525320FF58ED6E6E432B8F6DECAFD4 /* BearSkill.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BearSkill.modulemap; sourceTree = "<group>"; };
 		12CC4BD9C5F6D514C917D7942DF2D2F4 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		1815B0B41E792D820038805C /* BearDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BearDefines.h; path = Constants/BearDefines.h; sourceTree = "<group>"; };
 		18D6345E1D0814FD00051CC7 /* BearConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BearConstants.h; path = Constants/BearConstants.h; sourceTree = "<group>"; };
 		18D6345F1D0814FD00051CC7 /* BearConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BearConstants.m; path = Constants/BearConstants.m; sourceTree = "<group>"; };
 		18D634621D08156900051CC7 /* BearCutOutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BearCutOutView.h; path = "UI&Extend/BearCutOutView.h"; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 			children = (
 				18D6345E1D0814FD00051CC7 /* BearConstants.h */,
 				18D6345F1D0814FD00051CC7 /* BearConstants.m */,
+				1815B0B41E792D820038805C /* BearDefines.h */,
 				18F5A57A1D8E84C200058B09 /* ApplicationOpenURLManager.h */,
 				18F5A57B1D8E84C200058B09 /* ApplicationOpenURLManager.m */,
 			);
