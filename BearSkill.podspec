@@ -30,14 +30,27 @@ BearSkill contain some methods used frequently in project. And many other method
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-#s.resource_bundles = {
-#  'BearSkill' => ['Pod/Assets/*.png']
-# }
+#s.source_files = 'Pod/Classes/**/*'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    #UI&Extend
+    s.subspec 'UI&Extend' do |ui&Extend|
+        ui&Extend.source_files = 'Pod/UI&Extend/**/*'
+    end
+
+    #Layout
+    s.subspec 'Layout' do |layout|
+        layout.source_files = 'Pod/Layout/*'
+    end
+
+    #Constants
+    s.subspec 'Constants' do |constants|
+        constants.source_files = 'Pod/Constants/*'
+    end
+
+    #AttributeString
+    s.subspec 'AttributeString' do |attributeString|
+        attributeString.source_files = 'Pod/AttributeString/*'
+    end
 
     #BearDefines
     s.subspec 'BearDefines' do |bearDefines|
