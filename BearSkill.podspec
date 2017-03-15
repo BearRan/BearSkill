@@ -41,7 +41,7 @@ BearSkill contain some methods used frequently in project. And many other method
 
     #BearDefines
     s.subspec 'BearDefines' do |bearDefines|
-        bearDefines.source_files = 'Pod/Classes/BearDefines/*'
+        bearDefines.source_files = 'Pod/BearDefines/*'
     end
 
 end

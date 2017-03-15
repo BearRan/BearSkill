@@ -15,7 +15,7 @@
 		09312FD21D215E4100AACE69 /* BearAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09312FCC1D215E4100AACE69 /* BearAlertView.m */; };
 		0A8AD6BC310B1DCAA5B052B591D8CFB6 /* Pods-BearSkill_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 190687EBFD53B330903D0265A002C44E /* Pods-BearSkill_Tests-dummy.m */; };
 		163C6E8E5E7CEE1E0BEEB9CA0939DA3A /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 73003A0752F3CABAA497D1FD1F5E4E44 /* UIImage+Diff.m */; };
-		1815B0B71E7942890038805C /* BearDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815B0B61E7942890038805C /* BearDefines.h */; };
+		1815B0BA1E79438D0038805C /* BearDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1815B0B91E79438D0038805C /* BearDefines.h */; };
 		18D634601D0814FD00051CC7 /* BearConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D6345E1D0814FD00051CC7 /* BearConstants.h */; };
 		18D634611D0814FD00051CC7 /* BearConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6345F1D0814FD00051CC7 /* BearConstants.m */; };
 		18D6346A1D08156900051CC7 /* BearCutOutView.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D634621D08156900051CC7 /* BearCutOutView.h */; };
@@ -106,7 +106,7 @@
 		10692C8F5089374829067AAFDFC5DC26 /* Pods-BearSkill_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BearSkill_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		11525320FF58ED6E6E432B8F6DECAFD4 /* BearSkill.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BearSkill.modulemap; sourceTree = "<group>"; };
 		12CC4BD9C5F6D514C917D7942DF2D2F4 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
-		1815B0B61E7942890038805C /* BearDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearDefines.h; sourceTree = "<group>"; };
+		1815B0B91E79438D0038805C /* BearDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearDefines.h; sourceTree = "<group>"; };
 		18D6345E1D0814FD00051CC7 /* BearConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BearConstants.h; path = Constants/BearConstants.h; sourceTree = "<group>"; };
 		18D6345F1D0814FD00051CC7 /* BearConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BearConstants.m; path = Constants/BearConstants.m; sourceTree = "<group>"; };
 		18D634621D08156900051CC7 /* BearCutOutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BearCutOutView.h; path = "UI&Extend/BearCutOutView.h"; sourceTree = "<group>"; };
@@ -239,10 +239,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1815B0B51E7942890038805C /* BearDefines */ = {
+		1815B0B81E79438D0038805C /* BearDefines */ = {
 			isa = PBXGroup;
 			children = (
-				1815B0B61E7942890038805C /* BearDefines.h */,
+				1815B0B91E79438D0038805C /* BearDefines.h */,
 			);
 			path = BearDefines;
 			sourceTree = "<group>";
@@ -407,7 +407,6 @@
 		9706148E9AB00B751E256657E696BF22 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1815B0B51E7942890038805C /* BearDefines */,
 				18D634551D07F90600051CC7 /* Constants */,
 				18D634571D07F97100051CC7 /* Layout */,
 				18D634501D07F4E700051CC7 /* UI&Extend */,
@@ -450,6 +449,7 @@
 		B63B778E7137D44A31570927BEA1288D /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				1815B0B81E79438D0038805C /* BearDefines */,
 				9706148E9AB00B751E256657E696BF22 /* Classes */,
 			);
 			path = Pod;
@@ -503,7 +503,7 @@
 				09312FD11D215E4100AACE69 /* BearAlertView.h in Headers */,
 				09312FCD1D215E4100AACE69 /* BearAlertBtnsView.h in Headers */,
 				18D6346C1D08156900051CC7 /* UILabel+BearSet.h in Headers */,
-				1815B0B71E7942890038805C /* BearDefines.h in Headers */,
+				1815B0BA1E79438D0038805C /* BearDefines.h in Headers */,
 				C961F1AADC31A49A972E3720EB5CC65E /* BearSkill-umbrella.h in Headers */,
 				18D6347C1D08159300051CC7 /* NSMutableAttributedString+BearSet.h in Headers */,
 				18D634781D08157D00051CC7 /* UIView+BearSet.h in Headers */,
