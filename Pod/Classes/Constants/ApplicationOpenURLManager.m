@@ -7,7 +7,7 @@
 //
 
 #import "ApplicationOpenURLManager.h"
-#import "BearConstants.h"
+#import "BearDefines.h"
 
 @implementation ApplicationOpenURLManager
 
