@@ -32,9 +32,9 @@ BearSkill contain some methods used frequently in project. And many other method
 
 #s.source_files = 'Pod/Classes/**/*'
 
-    #UI&Extend
-    s.subspec 'UI&Extend' do |ui&Extend|
-        ui&Extend.source_files = 'Pod/UI&Extend/**/*'
+    #UIAndExtend
+    s.subspec 'UIAndExtend' do |uiAndExtend|
+        uiAndExtend.source_files = 'Pod/UIAndExtend/**/*'
     end
 
     #Layout
