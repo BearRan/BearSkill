@@ -11,6 +11,13 @@
 
 #pragma mark - 界面处理，设置属性，画线的一些方法
 
+- (void)removeAllSubViews
+{
+    for (UIView *subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
+}
+
 // 描边
 - (void)setLine:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius borderWidth:(CGFloat)borderWidth
 {

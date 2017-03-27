@@ -84,6 +84,8 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
  *  普通的方法
  */
 
+- (void)removeAllSubViews;
+
 // 描边
 - (void)setLine:(UIColor *)color cornerRadius:(NSUInteger)cornerRadius borderWidth:(CGFloat)borderWidth;
 
