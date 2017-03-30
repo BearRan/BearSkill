@@ -131,6 +131,14 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
                    dashColor:(UIColor *)dashColor
                  dashPattern:(NSArray<NSNumber *> *)dashPattern;
 
+/**
+ 在layer上添加分离图片
+ 
+ @param image 图片
+ @param rect 图片裁剪比例 CGRectMake(0, 0, 0.5, 0.5)
+ @param contentsGravity 图片填充模式
+ */
+- (void)addSpriteImage:(UIImage *)image withContentRect:(CGRect)rect contentsGravity:(NSString *)contentsGravity;
 
 
 
