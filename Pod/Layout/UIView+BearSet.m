@@ -247,7 +247,7 @@
 - (void)addSpriteImage:(UIImage *)image withContentRect:(CGRect)rect contentsGravity:(NSString *)contentsGravity
 {
     if (!contentsGravity) {
-        contentsGravity = kCAGravityResizeAspectFill;
+        contentsGravity = kCAGravityResize;
     }
     
     self.layer.contents = (__bridge id)image.CGImage;
