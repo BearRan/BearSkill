@@ -198,6 +198,23 @@
     });
 }
 
+//  获取随机颜色
++ (UIColor *)randomColor
+{
+    UIColor *randomColor = [self randomColorWithAlpha:1];
+    return randomColor;
+}
+
+//  获取随机颜色
++ (UIColor *)randomColorWithAlpha:(CGFloat)alpha
+{
+    CGFloat r = arc4random() % 255 / 255.0;
+    CGFloat g = arc4random() % 255 / 255.0;
+    CGFloat b = arc4random() % 255 / 255.0;
+    UIColor *randomColor = [UIColor colorWithRed:r green:g blue:b alpha:alpha];
+    return randomColor;
+}
+
 @end
 
 

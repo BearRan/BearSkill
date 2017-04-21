@@ -58,6 +58,10 @@ static NSString *usTest = @"usTest";
 //  延时block
 + (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)())dealBlock;
 
+//  获取随机颜色
++ (UIColor *)randomColor;
++ (UIColor *)randomColorWithAlpha:(CGFloat)alpha;
+
 @end
 
 
