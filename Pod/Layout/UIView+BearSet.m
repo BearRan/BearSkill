@@ -1411,6 +1411,12 @@
                 }
                     break;
                     
+                case kSetAlignmentType_CustomCenter:
+                {
+                    [tempSubView setCenterY:alignmentOffDis];
+                }
+                    break;
+                    
                 default:
                     break;
             }
@@ -1506,6 +1512,12 @@
                 case kSetAlignmentType_End:
                 {
                     [tempSubView setMaxX:containerWidth - alignmentOffDis];
+                }
+                    break;
+                    
+                case kSetAlignmentType_CustomCenter:
+                {
+                    [tempSubView setCenterX:alignmentOffDis];
                 }
                     break;
                     

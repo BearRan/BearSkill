@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, SetAlignmentType) {
     kSetAlignmentType_Center,   //  剧中对齐
     kSetAlignmentType_Start,    //  上／左对齐
     kSetAlignmentType_End,      //  下／右对齐
+    kSetAlignmentType_CustomCenter,   //  自定义剧中的位置
 };
 
 //  offParameter结构体
