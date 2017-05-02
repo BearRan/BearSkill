@@ -577,19 +577,9 @@
         referHeight = [NSNumber numberWithFloat:self.height];
     }
     
-    CGFloat tempWidth;
-    CGFloat tempHeight;
+    CGSize tempSize = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
     
-    if (setSort == kSetNeed_Width) {
-        tempWidth = [setValue floatValue];
-        tempHeight = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
-    }
-    else if (setSort == kSetNeed_Height){
-        tempHeight = [setValue floatValue];
-        tempWidth = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
-    }
-    
-    [self setSize:CGSizeMake(tempWidth, tempHeight)];
+    [self setSize:tempSize];
 }
 
 /**
@@ -603,18 +593,18 @@
  *      setSort == kSetNeed_Width时，返回高度
  *      setSort == kSetNeed_Height时，返回宽度
  */
-+ (CGFloat)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue
++ (CGSize)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue
 {
-    CGFloat tempWidth;
-    CGFloat tempHeight;
+    CGFloat tempWidth = 0;
+    CGFloat tempHeight = 0;
     
     if (setSort == kSetNeed_Width) {
         tempHeight = (1.0 * [referHeight floatValue] / [referWidth floatValue]) * [setValue floatValue];
-        return tempHeight;
+        return CGSizeMake([setValue floatValue], tempHeight);
     }
     else if (setSort == kSetNeed_Height){
         tempWidth = (1.0 * [referWidth floatValue] / [referHeight floatValue]) * [setValue floatValue];
-        return tempWidth;
+        return CGSizeMake(tempWidth, [setValue floatValue]);
     }
 }
 

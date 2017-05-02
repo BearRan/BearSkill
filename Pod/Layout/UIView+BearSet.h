@@ -221,7 +221,7 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
  *      setSort == kSetNeed_Width时，返回高度
  *      setSort == kSetNeed_Height时，返回宽度
  */
-+ (CGFloat)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
++ (CGSize)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
 
 /**
  *  和父类view剧中
