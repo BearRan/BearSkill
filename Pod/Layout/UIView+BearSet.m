@@ -193,27 +193,50 @@
                    dashColor:(UIColor *)dashColor
                  dashPattern:(NSArray<NSNumber *> *)dashPattern
 {
-    CAShapeLayer *border = [CAShapeLayer layer];
+    CAShapeLayer *dashLayer = [UIView dashLayerWithAxis:axis
+                                              dashColor:dashColor
+                                            dashPattern:dashPattern
+                                                  frame:self.frame];
+    [self.layer addSublayer:dashLayer];
+}
+
+
+/**
+ *  虚线Layer
+ *
+ *  @param axis        横向／纵向绘制虚线
+ *  @param dashColor   虚线颜色
+ *  @param dashPattern 虚线间距数组，默认@[@3, @3]
+ */
++ (CAShapeLayer *)dashLayerWithAxis:(kLAYOUT_AXIS)axis
+                          dashColor:(UIColor *)dashColor
+                        dashPattern:(NSArray<NSNumber *> *)dashPattern
+                              frame:(CGRect)frame
+{
+    CAShapeLayer *dashLayer = [CAShapeLayer layer];
+    
+    CGFloat width = frame.size.width;
+    CGFloat height = frame.size.height;
     
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGFloat centerX = self.width / 2.0;
-    CGFloat centerY = self.height / 2.0;
+    CGFloat centerX = width / 2.0;
+    CGFloat centerY = height / 2.0;
     CGFloat lineWidth;
     
     switch (axis) {
         case kLAYOUT_AXIS_X:
         {
             [path moveToPoint:CGPointMake(0, centerY)];
-            [path addLineToPoint:CGPointMake(self.width, centerY)];
-            lineWidth = self.height;
+            [path addLineToPoint:CGPointMake(width, centerY)];
+            lineWidth = height;
         }
             break;
             
         case kLAYOUT_AXIS_Y:
         {
             [path moveToPoint:CGPointMake(centerX, 0)];
-            [path addLineToPoint:CGPointMake(centerX, self.height)];
-            lineWidth = self.width;
+            [path addLineToPoint:CGPointMake(centerX, height)];
+            lineWidth = width;
         }
             break;
             
@@ -229,13 +252,15 @@
         dashPattern = @[@3, @3];
     }
     
-    border.path = path.CGPath;
-    border.strokeColor = dashColor.CGColor;
-    border.fillColor = [UIColor clearColor].CGColor;
-    border.lineWidth = lineWidth;
-    border.lineDashPattern = dashPattern;
-    [self.layer addSublayer:border];
+    dashLayer.path = path.CGPath;
+    dashLayer.strokeColor = dashColor.CGColor;
+    dashLayer.fillColor = [UIColor clearColor].CGColor;
+    dashLayer.lineWidth = lineWidth;
+    dashLayer.lineDashPattern = dashPattern;
+    
+    return dashLayer;
 }
+
 
 /**
  在layer上添加分离图片

@@ -133,6 +133,18 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
                  dashPattern:(NSArray<NSNumber *> *)dashPattern;
 
 /**
+ *  虚线Layer
+ *
+ *  @param axis        横向／纵向绘制虚线
+ *  @param dashColor   虚线颜色
+ *  @param dashPattern 虚线间距数组，默认@[@3, @3]
+ */
++ (CAShapeLayer *)dashLayerWithAxis:(kLAYOUT_AXIS)axis
+                          dashColor:(UIColor *)dashColor
+                        dashPattern:(NSArray<NSNumber *> *)dashPattern
+                              frame:(CGRect)frame;
+
+/**
  在layer上添加分离图片
  
  @param image 图片
