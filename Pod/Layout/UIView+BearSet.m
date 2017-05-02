@@ -582,14 +582,40 @@
     
     if (setSort == kSetNeed_Width) {
         tempWidth = [setValue floatValue];
-        tempHeight = (1.0 * [referHeight floatValue] / [referWidth floatValue]) * [setValue floatValue];
+        tempHeight = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
     }
     else if (setSort == kSetNeed_Height){
         tempHeight = [setValue floatValue];
-        tempWidth = (1.0 * [referWidth floatValue] / [referHeight floatValue]) * [setValue floatValue];
+        tempWidth = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
     }
     
     [self setSize:CGSizeMake(tempWidth, tempHeight)];
+}
+
+/**
+ *  保持宽高比，自动设置Size
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ *
+ *  @return 
+ *      setSort == kSetNeed_Width时，返回高度
+ *      setSort == kSetNeed_Height时，返回宽度
+ */
++ (CGFloat)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue
+{
+    CGFloat tempWidth;
+    CGFloat tempHeight;
+    
+    if (setSort == kSetNeed_Width) {
+        tempHeight = (1.0 * [referHeight floatValue] / [referWidth floatValue]) * [setValue floatValue];
+        return tempHeight;
+    }
+    else if (setSort == kSetNeed_Height){
+        tempWidth = (1.0 * [referWidth floatValue] / [referHeight floatValue]) * [setValue floatValue];
+        return tempWidth;
+    }
 }
 
 

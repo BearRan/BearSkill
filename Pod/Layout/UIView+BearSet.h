@@ -210,6 +210,18 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
  */
 - (void)BearSetSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
 
+/**
+ *  保持宽高比，自动设置Size
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ *
+ *  @return
+ *      setSort == kSetNeed_Width时，返回高度
+ *      setSort == kSetNeed_Height时，返回宽度
+ */
++ (CGFloat)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
 
 /**
  *  和父类view剧中
