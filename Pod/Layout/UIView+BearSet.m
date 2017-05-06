@@ -606,6 +606,8 @@
         tempWidth = (1.0 * [referWidth floatValue] / [referHeight floatValue]) * [setValue floatValue];
         return CGSizeMake(tempWidth, [setValue floatValue]);
     }
+    
+    return CGSizeZero;
 }
 
 /**
