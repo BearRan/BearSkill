@@ -224,6 +224,19 @@ GapParaMake(CGFloat gapDistance, BOOL autoCalu)
 + (CGSize)caculateSizeRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
 
 /**
+ *  保持宽高比，自动设置Bounds
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ *
+ *  @return
+ *      setSort == kSetNeed_Width时，返回高度
+ *      setSort == kSetNeed_Height时，返回宽度
+ */
++ (CGRect)caculateBoundsRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue;
+
+/**
  *  和父类view剧中
  *
  *  当前view和父类view的 X轴／Y轴／中心点 对其

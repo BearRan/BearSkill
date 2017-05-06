@@ -608,6 +608,25 @@
     }
 }
 
+/**
+ *  保持宽高比，自动设置Bounds
+ *
+ *  @param referWidth  参考宽度
+ *  @param referHeight 参考高度
+ *  @param setWidth    实际宽度，自动计算高度
+ *
+ *  @return
+ *      setSort == kSetNeed_Width时，返回高度
+ *      setSort == kSetNeed_Height时，返回宽度
+ */
++ (CGRect)caculateBoundsRemainWHRatio_referWidth:(NSNumber *)referWidth referHeight:(NSNumber *)referHeight setSort:(SetNeedWHSort)setSort setValue:(NSNumber *)setValue
+{
+    CGSize tempSize = [UIView caculateSizeRemainWHRatio_referWidth:referWidth referHeight:referHeight setSort:setSort setValue:setValue];
+    CGRect bounds = CGRectMake(0, 0, tempSize.width, tempSize.height);
+    
+    return bounds;
+}
+
 
 /**
  *  和父类view剧中
