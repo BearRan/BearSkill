@@ -185,6 +185,11 @@
 #define FontSize_6N(value)       FontSize(XX_6(value / 3.0))
 #define FontSize_6PN(value)      FontSize(XX_6P(value / 3.0))
 
+#define FontSize_4N_2(value)       FontSize(XX_4(value / 2.0))
+#define FontSize_5N_2(value)       FontSize(XX_5(value / 2.0))
+#define FontSize_6N_2(value)       FontSize(XX_6(value / 2.0))
+#define FontSize_6PN_2(value)      FontSize(XX_6P(value / 2.0))
+
 #define BoldSysFont(value)                  [UIFont boldSystemFontOfSize:value]
 #define WidthBasedScaleSysFont(value)       SystemFont(WidthBasedScale(value))
 #define WidthBasedScaleBoldFont(value)      BoldSysFont(WidthBasedScale(value))
