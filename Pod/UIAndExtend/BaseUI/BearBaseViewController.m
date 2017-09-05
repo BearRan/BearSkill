@@ -1,9 +1,5 @@
 //
 //  BearBaseViewController.m
-//  FenQiGuanJia
-//
-//  Created by 林程宇 on 15/1/23.
-//  Copyright (c) 2015年 YunTu. All rights reserved.
 //
 
 #import "BearBaseViewController.h"
