@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UINavigationBar+BearSet.h"
 
 @interface BearNavigationBar : UINavigationBar
 
@@ -12,7 +13,6 @@
 @property (nonatomic, strong) UIColor   *sepLineColor;
 
 - (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor;
-- (void)setNaviBackgroundColor:(UIColor *)backgroundColor;
 - (void)reloadNaviAttribute;
 
 @end

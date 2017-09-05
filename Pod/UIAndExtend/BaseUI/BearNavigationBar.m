@@ -3,9 +3,9 @@
 //
 
 #import "BearNavigationBar.h"
-#import "UIImage-Helpers.h"
 #import "UIView+BearSet.h"
 #import "BearDefines.h"
+#import "UIImage-Helpers.h"
 
 @interface BearNavigationBar ()
 
@@ -29,13 +29,6 @@
         self.shadowImage = [[UIImage alloc] init];
     }
     return self;
-}
-
-- (void)setNaviBackgroundColor:(UIColor *)backgroundColor
-{
-    if (backgroundColor) {
-        [self setBackgroundImage:[UIImage imageWithColor:backgroundColor] forBarMetrics:UIBarMetricsDefault];
-    }
 }
 
 - (void)setNavBarColor:(UIColor *)navBarColor andNavTextColor:(UIColor *)navTextColor
