@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "UIView+BearSet.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+
+//  HUD
+static MBProgressHUD *_stateHud;
 
 //  NotificationCenter字段
 static NSString *NotificationTest = @"NotificationTest";
@@ -61,6 +66,100 @@ static NSString *usTest = @"usTest";
 //  获取随机颜色
 + (UIColor *)randomColor;
 + (UIColor *)randomColorWithAlpha:(CGFloat)alpha;
+
+//  获取当前页ViewController
++ (id)getCurrentViewController;
+
+/***** Nav Push *****/
+
+//  获取naviVC中指定类型的VC
++ (id)fetchVCWithClassName:(NSString *)className inNaviVC:(UINavigationController *)naviVC;
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (void)popToDestinationVC:(UIViewController *)destionationVC inVC:(UIViewController *)nowVC;
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (void)popToDestinationVCClassName:(NSString *)destionationVCClassName inVC:(UIViewController *)nowVC;
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (BOOL)findAndpopToDestinationVCClassName:(NSString *)destionationVCClassName inVC:(UIViewController *)nowVC;
+
+//  pop到指定数量的的VC，如果num超过controllers数量，pop到RootVC
++ (void)popOverNum:(int)num inVC:(UIViewController *)nowVC;
+
+//  获取指定VC的相通Navi下的前一个VC
++ (id)getAheadVCInVC:(UIViewController *)inVC;
+
+//  判断是否存在字符串
++ (BOOL)theString:(NSString *)string containsString:(NSString*)other;
+
+/**
+ *  将指定VC从Navi数组中移出
+ *
+ *  @param removeVC 被移除的VC，或VCname
+ *  @param navVC    navVC
+ */
++ (void)removeVC:(id)removeVC inNavVC:(UINavigationController *)navVC;
+
+/**
+ *  将指定VC插入到Navi数组中
+ *
+ *  @param insertVC 被插入的VC
+ *  @param navVC    navVC
+ */
++ (void)insertVC:(UIViewController *)insertVC inNavVC:(UINavigationController *)navVC atIndex:(NSInteger)index;
+
+/** 字符串解析成字典
+ *
+ *  参考解析数据
+ *  para_1=1&para_2=2
+ */
++ (NSDictionary *)convertParaStrToDict_paraStr:(NSString *)paraStr;
+
+//  frame转换成bounds
++ (CGRect)convertFrameToBounds_frame:(CGRect)frame;
+
+/**
+ *  循环测试
+ *
+ *  @param during     循环间隔
+ *  @param eventBlock block事件
+ */
++ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)())eventBlock;
+
+//  imageView设置tintColor
++ (void)imageView:(UIImageView *)imageView setImage:(UIImage *)image tintColor:(UIColor *)tintColor;
+
+/**
+ *  创建基于制定view的渐变layer
+ *
+ *  @param inView       所在view
+ *  @param fromColor    渐变起始颜色
+ *  @param toColor      渐变终止颜色
+ *  @param axis         渐变方向
+ *                      kLAYOUT_AXIS_Y:从上向下渐变
+ *                      kLAYOUT_AXIS_X:从左向右渐变
+ *  注意：
+ *  建议使用此方法添加渐变layer
+ *  [inView.layer insertSublayer:gradientLayer atIndex:0];
+ */
++ (CAGradientLayer *)generateGradientLayerBaseInView:(UIView *)inView
+                                           fromColor:(UIColor *)fromColor
+                                             toColor:(UIColor *)toColor
+                                                axis:(kLAYOUT_AXIS)axis;
+
+//  计算时间差
++ (NSDateComponents *)caculateDateDValueFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+
+//  校验数组和对应索引是否越界
++ (BOOL)validateArray:(NSArray *)array index:(NSInteger)index;
+
+//  在主线程处理
++ (void)processInMainThreadWithBlock:(void (^)())block;
+
++ (void)debug:(void (^)())debug release:(void (^)())release;
+
++ (void)resignCurrentFirstResponder;
 
 @end
 

@@ -137,7 +137,7 @@
     _refreshBtn.btnLabel.text = @"点击刷新";
     _refreshBtn.btnLabel.textColor = [UIColor blueColor];
     _refreshBtn.btnLabel.font = [UIFont systemFontOfSize:40];
-    _refreshBtn.btnImageV.image = [UIImage imageNamed:@"jkzj_arrow"];
+    _refreshBtn.btnImageV.image = [UIImage imageNamed:@"test_arrow"];
     [_refreshBtn.btnImageV sizeToFit];
     [self addSubview:_refreshBtn];
 }

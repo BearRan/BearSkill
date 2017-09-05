@@ -215,6 +215,384 @@
     return randomColor;
 }
 
+//  获取当前页ViewController
++ (id)getCurrentViewController
+{
+    id result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [[(UITabBarController *)result viewControllers] objectAtIndex:[(UITabBarController *)result selectedIndex]];
+    }
+    
+    if ([result isKindOfClass:[UITabBarController class]]) {
+        result = [[(UITabBarController *)result viewControllers] objectAtIndex:[(UITabBarController *)result selectedIndex]];
+    }
+    
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [(UINavigationController *)result topViewController];
+    }
+    
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [(UINavigationController *)result topViewController];
+    }
+    
+    return result;
+}
+
+/***** Nav Push *****/
+
+
+////  当前Tab的Nav Push VC
+//+ (void)selectedTabNavPush:(id)vc
+//{
+//    if (vc) {
+//        [(YTUINavigationController *)[[JKZJAPP_Delegate tabBarVC].viewControllers objectAtIndex:[JKZJAPP_Delegate tabBarVC].selectedIndex] pushViewController:vc animated:YES];
+//    }
+//}
+
++ (id)fetchVCWithClassName:(NSString *)className inNaviVC:(UINavigationController *)naviVC
+{
+    for (int i = 0; i < [naviVC.viewControllers count]; i++) {
+        id tempVC = naviVC.viewControllers[i];
+        Class tempClass = NSClassFromString(className);
+        if ([tempVC isKindOfClass:[tempClass class]]) {
+            return tempVC;
+        }
+    }
+    
+    return nil;
+}
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (void)popToDestinationVC:(UIViewController *)destionationVC inVC:(UIViewController *)nowVC
+{
+    if (destionationVC && [nowVC.navigationController.viewControllers containsObject:destionationVC]) {
+        [nowVC.navigationController popToViewController:destionationVC animated:YES];
+    }
+    else{
+        NSLog(@"controllers不存在该VC，pop到RootVC");
+        [nowVC.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (void)popToDestinationVCClassName:(NSString *)destionationVCClassName inVC:(UIViewController *)nowVC
+{
+    for (id tempVC in nowVC.navigationController.viewControllers) {
+        if ([tempVC isKindOfClass:NSClassFromString(destionationVCClassName)]) {
+            UIViewController *destinationVC = (UIViewController *)tempVC;
+            [nowVC.navigationController popToViewController:destinationVC animated:YES];
+            return;
+        }
+    }
+    
+    NSLog(@"controllers不存在该VC，pop到RootVC");
+    [nowVC.navigationController popToRootViewControllerAnimated:YES];
+}
+
+//  pop到指定的VC，如果controllers不存在该VC，pop到RootVC
++ (BOOL)findAndpopToDestinationVCClassName:(NSString *)destionationVCClassName inVC:(UIViewController *)nowVC
+{
+    for (id tempVC in nowVC.navigationController.viewControllers) {
+        if ([tempVC isKindOfClass:NSClassFromString(destionationVCClassName)]) {
+            UIViewController *destinationVC = (UIViewController *)tempVC;
+            [nowVC.navigationController popToViewController:destinationVC animated:YES];
+            return YES;
+        }
+    }
+    
+    NSLog(@"controllers不存在该VC，pop到RootVC");
+    return NO;
+}
+
+
+//  pop到指定数量的的VC，如果num超过controllers数量，pop到RootVC
++ (void)popOverNum:(int)num inVC:(UIViewController *)nowVC
+{
+    NSArray *controllers = nowVC.navigationController.viewControllers;
+    
+    if ([controllers count] - num > 0) {
+        [nowVC.navigationController popToViewController:controllers[[controllers count] - 1 - num] animated:YES];
+    }else{
+        NSLog(@"num超过controllers数量，pop到RootVC");
+        [nowVC.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+//  获取指定VC的相通Navi下的前一个VC
++ (id)getAheadVCInVC:(UIViewController *)inVC
+{
+    NSArray *controllers = inVC.navigationController.viewControllers;
+    int index = (int)[controllers indexOfObject:inVC];
+    
+    if (index > 0) {
+        UIViewController *returnController = (UIViewController *)controllers[index - 1];
+        return returnController;
+    }
+    
+    return nil;
+}
+
+//  判断是否存在字符串
++ (BOOL)theString:(NSString *)string containsString:(NSString*)other
+{
+    if (![[NSString class] instancesRespondToSelector:@selector(containsString:)]) {
+        NSRange range = [string rangeOfString:other];
+        return range.length != 0;
+    }
+    else
+    {
+        return [string containsString:other];
+    }
+}
+
+/**
+ *  将指定VC从Navi数组中移出
+ *
+ *  @param removeVC 被移除的VC，或VCname
+ *  @param navVC    navVC
+ */
++ (void)removeVC:(id)removeVC inNavVC:(UINavigationController *)navVC
+{
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:navVC.viewControllers];
+    if ([tempArray count] > 1) {
+        
+        for (int i = 0; i < [tempArray count]; i++) {
+            id tempVC = tempArray[i];
+            
+            //  VC
+            if ([removeVC isKindOfClass:[UIViewController class]]) {
+                if (tempVC == removeVC) {
+                    [tempArray removeObjectAtIndex:i];
+                    break;
+                }
+            }
+            
+            //  String
+            else if ([removeVC isKindOfClass:[NSString class]]){
+                NSString *removeVCStr = (NSString *)removeVC;
+                NSString *tempVCStr = NSStringFromClass([tempVC class]);
+                if ([tempVCStr isEqualToString:removeVCStr]) {
+                    [tempArray removeObjectAtIndex:i];
+                    break;
+                }
+            }
+            
+        }
+        navVC.viewControllers = tempArray;
+    }
+}
+
+/**
+ *  将指定VC插入到Navi数组中
+ *
+ *  @param insertVC 被插入的VC
+ *  @param navVC    navVC
+ */
++ (void)insertVC:(UIViewController *)insertVC inNavVC:(UINavigationController *)navVC atIndex:(NSInteger)index
+{
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:navVC.viewControllers];
+    
+    if (index > [tempArray count]) {
+        return;
+    }
+    
+    [tempArray insertObject:insertVC atIndex:index];
+    navVC.viewControllers = tempArray;
+}
+
+
+
+/** 字符串解析成字典
+ *
+ *  参考解析数据
+ *  para_1=1&para_2=2
+ */
++ (NSDictionary *)convertParaStrToDict_paraStr:(NSString *)paraStr
+{
+    NSMutableDictionary *paraDict = [[NSMutableDictionary alloc] init];
+    
+    NSArray *parasArray = [paraStr componentsSeparatedByString:@"&"];
+    if (parasArray && [parasArray count] > 0) {
+        for (int i = 0; i < [parasArray count]; i++) {
+            
+            NSString    *paraDetailStr      = parasArray[i];
+            NSArray     *paraKeyValueArray  = [paraDetailStr componentsSeparatedByString:@"="];
+            
+            if ([paraKeyValueArray count] >= 2) {
+                NSString *paraKey = paraKeyValueArray[0];
+                NSString *paraValue = [[paraKeyValueArray subarrayWithRange:NSMakeRange(1, paraKeyValueArray.count - 1)] componentsJoinedByString:@"="];
+                [paraDict setObject:paraValue forKey:paraKey];
+            }
+        }
+    }
+    
+    return paraDict;
+}
+
+//  frame转换成bounds
++ (CGRect)convertFrameToBounds_frame:(CGRect)frame
+{
+    return CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
+/**
+ *  循环测试
+ *
+ *  @param during     循环间隔
+ *  @param eventBlock block事件
+ */
++ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)())eventBlock
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, during * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        
+        if (false) {
+            dispatch_source_cancel(timer);  //停止
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (eventBlock) {
+                eventBlock();
+            }
+            
+        });
+        
+    });
+    dispatch_resume(timer);
+}
+
+//  imageView设置tintColor
++ (void)imageView:(UIImageView *)imageView setImage:(UIImage *)image tintColor:(UIColor *)tintColor
+{
+    [imageView setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    if (tintColor) {
+        imageView.tintColor = tintColor;
+    }
+}
+
+//  创建基于制定view的渐变layer
++ (CAGradientLayer *)generateGradientLayerBaseInView:(UIView *)inView
+                                           fromColor:(UIColor *)fromColor
+                                             toColor:(UIColor *)toColor
+                                                axis:(kLAYOUT_AXIS)axis
+{
+    //  _gradientLayer
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)fromColor.CGColor,
+                             (__bridge id)toColor.CGColor
+                             ];
+    //从上往下的渐变
+    //(I.e. [0,0] is the bottom-left corner of the layer, [1,1] is the top-right corner.)
+    switch (axis) {
+        case kLAYOUT_AXIS_Y:
+        {
+            gradientLayer.startPoint = CGPointMake(0, 0);
+            gradientLayer.endPoint = CGPointMake(0, 1);
+        }
+            break;
+            
+        case kLAYOUT_AXIS_X:
+        {
+            gradientLayer.startPoint = CGPointMake(0, 0);
+            gradientLayer.endPoint = CGPointMake(1, 0);
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    gradientLayer.frame = inView.bounds;
+    
+    return gradientLayer;
+}
+
++ (NSDateComponents *)caculateDateDValueFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
+{
+    if (fromDate && toDate) {
+        // 当前日历
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        // 需要对比的时间数据
+        NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth
+        | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+        // 对比时间差
+        NSDateComponents *dateCom = [calendar components:unit fromDate:fromDate toDate:toDate options:0];
+        
+        return dateCom;
+    }
+    
+    return nil;
+    
+    // 伪代码
+    //年差额 = dateCom.year, 月差额 = dateCom.month, 日差额 = dateCom.day, 小时差额 = dateCom.hour, 分钟差额 = dateCom.minute, 秒差额 = dateCom.second
+}
+
+//  校验数组和对应索引是否越界
++ (BOOL)validateArray:(NSArray *)array index:(NSInteger)index
+{
+    if (array && [array count] > index) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+//  在主线程处理
++ (void)processInMainThreadWithBlock:(void (^)())block
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (block) {
+            block();
+        }
+    });
+}
+
++ (void)debug:(void (^)())debug release:(void (^)())release
+{
+#ifdef DEBUG
+    if (debug) {
+        debug();
+    }
+#else
+    if (release) {
+        release();
+    }
+#endif
+}
+
++ (void)resignCurrentFirstResponder
+{
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    [keyWindow endEditing:YES];
+}
+
 @end
 
 
