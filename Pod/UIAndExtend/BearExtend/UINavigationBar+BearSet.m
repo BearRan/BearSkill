@@ -34,4 +34,18 @@
     [self setTitleTextAttributes:attrs];
 }
 
+- (void)setLeftBarButtonItemTitleColor:(UIColor *)color
+{
+    UINavigationItem * navItem = (UINavigationItem *)[[self items] lastObject];
+    NSArray <UIBarButtonItem *> * items = [navItem leftBarButtonItems];
+    
+    if (items && [items count] > 0) {
+        
+        [items enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIBarButtonItem *barButtonItem = obj;
+            [barButtonItem setTintColor:color];
+        }];
+    }
+}
+
 @end
