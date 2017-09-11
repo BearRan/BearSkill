@@ -268,7 +268,7 @@
 //+ (void)selectedTabNavPush:(id)vc
 //{
 //    if (vc) {
-//        [(YTUINavigationController *)[[JKZJAPP_Delegate tabBarVC].viewControllers objectAtIndex:[JKZJAPP_Delegate tabBarVC].selectedIndex] pushViewController:vc animated:YES];
+//        [(BearUINavigationController *)[[JKZJAPP_Delegate tabBarVC].viewControllers objectAtIndex:[JKZJAPP_Delegate tabBarVC].selectedIndex] pushViewController:vc animated:YES];
 //    }
 //}
 

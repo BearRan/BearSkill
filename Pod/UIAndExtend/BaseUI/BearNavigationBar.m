@@ -31,16 +31,8 @@
     return self;
 }
 
-- (void)setNavBarColor:(UIColor *)navBarColor andNavTextColor:(UIColor *)navTextColor
+- (void)setNavTextColor:(UIColor *)navTextColor
 {
-    _navBarColor = navBarColor;
-    
-    if (_navBarColor)
-    {
-        [self setBackgroundImage:[UIImage imageWithColor:_navBarColor] forBarMetrics:UIBarMetricsDefault];
-        self.shadowImage = [[UIImage alloc] init];
-    }
-    
     // 导航栏 字体、颜色
     //原借款专家色值 #define navTextColor UIColorFromHEX(0x000000)
     if (navTextColor) {
@@ -72,6 +64,17 @@
     return [super hitTest:point withEvent:event];
 }
 
+#pragma mark - Setter & Getter
+- (void)setNavBarColor:(UIColor *)navBarColor
+{
+    _navBarColor = navBarColor;
+    
+    if (_navBarColor)
+    {
+        [self setBackgroundImage:[UIImage imageWithColor:_navBarColor] forBarMetrics:UIBarMetricsDefault];
+        self.shadowImage = [[UIImage alloc] init];
+    }
+}
 
 #pragma mark - Rewrite
 
