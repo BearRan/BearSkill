@@ -4,6 +4,8 @@
 
 #import "BearTabBarViewController.h"
 #import "UIView+BearSet.h"
+#import "BearDefines.h"
+#import "UIImage-Helpers.h"
 
 @interface BearTabBarViewController ()
 
@@ -16,6 +18,7 @@
                           imageNameStrs:(NSArray *)imageNameStrs
                   imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
                               tintColor:(UIColor *)tintColor
+                        backgroundColor:(UIColor *)backgroundColor
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self)
@@ -35,9 +38,10 @@
         [self setViewControllers:viewControllers];
         
         UITabBar *tabBar = self.tabBar;
-//        [tabBar setShadowImage:[UIImage imageWithColor:UIColorFromHEX(0xe2e2e2)]];
-//        [tabBar setBackgroundImage:[UIImage imageWithColor:UIColorFromHEX(0xf9f9f9)]];
-        tabBar.height = 98.f;
+        if (!backgroundColor) {
+            backgroundColor = [UIColor whiteColor];
+        }
+        [tabBar setBackgroundImage:[UIImage imageWithColor:backgroundColor]];
         
         BOOL haveTintColor = tintColor && [tintColor isKindOfClass:[UIColor class]];
         if (haveTintColor) {

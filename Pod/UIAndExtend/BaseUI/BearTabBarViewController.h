@@ -10,6 +10,7 @@
                                  titles:(NSArray *)titles
                           imageNameStrs:(NSArray *)imageNameStrs
                   imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
-                              tintColor:(UIColor *)tintColor;
+                              tintColor:(UIColor *)tintColor
+                        backgroundColor:(UIColor *)backgroundColor;
 
 @end

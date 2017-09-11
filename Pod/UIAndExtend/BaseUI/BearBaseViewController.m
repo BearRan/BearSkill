@@ -70,13 +70,26 @@
         }
     }
     
+    [self refreshContentViewFrame];
+    [_contentView setBackgroundColor:_contentViewBackgroundColor];
+    [self.view addSubview:_contentView];
+    [self navigationBar];
+    
+    if (_ifTapResignFirstResponder) {
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
+        tapGR.delegate = self;
+        [_contentView addGestureRecognizer:tapGR];
+    }
+}
+
+- (void)refreshContentViewFrame
+{
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
     CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.height;
-    CGFloat bottomHeight = [self hidesBottomBarWhenPushed] ? 0 : kBottomBarHeight;
-    
+    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
+    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
     CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ( OSVersionIsAtLeastiOS7() )
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -86,17 +99,6 @@
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
     } else {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight)];
-    }
-#endif
-    
-    [_contentView setBackgroundColor:_contentViewBackgroundColor];
-    [self.view addSubview:_contentView];
-    [self navigationBar];
-    
-    if (_ifTapResignFirstResponder) {
-        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
-        tapGR.delegate = self;
-        [_contentView addGestureRecognizer:tapGR];
     }
 }
 
@@ -183,16 +185,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissViewController) name:@"disMiss" object:nil];
     [self.view addSubview:_navigationBar];
-}
-
-- (BOOL)hidesBottomBarWhenPushed
-{
-    return YES;
-}
-
-- (BOOL)hideNavigationBarWhenPush
-{
-    return NO;
 }
 
 #pragma mark - createUI

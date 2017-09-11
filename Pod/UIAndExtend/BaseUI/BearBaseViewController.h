@@ -78,5 +78,6 @@ typedef void(^ViewWillDisappearBlock)();
 - (void)textStateLabel:(NSString *)text;
 
 - (BOOL)IsSelfTopMostOfNav;
+- (void)refreshContentViewFrame;
 
 @end
