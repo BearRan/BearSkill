@@ -1,0 +1,15 @@
+//
+//  BearTabBarViewController.h
+//
+
+#import <UIKit/UIKit.h>
+
+@interface BearTabBarViewController : UITabBarController
+
+- (instancetype)initWithViewControllers:(NSMutableArray *)viewControllers
+                                 titles:(NSArray *)titles
+                          imageNameStrs:(NSArray *)imageNameStrs
+                  imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
+                              tintColor:(UIColor *)tintColor;
+
+@end
