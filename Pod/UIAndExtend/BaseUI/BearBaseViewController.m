@@ -70,10 +70,10 @@
         }
     }
     
+    [self navigationBar];
     [self refreshContentViewFrame];
     [_contentView setBackgroundColor:_contentViewBackgroundColor];
     [self.view addSubview:_contentView];
-    [self navigationBar];
     
     if (_ifTapResignFirstResponder) {
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
@@ -84,11 +84,17 @@
 
 - (void)refreshContentViewFrame
 {
+    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
     CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.height;
-    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
     CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
+    
+    if (hidesBottomBarWhenPushed) {
+        [_navigationBar removeFromSuperview];
+    }else{
+        [self.view addSubview:_navigationBar];
+    }
     
     if ( OSVersionIsAtLeastiOS7() )
     {
@@ -96,9 +102,15 @@
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
         
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                hidesBottomBarWhenPushed ? 0 : yOffset,
+                                                                CGRectGetWidth(viewRect),
+                                                                CGRectGetHeight(viewRect) - (hidesBottomBarWhenPushed ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
     } else {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                hidesBottomBarWhenPushed ? 0 : yOffset,
+                                                                CGRectGetWidth(viewRect),
+                                                                CGRectGetHeight(viewRect) - (hidesBottomBarWhenPushed ? 0 : yOffset) - bottomHeight)];
     }
 }
 
@@ -184,7 +196,6 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissViewController) name:@"disMiss" object:nil];
-    [self.view addSubview:_navigationBar];
 }
 
 #pragma mark - createUI
