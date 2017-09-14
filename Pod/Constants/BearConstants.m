@@ -497,11 +497,11 @@
     }
 }
 
-//  创建基于制定view的渐变layer
-+ (CAGradientLayer *)generateGradientLayerBaseInView:(UIView *)inView
-                                           fromColor:(UIColor *)fromColor
-                                             toColor:(UIColor *)toColor
-                                                axis:(kLAYOUT_AXIS)axis
+//  创建渐变layer
++ (CAGradientLayer *)generateGradientLayerWithRect:(CGRect)rect
+                                         fromColor:(UIColor *)fromColor
+                                           toColor:(UIColor *)toColor
+                                              axis:(kLAYOUT_AXIS)axis
 {
     //  _gradientLayer
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -529,7 +529,7 @@
             break;
     }
     
-    gradientLayer.frame = inView.bounds;
+    gradientLayer.frame = rect;
     
     return gradientLayer;
 }

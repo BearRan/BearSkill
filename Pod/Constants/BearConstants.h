@@ -131,22 +131,19 @@ static NSString *usTest = @"usTest";
 + (void)imageView:(UIImageView *)imageView setImage:(UIImage *)image tintColor:(UIColor *)tintColor;
 
 /**
- *  创建基于制定view的渐变layer
+ *  创建渐变layer
  *
- *  @param inView       所在view
  *  @param fromColor    渐变起始颜色
  *  @param toColor      渐变终止颜色
  *  @param axis         渐变方向
  *                      kLAYOUT_AXIS_Y:从上向下渐变
  *                      kLAYOUT_AXIS_X:从左向右渐变
- *  注意：
- *  建议使用此方法添加渐变layer
- *  [inView.layer insertSublayer:gradientLayer atIndex:0];
  */
-+ (CAGradientLayer *)generateGradientLayerBaseInView:(UIView *)inView
-                                           fromColor:(UIColor *)fromColor
-                                             toColor:(UIColor *)toColor
-                                                axis:(kLAYOUT_AXIS)axis;
+//  创建渐变layer
++ (CAGradientLayer *)generateGradientLayerWithRect:(CGRect)rect
+                                         fromColor:(UIColor *)fromColor
+                                           toColor:(UIColor *)toColor
+                                              axis:(kLAYOUT_AXIS)axis;
 
 //  计算时间差
 + (NSDateComponents *)caculateDateDValueFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;

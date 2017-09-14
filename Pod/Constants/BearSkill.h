@@ -8,3 +8,4 @@
 
 #import "UIView+BearSet.h"
 #import "BearDefines.h"
+#import "BearConstants.h"
