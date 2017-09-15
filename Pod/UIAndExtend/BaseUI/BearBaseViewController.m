@@ -90,27 +90,21 @@
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
     CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
     
-    if (hidesBottomBarWhenPushed) {
+    if (_hideNavigationBarWhenPush) {
         [_navigationBar removeFromSuperview];
     }else{
         [self.view addSubview:_navigationBar];
     }
-    
+
     if ( OSVersionIsAtLeastiOS7() )
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
         
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                hidesBottomBarWhenPushed ? 0 : yOffset,
-                                                                CGRectGetWidth(viewRect),
-                                                                CGRectGetHeight(viewRect) - (hidesBottomBarWhenPushed ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
     } else {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                hidesBottomBarWhenPushed ? 0 : yOffset,
-                                                                CGRectGetWidth(viewRect),
-                                                                CGRectGetHeight(viewRect) - (hidesBottomBarWhenPushed ? 0 : yOffset) - bottomHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight)];
     }
 }
 
@@ -351,7 +345,7 @@
     return backBarButtonItem;
 }
 
-- (UINavigationBar *)navigationBar
+- (BearNavigationBar *)navigationBar
 {
     if (!_navigationBar)
     {
