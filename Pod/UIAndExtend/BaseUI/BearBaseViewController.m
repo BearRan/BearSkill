@@ -36,10 +36,10 @@
         _isNavBarClear = NO;
         _ifAddBackButton = YES;
         _ifDismissView = NO;
-        _ifAddPopGR = NO;
+        _ifAddPopGR = YES;
         _navBarColor = nil;
         _ifTapResignFirstResponder = NO;
-        _contentViewBackgroundColor = [UIColor whiteColor];
+        _contentViewBackgroundColor = [UIColor clearColor];
     }
     
     return self;
