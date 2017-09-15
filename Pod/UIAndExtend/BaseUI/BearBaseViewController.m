@@ -39,6 +39,7 @@
         _ifAddPopGR = NO;
         _navBarColor = nil;
         _ifTapResignFirstResponder = NO;
+        _contentViewBackgroundColor = [UIColor whiteColor];
     }
     
     return self;
@@ -96,15 +97,24 @@
         [self.view addSubview:_navigationBar];
     }
 
+    if (!_contentView) {
+        _contentView = [UIView new];
+    }
     if ( OSVersionIsAtLeastiOS7() )
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
         
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight)];
+        _contentView.frame = CGRectMake(0,
+                                        _isNavBarClear ? 0 : yOffset,
+                                        CGRectGetWidth(viewRect),
+                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
     } else {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, _isNavBarClear ? 0 : yOffset, CGRectGetWidth(viewRect), CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight)];
+        _contentView.frame = CGRectMake(0,
+                                        _isNavBarClear ? 0 : yOffset,
+                                        CGRectGetWidth(viewRect),
+                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight);
     }
 }
 
