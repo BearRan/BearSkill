@@ -27,7 +27,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (nonatomic, strong) BearNavigationBar       *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (nonatomic, strong) UIColor               *   navBarColor;
-@property (nonatomic, strong) UIView                *   errorView;
 @property (nonatomic, strong) NSDictionary          *   vcParamsDict;
 @property (nonatomic, strong) UIViewController      *   popToDestinationVC;         //跳转回指定VC
 @property (nonatomic, strong) NSString              *   popToDestiantionClassName;  //跳转回指定class

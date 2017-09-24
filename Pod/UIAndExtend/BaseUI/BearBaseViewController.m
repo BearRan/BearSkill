@@ -17,8 +17,6 @@
     NSArray       *   _hiddenRightItems;
 }
 
-@property (strong, nonatomic) BearHUDCustomView *customHUDView;
-
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation;
 
 @end
@@ -496,19 +494,39 @@
     }
 }
 
+#pragma mark - HUD Func
+
+- (void)addHudInContentView
+{
+    [self.contentView bringSubviewToFront:self.stateHud];
+    [self addHUDToView:self.contentView];
+}
+
+- (void)addHudInWindow
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self addHUDToView:window];
+    [window bringSubviewToFront:self.stateHud];
+}
+
+- (void)hudClean
+{
+    self.stateHud.detailsLabel.text = @"";
+    self.stateHud.label.text = @"";
+}
+
+
 #pragma mark - MBProgressHUD
 
 - (void)showHud:(NSString *)text
 {
-    [self.contentView bringSubviewToFront:self.stateHud];
-    [self addHUDToView:self.contentView];
-    
+    [self addHudInContentView];
     [self hudClean];
     if ([BearConstants judgeStringExist:text]) {
         self.stateHud.label.text = text;
     }
     
-    [self FQGJHUDLoadingAnimation];
+    [self BearHUDLoadingAnimation];
 }
 
 - (void)addHUDToView:(UIView *)view
@@ -522,16 +540,14 @@
 
 - (void)showHudOnWindow:(NSString *)text
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [self addHUDToView:window];
-    [window bringSubviewToFront:self.stateHud];
-    
+    [self addHudInWindow];
     [self hudClean];
+    
     if ([BearConstants judgeStringExist:text]) {
         self.stateHud.label.text = text;
     }
     
-    [self FQGJHUDLoadingAnimation];
+    [self BearHUDLoadingAnimation];
 }
 
 - (void)showActivityHUD:(NSString *)text
@@ -549,9 +565,8 @@
 
 - (void)textStateHUD:(NSString *)text
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [self addHUDToView:window];
-    [window bringSubviewToFront:self.stateHud];
+    [self addHudInContentView];
+    [self hudClean];
     
     for (UIImageView *imageView in self.stateHud.subviews)
     {
@@ -559,7 +574,6 @@
             imageView.hidden = YES;
     }
     
-    [self hudClean];
     if ([BearConstants judgeStringExist:text]) {
         self.stateHud.detailsLabel.text = text;
     }
@@ -584,12 +598,6 @@
             finishBlock();
         }
     }];
-}
-
-- (void)hudClean
-{
-    self.stateHud.detailsLabel.text = @"";
-    self.stateHud.label.text = @"";
 }
 
 - (void)hideHUDView
@@ -639,52 +647,6 @@
 {
     [self.stateHud removeFromSuperview];
 }
-
-#pragma mark - 网络抛锚
-
-//请求错误显示
-- (UIView *)errorView
-{
-    if (!_errorView)
-    {
-        _errorView = [[UIView alloc] initWithFrame:self.contentView.bounds];
-        [_errorView setBackgroundColor:[UIColor colorWithRed:0.97f green:0.97f blue:0.97f alpha:1.00f]];
-        
-        CGFloat w = self.view.bounds.size.width;
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 160)];
-        [view setBackgroundColor:[UIColor clearColor]];
-        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"neterror"]];
-        [image setFrame:CGRectMake((w - CGRectGetWidth(image.frame)) / 2, 15, CGRectGetWidth(image.frame), CGRectGetHeight(image.frame))];
-        [view addSubview:image];
-        
-        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 105, w, 34)];
-        [lbl setBackgroundColor:[UIColor clearColor]];
-        [lbl setTextAlignment:NSTextAlignmentCenter];
-        [lbl setNumberOfLines:2];
-        [lbl setTextColor:[UIColor colorWithRed:
-                           0.52 green:0.52 blue:0.52 alpha:1]];
-        [lbl setFont:[UIFont systemFontOfSize:14.0]];
-        [lbl setText:@"网络抛锚\r\n请检查网络后点击屏幕重试！"];
-        [view addSubview:lbl];
-        
-        view.center = _errorView.center;
-        [_errorView addSubview:view];
-    }
-    
-    if (!_reloadMask)
-    {
-        UIButton *reloadMask = [[UIButton alloc] initWithFrame:_errorView.bounds];
-        reloadMask.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        [reloadMask addTarget:self action:@selector(reloadAfterError) forControlEvents:UIControlEventTouchUpInside];
-        [_errorView addSubview:reloadMask];
-        _reloadMask = reloadMask;
-    }
-    
-    return _errorView;
-}
-
-- (void)reloadAfterError
-{}
 
 - (BOOL)IsSelfTopMostOfNav
 {
@@ -740,35 +702,7 @@
     _stateHud = stateHud;
 }
 
-- (BearHUDCustomView *)customHUDView
-{
-    if (!_customHUDView) {
-        NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"BearHUDCustomView" owner:NO options:nil];
-        _customHUDView = [views lastObject];
-        
-        [_customHUDView addConstraints:@[
-                                      // customHUDView.size
-                                      [NSLayoutConstraint constraintWithItem:_customHUDView
-                                                                   attribute:NSLayoutAttributeWidth
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:1.0
-                                                                    constant:35],
-                                      [NSLayoutConstraint constraintWithItem:_customHUDView
-                                                                   attribute:NSLayoutAttributeHeight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:1.0
-                                                                    constant:35],
-                                      ]];
-    }
-    
-    return _customHUDView;
-}
-
-- (void)FQGJHUDLoadingAnimation
+- (void)BearHUDLoadingAnimation
 {
     self.stateHud.mode = MBProgressHUDModeIndeterminate;
     
