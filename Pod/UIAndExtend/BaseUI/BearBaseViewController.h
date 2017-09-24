@@ -3,7 +3,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 #import <BearSkill/BearNavigationBar.h>
 
 static BOOL OSVersionIsAtLeastiOS7()
@@ -18,12 +17,11 @@ static const CGFloat kBottomBarHeight           =       49.0f;
 typedef void(^ViewDidDisappearBlock)();
 typedef void(^ViewWillDisappearBlock)();
 
-@interface BearBaseViewController : UIViewController <MBProgressHUDDelegate,UINavigationBarDelegate>
+@interface BearBaseViewController : UIViewController <UINavigationBarDelegate>
 {
     UIButton        *_reloadMask;
 }
 
-@property (nonatomic, strong) MBProgressHUD         *   stateHud;
 @property (nonatomic, strong) BearNavigationBar       *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (nonatomic, strong) UIColor               *   navBarColor;
@@ -56,6 +54,8 @@ typedef void(^ViewWillDisappearBlock)();
 - (void)createUI;
 - (void)popSelf;
 - (void)dismissModalViewController;
+
+#pragma mark - Navi Item
 - (void)addTitleView:(UIView *)titleview;
 - (UIBarButtonItem *)createBackBarButonItem;
 - (void)addLeftBarButtonItem:(UIBarButtonItem *)item animation:(BOOL)animation;
@@ -64,19 +64,19 @@ typedef void(^ViewWillDisappearBlock)();
 - (void)showLeftBarButtonItemsAnimation:(BOOL)animation;
 - (void)hideRightBarButtonItemsAnimation:(BOOL)animation;
 - (void)showRightBarButtonItemsAnimation:(BOOL)animation;
+
+#pragma mark - HUD
 - (void)hideHUDView;
 - (void)textStateHUD:(NSString *)text;
 - (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock;
 - (void)showHud:(NSString *)text;
 - (void)showHudOnWindow:(NSString *)text;
 - (void)showActivityHUD:(NSString *)text;
-- (void)stateAlert:(NSDictionary *)alertDict;
-- (void)setBgImg:(UIImage *)image;
-- (void)setExtraCellLineHidden:(UITableView *)tableView;
-- (void)reloadAfterError;
-- (void)textStateLabel:(NSString *)text;
 
+#pragma mark - Func
+//  当前是否为Navi的顶层
 - (BOOL)IsSelfTopMostOfNav;
+//  刷新ContentView的Frame
 - (void)refreshContentViewFrame;
 
 @end

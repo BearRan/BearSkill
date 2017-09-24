@@ -7,8 +7,7 @@
 #import "UIView+BearSet.h"
 #import "BearConstants.h"
 #import "BearDefines.h"
-
-#define MBProgressHUD_Tag       1100000
+#import "BearHUDManager.h"
 
 @interface BearBaseViewController () <UIGestureRecognizerDelegate>
 {
@@ -16,6 +15,9 @@
     NSArray       *   _hiddenLeftItems;
     NSArray       *   _hiddenRightItems;
 }
+
+@property (strong, nonatomic) BearHUDManager *hudManager;
+@property (strong, nonatomic) BearHUDManager *windowHudManager;
 
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation;
 
@@ -78,41 +80,6 @@
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
         tapGR.delegate = self;
         [_contentView addGestureRecognizer:tapGR];
-    }
-}
-
-- (void)refreshContentViewFrame
-{
-    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
-    CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
-    CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.height;
-    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
-    CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
-    
-    if (_hideNavigationBarWhenPush) {
-        [_navigationBar removeFromSuperview];
-    }else{
-        [self.view addSubview:_navigationBar];
-    }
-
-    if (!_contentView) {
-        _contentView = [UIView new];
-    }
-    if ( OSVersionIsAtLeastiOS7() )
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-        
-        _contentView.frame = CGRectMake(0,
-                                        _isNavBarClear ? 0 : yOffset,
-                                        CGRectGetWidth(viewRect),
-                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
-    } else {
-        _contentView.frame = CGRectMake(0,
-                                        _isNavBarClear ? 0 : yOffset,
-                                        CGRectGetWidth(viewRect),
-                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight);
     }
 }
 
@@ -205,13 +172,6 @@
 - (void)createUI
 {}
 
-- (void)setExtraCellLineHidden:(UITableView *)tableView
-{
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [tableView setTableFooterView:view];
-}
-
 #pragma mark - 返回（back）
 
 - (void)paningGestureReceive:(id)sender
@@ -275,45 +235,6 @@
 {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     [keyWindow endEditing:YES];
-}
-
-#pragma mark - alertView
-- (void)stateAlert:(NSDictionary *)alertDict
-{
-    if (![[alertDict objectForKey:@"title"] isEqualToString:@""])
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:[alertDict objectForKey:@"title"]
-                              message:[alertDict objectForKey:@"message"]
-                              delegate:self
-                              cancelButtonTitle:@"确定"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:nil
-                              message:[alertDict objectForKey:@"message"]
-                              delegate:self
-                              cancelButtonTitle:@"确定"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
-#pragma mark - 背景图
-
-- (void)setBgImg:(UIImage *)image
-{
-    if (!_bgImageView) {
-        _bgImageView = [[UIImageView alloc] initWithFrame:_contentView.frame];
-        [_bgImageView setContentMode:UIViewContentModeScaleAspectFill];
-        [_bgImageView setClipsToBounds:YES];
-        [self.view insertSubview:_bgImageView belowSubview:_contentView];
-        [_contentView setBackgroundColor:[UIColor clearColor]];
-    }
-    [_bgImageView setImage:image];
 }
 
 #pragma mark - navigationBar 设置
@@ -425,7 +346,7 @@
     [navItem setTitle:title];
 }
 
-#pragma mark 添加按钮
+#pragma mark - Navi Item
 
 - (void)addTitleView:(UIView *)titleview
 {
@@ -494,219 +415,109 @@
     }
 }
 
-#pragma mark - HUD Func
-
-- (void)addHudInContentView
+#pragma mark - HUD
+- (void)hideHUDView
 {
-    [self.contentView bringSubviewToFront:self.stateHud];
-    [self addHUDToView:self.contentView];
-}
-
-- (void)addHudInWindow
-{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [self addHUDToView:window];
-    [window bringSubviewToFront:self.stateHud];
-}
-
-- (void)hudClean
-{
-    self.stateHud.detailsLabel.text = @"";
-    self.stateHud.label.text = @"";
-}
-
-
-#pragma mark - MBProgressHUD
-
-- (void)showHud:(NSString *)text
-{
-    [self addHudInContentView];
-    [self hudClean];
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.label.text = text;
-    }
-    
-    [self BearHUDLoadingAnimation];
-}
-
-- (void)addHUDToView:(UIView *)view
-{
-    if ([view viewWithTag:MBProgressHUD_Tag]) {
-        [self.stateHud removeFromSuperview];
-    }
-    
-    [view addSubview:self.stateHud];
-}
-
-- (void)showHudOnWindow:(NSString *)text
-{
-    [self addHudInWindow];
-    [self hudClean];
-    
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.label.text = text;
-    }
-    
-    [self BearHUDLoadingAnimation];
-}
-
-- (void)showActivityHUD:(NSString *)text
-{
-    [self addHUDToView:self.contentView];
-    self.stateHud.mode = MBProgressHUDModeIndeterminate;
-    
-    [self hudClean];
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.detailsLabel.text = text;
-    }
-    
-    [self.stateHud showAnimated:YES];
+    [self.hudManager hideHUDView];
 }
 
 - (void)textStateHUD:(NSString *)text
 {
-    [self addHudInContentView];
-    [self hudClean];
-    
-    for (UIImageView *imageView in self.stateHud.subviews)
-    {
-        if ([imageView isKindOfClass:[UIImageView class]])
-            imageView.hidden = YES;
-    }
-    
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.detailsLabel.text = text;
-    }
-    
-    if (text && text.length > 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.stateHud.mode = MBProgressHUDModeText;
-            [self.stateHud showAnimated:YES];
-            [self.stateHud hideAnimated:NO afterDelay:1.7f];
-        });
-    } else {
-        [self hideHUDView];
-    }
+    [self.hudManager textStateHUD:text];
 }
 
 - (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock
 {
-    [self textStateHUD:text];
-    
-    [BearConstants delayAfter:1.7 dealBlock:^{
+    [self.hudManager textStateHUD:text finishBlock:^{
         if (finishBlock) {
             finishBlock();
         }
     }];
 }
 
-- (void)hideHUDView
+- (void)showHud:(NSString *)text
 {
-    [self.stateHud hideAnimated:NO afterDelay:0];
+    [self.hudManager showHud:text];
 }
 
-- (void)textStateLabel:(NSString *)text
+- (void)showHudOnWindow:(NSString *)text
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectZero];
-    bgView.layer.masksToBounds = YES;
-    bgView.layer.cornerRadius = 8;
-    bgView.backgroundColor = [UIColor blackColor];
-    bgView.alpha = 0.85;
-    [window addSubview:bgView];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    label.text = text;
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:13];
-    [bgView addSubview:label];
-    [label sizeToFit];
-    
-    bgView.frame = CGRectMake((WIDTH-(15*2+CGRectGetWidth(label.frame)))/2.0, (HEIGHT-50)/2.0, 15*2+CGRectGetWidth(label.frame), 50);
-    label.frame = CGRectMake(15, 0, CGRectGetWidth(label.frame), 50);
-    
-    [UIView animateWithDuration:0.4 animations:^{
-        bgView.alpha = 0.85;
-    }];
-    
-    [self performSelector:@selector(hideStateLabel:) withObject:bgView afterDelay:1.0f];
+    [self.windowHudManager showHud:text];
 }
 
-- (void)hideStateLabel:(UIView *)bgView
+- (void)showActivityHUD:(NSString *)text
 {
-    [UIView animateWithDuration:0.4 animations:^{
-        bgView.alpha = 0.0;
-    }];
+    [self.hudManager showActivityHUD:text];
 }
 
-#pragma mark - MBProgressHUD Delegate
+#pragma mark - Func
 
-- (void)hudWasHidden:(MBProgressHUD *)ahud
-{
-    [self.stateHud removeFromSuperview];
-}
-
+//  当前是否为Navi的顶层
 - (BOOL)IsSelfTopMostOfNav
 {
     return [self.navigationController.topViewController isEqual:self];
 }
 
-- (void)didReceiveMemoryWarning
+//  刷新ContentView的Frame
+- (void)refreshContentViewFrame
 {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"disMiss" object:nil];
+    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
+    CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
+    CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.height;
+    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
+    CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
     
-    if (_stateHud != nil) {
-        //会导致循环调启
-        self.stateHud.delegate = nil;
-        [self.stateHud removeFromSuperview];
-        self.stateHud = nil;
+    if (_hideNavigationBarWhenPush) {
+        [_navigationBar removeFromSuperview];
+    }else{
+        [self.view addSubview:_navigationBar];
+    }
+    
+    if (!_contentView) {
+        _contentView = [UIView new];
+    }
+    if ( OSVersionIsAtLeastiOS7() )
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+        
+        _contentView.frame = CGRectMake(0,
+                                        _isNavBarClear ? 0 : yOffset,
+                                        CGRectGetWidth(viewRect),
+                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
+    } else {
+        _contentView.frame = CGRectMake(0,
+                                        _isNavBarClear ? 0 : yOffset,
+                                        CGRectGetWidth(viewRect),
+                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight);
     }
 }
 
 #pragma mark - Setter & Getter
-
-- (MBProgressHUD *)stateHud
+- (BearHUDManager *)hudManager
 {
-    if (!_stateHud) {
-        if (!self.view) {
-            _stateHud = [[MBProgressHUD alloc] init];
-        }else{
-            _stateHud = [[MBProgressHUD alloc] initWithView:self.view];
-            _stateHud.label.font = [UIFont systemFontOfSize:13.0f];
-            _stateHud.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-            _stateHud.contentColor = [UIColor whiteColor];
-//            _stateHud.label.textColor = UIColorFromHEX(0xffffff);
-            _stateHud.label.text = @"";
-            _stateHud.detailsLabel.text = @"";
-            _stateHud.detailsLabel.font = [UIFont systemFontOfSize:13.0f];
-            _stateHud.detailsLabel.textColor = [UIColor whiteColor];
-            _stateHud.tag = MBProgressHUD_Tag;
-            
-            [self.contentView addSubview:_stateHud];
-        }
-        _stateHud.delegate = self;
+    if (!_hudManager) {
+        _hudManager = [[BearHUDManager alloc] initInView:self.contentView];
     }
     
-    return _stateHud;
+    return _hudManager;
 }
 
-- (void)setStateHud:(MBProgressHUD *)stateHud
+- (BearHUDManager *)windowHudManager
 {
-    _stateHud = stateHud;
-}
-
-- (void)BearHUDLoadingAnimation
-{
-    self.stateHud.mode = MBProgressHUDModeIndeterminate;
+    if (!_windowHudManager) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        _windowHudManager = [[BearHUDManager alloc] initInView:window];
+    }
     
-    [self.stateHud showAnimated:YES];
+    return _windowHudManager;
+}
+
+#pragma mark - dealloc
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"disMiss" object:nil];
 }
 
 @end
