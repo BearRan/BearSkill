@@ -59,4 +59,9 @@ BearSkill contain some methods used frequently in project. And many other method
         bearDefines.source_files = 'Pod/BearDefines/*'
     end
 
+    #Tools
+    s.subspec 'Tools' do |tools|
+        tools.source_files = 'Pod/Tools/**/*'
+    end
+
 end
