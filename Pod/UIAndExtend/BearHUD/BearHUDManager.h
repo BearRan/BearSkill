@@ -10,6 +10,9 @@
 
 @interface BearHUDManager : NSObject 
 
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+
 - (instancetype)initInView:(UIView *)inView;
 
 #pragma mark - MBProgressHUD

@@ -149,4 +149,11 @@
     }
 }
 
+//- (void)addHudInWindow
+//{
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    [self addHUDToView:window];
+//    [window bringSubviewToFront:self.stateHud];
+//}
+
 @end
