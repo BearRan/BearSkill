@@ -66,12 +66,10 @@ typedef void(^ViewWillDisappearBlock)();
 - (void)showRightBarButtonItemsAnimation:(BOOL)animation;
 
 #pragma mark - HUD
-- (void)hideHUDView;
 - (void)textStateHUD:(NSString *)text;
 - (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock;
 - (void)showHud:(NSString *)text;
-- (void)showHudOnWindow:(NSString *)text;
-- (void)showActivityHUD:(NSString *)text;
+- (void)hideHUDView;
 
 #pragma mark - Func
 //  当前是否为Navi的顶层

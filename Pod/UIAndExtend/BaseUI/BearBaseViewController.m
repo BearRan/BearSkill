@@ -17,7 +17,6 @@
 }
 
 @property (strong, nonatomic) BearHUDManager *hudManager;
-@property (strong, nonatomic) BearHUDManager *windowHudManager;
 
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation;
 
@@ -416,11 +415,6 @@
 }
 
 #pragma mark - HUD
-- (void)hideHUDView
-{
-    [self.hudManager hideHUDView];
-}
-
 - (void)textStateHUD:(NSString *)text
 {
     [self.hudManager textStateHUD:text];
@@ -440,14 +434,9 @@
     [self.hudManager showHud:text];
 }
 
-- (void)showHudOnWindow:(NSString *)text
+- (void)hideHUDView
 {
-    [self.windowHudManager showHud:text];
-}
-
-- (void)showActivityHUD:(NSString *)text
-{
-    [self.hudManager showActivityHUD:text];
+    [self.hudManager hideHUDView];
 }
 
 #pragma mark - Func
@@ -502,16 +491,6 @@
     }
     
     return _hudManager;
-}
-
-- (BearHUDManager *)windowHudManager
-{
-    if (!_windowHudManager) {
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        _windowHudManager = [[BearHUDManager alloc] initInView:window];
-    }
-    
-    return _windowHudManager;
 }
 
 #pragma mark - dealloc

@@ -56,31 +56,6 @@
 }
 
 #pragma mark - MBProgressHUD
-
-- (void)showHud:(NSString *)text
-{
-    [self addHudInView];
-    [self hudClean];
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.label.text = text;
-    }
-    
-    [self BearHUDLoadingAnimation];
-}
-
-- (void)showActivityHUD:(NSString *)text
-{
-    [self addHudInView];
-    self.stateHud.mode = MBProgressHUDModeIndeterminate;
-    
-    [self hudClean];
-    if ([BearConstants judgeStringExist:text]) {
-        self.stateHud.detailsLabel.text = text;
-    }
-    
-    [self.stateHud showAnimated:YES];
-}
-
 - (void)textStateHUD:(NSString *)text
 {
     [self addHudInView];
@@ -114,6 +89,17 @@
             finishBlock();
         }
     }];
+}
+
+- (void)showHud:(NSString *)text
+{
+    [self addHudInView];
+    [self hudClean];
+    if ([BearConstants judgeStringExist:text]) {
+        self.stateHud.label.text = text;
+    }
+    
+    [self BearHUDLoadingAnimation];
 }
 
 - (void)hideHUDView
