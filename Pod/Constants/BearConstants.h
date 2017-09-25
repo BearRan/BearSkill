@@ -158,6 +158,9 @@ static NSString *usTest = @"usTest";
 
 + (void)resignCurrentFirstResponder;
 
+//  判断是否为pad
++ (BOOL)getIsIpad;
+
 @end
 
 
