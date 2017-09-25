@@ -278,17 +278,11 @@
     if (!_navigationBar)
     {
         CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
-        CGFloat yOffset = [self hideNavigationBarWhenPush] ? kNavigationBarHeight : 0;
+        CGFloat naviHeight = NAVIGATIONBAR_HEIGHT;
+        NSLog(@"--naviHeight:%f", naviHeight);
+        CGFloat yOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
         
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-        if ( OSVersionIsAtLeastiOS7() )
-        {
-            yOffset = [self hideNavigationBarWhenPush]?kNavigationBarHeight7:0;
-            _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), kNavigationBarHeight7) backgroundColor:_backgroundColor];
-        } else {
-            _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), kNavigationBarHeight) backgroundColor:_backgroundColor];
-        }
-#endif
+        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA) backgroundColor:_backgroundColor];
         _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
         _navigationBar.delegate = self;
         
@@ -450,9 +444,19 @@
 //  刷新ContentView的Frame
 - (void)refreshContentViewFrame
 {
+    CGFloat naviYOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
+    if (over_iOS10) {
+        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
+    }else{
+        _navigationBar.frame = CGRectMake(0, 0 - naviYOffset, self.view.width, NAV_STA);
+    }
+    _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, self.view.width, 0.5);
+    
+    NSLog(@"--frame:%@", NSStringFromCGRect(_navigationBar.frame));
+    
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
-    CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.height;
+    CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.maxY;
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : kBottomBarHeight;
     CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : kStatusBarHeight;
     
@@ -465,22 +469,16 @@
     if (!_contentView) {
         _contentView = [UIView new];
     }
-    if ( OSVersionIsAtLeastiOS7() )
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-        
-        _contentView.frame = CGRectMake(0,
-                                        _isNavBarClear ? 0 : yOffset,
-                                        CGRectGetWidth(viewRect),
-                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
-    } else {
-        _contentView.frame = CGRectMake(0,
-                                        _isNavBarClear ? 0 : yOffset,
-                                        CGRectGetWidth(viewRect),
-                                        CGRectGetHeight(viewRect) - (_isNavBarClear ? 0 : yOffset) - bottomHeight);
-    }
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
+
+    _contentView.frame = CGRectMake(0,
+                                    _isNavBarClear ? 0 : yOffset,
+                                    CGRectGetWidth(viewRect),
+                                    CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
+    
 }
 
 #pragma mark - Setter & Getter
