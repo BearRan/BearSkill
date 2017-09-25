@@ -20,6 +20,23 @@
                               tintColor:(UIColor *)tintColor
                         backgroundColor:(UIColor *)backgroundColor
 {
+    return [[BearTabBarViewController alloc] initWithViewControllers:viewControllers
+                                                              titles:titles
+                                                       imageNameStrs:imageNameStrs
+                                               imageNameSelectedStrs:imageNameSelectedStrs
+                                                           tintColor:tintColor
+                                                     backgroundColor:backgroundColor
+                                                  tabBarItemUIOffSet:UIOffsetMake(0, -3)];
+    
+}
+- (instancetype)initWithViewControllers:(NSMutableArray *)viewControllers
+                                 titles:(NSArray *)titles
+                          imageNameStrs:(NSArray *)imageNameStrs
+                  imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
+                              tintColor:(UIColor *)tintColor
+                        backgroundColor:(UIColor *)backgroundColor
+                     tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet
+{
     self = [super initWithNibName:nil bundle:nil];
     if (self)
     {
@@ -61,7 +78,7 @@
                                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
             }
             
-            tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -3);
+            tabBarItem.titlePositionAdjustment = tabBarItemUIOffSet;
             tabBarItem.title = titles[i];
         }
         
