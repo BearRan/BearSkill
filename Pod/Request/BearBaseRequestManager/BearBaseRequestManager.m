@@ -114,13 +114,34 @@
         secretAgent = @"";
     }
     
-    NSString *newAgent = [NSString stringWithFormat:@"/---***---/%@/iOS/%@/%@/%@/%lu.%lu.%lu/%.0fppi/%.0fG/%.0fGHz(%lu)Cache%.0fKB/%@GB(%@GB)/", app_Name, identifier, version, devInfo.modelString, devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch, devInfo.displayInfo.pixelsPerInch, devInfo.physicalMemory, devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize, diskTotalSize, diskFreeSize];
+    NSDictionary *agentDict = @{@"systemType" : @"iOS",
+                                @"app_Name" : app_Name,
+                                @"identifier" : identifier,
+                                @"version" : version,
+                                @"modelString" : devInfo.modelString,
+                                @"osVersion" : [NSString stringWithFormat:@"%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
+                                @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
+                                @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
+                                @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
+                                @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
+                                };
+    NSString *newAgent = [self convertDictToString:agentDict];
     NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
     
     [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
 }
 
-
+- (NSString*)convertDictToString:(NSDictionary *)infoDict
+{
+    __block NSMutableString *string = [NSMutableString new];
+    for (NSString *keyStr in infoDict.allKeys) {
+        NSString *valueStr = [infoDict objectForKey:keyStr];
+        NSString *tempStr = [NSString stringWithFormat:@"%@:%@//", keyStr, valueStr];
+        [string appendString:tempStr];
+    }
+    
+    return string;
+}
 
 
 //
