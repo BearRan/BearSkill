@@ -101,7 +101,7 @@
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-    NSString *identifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
     NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
@@ -115,7 +115,7 @@
     }
     
     NSDictionary *agentDict = @{@"appName" : appName,
-                                @"identifier" : identifier,
+                                @"bundleIdentifier" : bundleIdentifier,
                                 @"version" : version,
                                 @"modelString" : devInfo.modelString,
                                 @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
