@@ -30,7 +30,7 @@
 {
     [self getRequestWithURLStr:URLStr
                       paraDict:paraDict
-             completionHandler:^(BearResponseBaseVO *responseBaseVO) {
+             completionHandler:^(BearBaseResponseVO *responseBaseVO) {
                  if (responseBaseVO.error) {
                      if (failureBlock) {
                          failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code]);
@@ -45,7 +45,7 @@
 
 - (void)getRequestWithURLStr:(NSString *)urlStr
                     paraDict:(NSDictionary *)paraDict
-           completionHandler:(void (^)(BearResponseBaseVO *responseBaseVO))completionHandler
+           completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -67,7 +67,7 @@
     [self setUserAgentWithRequest:request];
     [self baseRequestWithManager:manager
                          request:request
-               completionHandler:^(BearResponseBaseVO *responseBaseVO) {
+               completionHandler:^(BearBaseResponseVO *responseBaseVO) {
                    if (completionHandler) {
                        completionHandler(responseBaseVO);
                    }
@@ -76,11 +76,11 @@
 
 - (void)baseRequestWithManager:(AFURLSessionManager *)manager
                        request:(NSURLRequest *)request
-             completionHandler:(void (^)(BearResponseBaseVO *responseBaseVO))completionHandler
+             completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (completionHandler) {
-            BearResponseBaseVO *responseBaseVO = [BearResponseBaseVO new];
+            BearBaseResponseVO *responseBaseVO = [BearBaseResponseVO new];
             responseBaseVO.response = response;
             responseBaseVO.responseObject = responseObject;
             responseBaseVO.error = error;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BearResponseBaseVO.h"
+#import "BearBaseResponseVO.h"
 
 @interface BearBaseRequestManager : NSObject
 

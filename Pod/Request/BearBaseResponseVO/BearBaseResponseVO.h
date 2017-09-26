@@ -1,5 +1,5 @@
 //
-//  BearResponseBaseVO.h
+//  BearBaseResponseVO.h
 //  BiZhi
 //
 //  Created by Chobits on 2017/9/19.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BearResponseBaseVO : NSObject
+@interface BearBaseResponseVO : NSObject
 
 @property (strong, nonatomic) NSURLResponse *response;
 @property (strong, nonatomic) id responseObject;
