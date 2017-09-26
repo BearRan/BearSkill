@@ -64,4 +64,11 @@ BearSkill contain some methods used frequently in project. And many other method
         tools.source_files = 'Pod/Tools/**/*'
     end
 
+    #Request
+    s.subspec 'Request' do |request|
+        request.dependency 'GBDeviceInfo'
+        request.dependency 'AFNetworking'
+        request.source_files = 'Pod/Request/**/*'
+    end
+
 end

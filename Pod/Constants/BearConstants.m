@@ -613,6 +613,24 @@
     return NO;
 }
 
+//  获取启动图
++ (UIImage *)getLaunchImage
+{
+    //  获取launchImage
+    CGSize viewSize = [[UIScreen mainScreen] bounds].size;
+    NSString*viewOrientation =@"Portrait";//横屏请设置成 @"Landscape"
+    NSString*launchImage =nil;
+    NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for(NSDictionary *dict in imagesDict) {
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        if(CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
+            launchImage = dict[@"UILaunchImageName"];
+        }
+    }
+    
+    return [UIImage imageNamed:launchImage];
+}
+
 @end
 
 

@@ -161,6 +161,9 @@ static NSString *usTest = @"usTest";
 //  判断是否为pad
 + (BOOL)getIsIpad;
 
+//  获取启动图
++ (UIImage *)getLaunchImage;
+
 @end
 
 
