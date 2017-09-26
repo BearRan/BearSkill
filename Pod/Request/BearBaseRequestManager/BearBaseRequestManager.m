@@ -100,7 +100,7 @@
 {
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSString *identifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
@@ -114,12 +114,11 @@
         secretAgent = @"";
     }
     
-    NSDictionary *agentDict = @{@"systemType" : @"iOS",
-                                @"app_Name" : app_Name,
+    NSDictionary *agentDict = @{@"appName" : appName,
                                 @"identifier" : identifier,
                                 @"version" : version,
                                 @"modelString" : devInfo.modelString,
-                                @"osVersion" : [NSString stringWithFormat:@"%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
+                                @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
                                 @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
                                 @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
                                 @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
