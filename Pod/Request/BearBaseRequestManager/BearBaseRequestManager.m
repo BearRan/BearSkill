@@ -99,8 +99,10 @@
 - (void)setUserAgentWithRequest:(NSMutableURLRequest *)request
 {
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSString *identifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
     NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
     NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
@@ -112,7 +114,7 @@
         secretAgent = @"";
     }
     
-    NSString *newAgent = [NSString stringWithFormat:@"/---***---/KZDWallPaper/iOS/%@/%@/%@/%lu.%lu.%lu/%.0fppi/%.0fG/%.0fGHz(%lu)Cache%.0fKB/%@GB(%@GB)/", identifier, version, devInfo.modelString, devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch, devInfo.displayInfo.pixelsPerInch, devInfo.physicalMemory, devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize, diskTotalSize, diskFreeSize];
+    NSString *newAgent = [NSString stringWithFormat:@"/---***---/%@/iOS/%@/%@/%@/%lu.%lu.%lu/%.0fppi/%.0fG/%.0fGHz(%lu)Cache%.0fKB/%@GB(%@GB)/", app_Name, identifier, version, devInfo.modelString, devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch, devInfo.displayInfo.pixelsPerInch, devInfo.physicalMemory, devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize, diskTotalSize, diskFreeSize];
     NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
     
     [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
