@@ -21,11 +21,12 @@
 
 @implementation BearFirstScreenAdView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame totalSecond:(int)totalSecond
 {
     self = [super initWithFrame:frame];
     
     if (self) {
+        _totalSecond = totalSecond;
         [self initPara];
         [self createUI];
         
@@ -36,9 +37,13 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    return [self initWithFrame:frame totalSecond:4];
+}
+
 - (void)initPara
 {
-    _totalSecond = 4;
     _cutDownTimer = [[BearCutDownTimer alloc] initWithTotalSecond:_totalSecond];
     _cutDownTimer.delegate = self;
     self.backgroundColor = [UIColor whiteColor];

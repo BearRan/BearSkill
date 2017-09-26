@@ -17,6 +17,12 @@
 
 @interface BearFirstScreenAdView : UIView
 
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+
+- (instancetype)initWithFrame:(CGRect)frame totalSecond:(int)totalSecond;
+- (instancetype)initWithFrame:(CGRect)frame;
+
 @property (weak, nonatomic) id <BearFirstScreenAdViewDelegate> delegate;
 @property (strong, nonatomic) UIImageView *contentImageView;
 
