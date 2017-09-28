@@ -39,6 +39,7 @@
         _navBarColor = nil;
         _ifTapResignFirstResponder = NO;
         _contentViewBackgroundColor = [UIColor clearColor];
+        self.statusBarStyle = UIStatusBarStyleLightContent;
     }
     
     return self;
@@ -110,6 +111,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // 状态栏
+    [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
     
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
