@@ -29,11 +29,31 @@
                                                   tabBarItemUIOffSet:UIOffsetMake(0, -3)];
     
 }
+
 - (instancetype)initWithViewControllers:(NSMutableArray *)viewControllers
                                  titles:(NSArray *)titles
                           imageNameStrs:(NSArray *)imageNameStrs
                   imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
                               tintColor:(UIColor *)tintColor
+                        backgroundColor:(UIColor *)backgroundColor
+                     tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet
+{
+    return [self initWithViewControllers:viewControllers
+                                  titles:titles
+                           imageNameStrs:imageNameStrs
+                   imageNameSelectedStrs:imageNameSelectedStrs
+                          imageTintColor:tintColor
+                          titleTintColor:tintColor
+                         backgroundColor:backgroundColor
+                      tabBarItemUIOffSet:tabBarItemUIOffSet];
+}
+
+- (instancetype)initWithViewControllers:(NSMutableArray *)viewControllers
+                                 titles:(NSArray *)titles
+                          imageNameStrs:(NSArray *)imageNameStrs
+                  imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
+                         imageTintColor:(UIColor *)imageTintColor
+                         titleTintColor:(UIColor *)titleTintColor
                         backgroundColor:(UIColor *)backgroundColor
                      tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet
 {
@@ -60,9 +80,10 @@
         }
         [tabBar setBackgroundImage:[UIImage imageWithColor:backgroundColor]];
         
-        BOOL haveTintColor = tintColor && [tintColor isKindOfClass:[UIColor class]];
-        if (haveTintColor) {
-            tabBar.tintColor = tintColor;
+        BOOL haveImageTintColor = imageTintColor && [imageTintColor isKindOfClass:[UIColor class]];
+        BOOL haveTitleTintColor = titleTintColor && [titleTintColor isKindOfClass:[UIColor class]];
+        if (haveTitleTintColor) {
+            tabBar.tintColor = imageTintColor;
         }
         
         for (NSInteger i = 0; i < tabBar.items.count; i++) {
@@ -70,7 +91,7 @@
             [tabBarItem setImage:[[UIImage imageNamed:imageNameStrs[i]]
                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
             
-            if (haveTintColor) {
+            if (haveImageTintColor) {
                 [tabBarItem setSelectedImage:[[UIImage imageNamed:imageNameSelectedStrs[i]]
                                               imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             }else{
@@ -87,12 +108,12 @@
 //                                                           color_555d62, NSForegroundColorAttributeName,
 //                                                           titleFont, NSFontAttributeName,
 //                                                           nil] forState:UIControlStateNormal];
-        if (haveTintColor) {
+        if (haveTitleTintColor) {
             [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                               tintColor, NSForegroundColorAttributeName,
+                                                               titleTintColor, NSForegroundColorAttributeName,
                                                                nil] forState:UIControlStateHighlighted];
             [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                               tintColor, NSForegroundColorAttributeName,
+                                                               titleTintColor, NSForegroundColorAttributeName,
                                                                nil] forState:UIControlStateSelected];
         }
         

@@ -21,4 +21,13 @@
                         backgroundColor:(UIColor *)backgroundColor
                      tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet;
 
+- (instancetype)initWithViewControllers:(NSMutableArray *)viewControllers
+                                 titles:(NSArray *)titles
+                          imageNameStrs:(NSArray *)imageNameStrs
+                  imageNameSelectedStrs:(NSArray *)imageNameSelectedStrs
+                         imageTintColor:(UIColor *)imageTintColor
+                         titleTintColor:(UIColor *)titleTintColor
+                        backgroundColor:(UIColor *)backgroundColor
+                     tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet;
+
 @end
