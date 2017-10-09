@@ -474,6 +474,14 @@
         [self.view addSubview:_navigationBar];
     }
     
+    if (over_iOS11) {
+        if (_hideNavigationBarWhenPush) {
+            [self.customStatusView removeFromSuperview];
+        }else{
+            [self.view addSubview:self.customStatusView];
+        }
+    }
+    
     if (!_contentView) {
         _contentView = [UIView new];
     }
