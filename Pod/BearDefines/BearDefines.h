@@ -22,6 +22,7 @@
 #define over_iOS8   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define over_iOS9   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 #define over_iOS10  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define over_iOS11  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)
 
 
 #define KeyWindow [[UIApplication sharedApplication] keyWindow]

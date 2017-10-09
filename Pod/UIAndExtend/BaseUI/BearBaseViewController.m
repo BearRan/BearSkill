@@ -76,6 +76,10 @@
     [_contentView setBackgroundColor:_contentViewBackgroundColor];
     [self.view addSubview:_contentView];
     
+    if (over_iOS11) {
+        [self.view addSubview:self.customStatusView];
+    }
+    
     if (_ifTapResignFirstResponder) {
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
         tapGR.delegate = self;
@@ -493,6 +497,15 @@
     }
     
     return _hudManager;
+}
+
+- (UIView *)customStatusView
+{
+    if (!_customStatusView) {
+        _customStatusView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, STATUS_HEIGHT)];
+    }
+    
+    return _customStatusView;
 }
 
 #pragma mark - dealloc

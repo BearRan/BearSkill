@@ -22,7 +22,8 @@ typedef void(^ViewWillDisappearBlock)();
     UIButton        *_reloadMask;
 }
 
-@property (nonatomic, strong) BearNavigationBar       *   navigationBar;
+@property (strong, nonatomic) UIView                *   customStatusView;
+@property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (nonatomic, strong) UIColor               *   navBarColor;
 @property (nonatomic, strong) NSDictionary          *   vcParamsDict;
