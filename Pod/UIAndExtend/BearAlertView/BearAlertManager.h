@@ -22,4 +22,7 @@ typedef void (^BgTapBlock) (void);
 - (void)fadeOut;
 - (void)fadeIn;
 
+#pragma mark - Usage
+- (void)Usage;
+
 @end

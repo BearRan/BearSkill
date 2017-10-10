@@ -136,4 +136,22 @@ static NSString *kAnimationKey_FadeOutAlertViewScale = @"AnimationKey_FadeOutAle
     [_contentView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
 }
 
+#pragma mark - Usage
+- (void)Usage
+{
+    UIImageView *alertImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    alertImageView.backgroundColor = [UIColor orangeColor];
+    alertImageView.image = [UIImage imageNamed:@"Img_IndexAlert"];
+    alertImageView.layer.cornerRadius = 4;
+    
+    BearAlertManager *alertManager = [BearAlertManager new];
+    __weak typeof(alertManager) wealAlertManager = alertManager;
+    alertManager.contentTapBlock = ^{
+        [wealAlertManager fadeOut];
+    };
+    [alertManager createAlertBgViewWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+    [alertManager setContentView:alertImageView];
+    [alertManager showInViewAndFadeIn:[UIApplication sharedApplication].keyWindow];
+}
+
 @end
