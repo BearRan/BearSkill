@@ -16,4 +16,9 @@
                 successBlock:(void (^)(id responseObject))successBlock
                 failureBlock:(void (^)(NSString *errorStr))failureBlock;
 
+- (void)postRequestWithURLStr:(NSString *)URLStr
+                     paraDict:(NSDictionary *)paraDict
+                 successBlock:(void (^)(id responseObject))successBlock
+                 failureBlock:(void (^)(NSString *errorStr))failureBlock;
+
 @end

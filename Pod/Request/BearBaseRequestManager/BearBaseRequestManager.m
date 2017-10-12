@@ -23,6 +23,8 @@
     return self;
 }
 
+#pragma mark - Request
+#pragma mark Get
 - (void)getRequestWithURLStr:(NSString *)URLStr
                     paraDict:(NSDictionary *)paraDict
                 successBlock:(void (^)(id responseObject))successBlock
@@ -65,6 +67,46 @@
     NSURL *URL = components.URL;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     [self setUserAgentWithRequest:request];
+    [self baseRequestWithManager:manager
+                         request:request
+               completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+                   if (completionHandler) {
+                       completionHandler(responseBaseVO);
+                   }
+               }];
+}
+
+#pragma mark Post
+- (void)postRequestWithURLStr:(NSString *)URLStr
+                     paraDict:(NSDictionary *)paraDict
+                 successBlock:(void (^)(id responseObject))successBlock
+                 failureBlock:(void (^)(NSString *errorStr))failureBlock
+{
+    [self postRequestWithURLStr:URLStr
+                       paraDict:paraDict
+             completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+                 if (responseBaseVO.error) {
+                     if (failureBlock) {
+                         failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code]);
+                     }
+                 }else{
+                     if (successBlock) {
+                         successBlock(responseBaseVO.responseObject);
+                     }
+                 }
+             }];
+}
+
+- (void)postRequestWithURLStr:(NSString *)urlStr
+                     paraDict:(NSDictionary *)paraDict
+            completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
+{
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:urlStr parameters:paraDict error:nil];
+    [self setUserAgentWithRequest:request];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
     [self baseRequestWithManager:manager
                          request:request
                completionHandler:^(BearBaseResponseVO *responseBaseVO) {
