@@ -58,11 +58,13 @@
     if (paraDict) {
         NSMutableArray *queryItems = [NSMutableArray new];
         for (NSString *key in paraDict.allKeys) {
-            id value = [NSString stringWithFormat:@"%@", [paraDict objectForKey:key]];
+            id value = [paraDict objectForKey:key];
             
             //  Dict Convert to JsonString
             if ([value isKindOfClass:[NSDictionary class]]) {
-                value = [self DataTOjsonString:value];
+                value = [self DataTojsonString:value];
+            }else{
+                value = [NSString stringWithFormat:@"%@", value];
             }
             
             NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:value];
@@ -72,10 +74,6 @@
     }
     
     NSURL *URL = components.URL;
-    
-    NSString *decodeUrl = [self URLDecodedString:URL.absoluteString];
-    URL = [NSURL URLWithString:decodeUrl];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     if (_autoAddAgent) {
         [self setUserAgentWithRequest:request];
@@ -216,7 +214,7 @@
 }
 
 #pragma mark DataTOjsonString
--(NSString*)DataTOjsonString:(id)infoDict
+-(NSString*)DataTojsonString2:(id)infoDict
 {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:infoDict
@@ -238,6 +236,24 @@
     [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     return jsonString;
+}
+
+#pragma mark DataTOjsonString
+-(NSString*)DataTojsonString:(NSDictionary *)infoDict
+{
+    NSMutableString *str = [NSMutableString new];
+    NSArray *keys = infoDict.allKeys;
+    for (int i = 0; i < [keys count]; i++) {
+        NSString *keyStr = keys[i];
+        NSString *tempStr = [NSString stringWithFormat:@"%@:%@", keyStr, [infoDict objectForKey:keyStr]];
+        [str appendString:tempStr];
+        if (i < [keys count] - 1) {
+            [str appendString:@","];
+        }
+    }
+    NSString *jsonStr = [NSString stringWithFormat:@"{%@}", str];
+    
+    return jsonStr;
 }
 
 @end
