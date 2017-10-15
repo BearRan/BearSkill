@@ -58,13 +58,24 @@
     if (paraDict) {
         NSMutableArray *queryItems = [NSMutableArray new];
         for (NSString *key in paraDict.allKeys) {
-            NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:[NSString stringWithFormat:@"%@", [paraDict objectForKey:key]]];
+            id value = [NSString stringWithFormat:@"%@", [paraDict objectForKey:key]];
+            
+            //  Dict Convert to JsonString
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                value = [self DataTOjsonString:value];
+            }
+            
+            NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:value];
             [queryItems addObject:queryItem];
         }
         components.queryItems = queryItems;
     }
     
     NSURL *URL = components.URL;
+    
+    NSString *decodeUrl = [self URLDecodedString:URL.absoluteString];
+    URL = [NSURL URLWithString:decodeUrl];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     if (_autoAddAgent) {
         [self setUserAgentWithRequest:request];
@@ -195,45 +206,38 @@
     return string;
 }
 
+#pragma mark - Func
+#pragma mark Decode
+- (NSString *)URLDecodedString:(NSString *)str
+{
+    NSString *decodedString=(__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    
+    return decodedString;
+}
 
-//
-//
-//- (void)testRequest
-//{
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    
-//    NSString *urlStr = @"https://h5.xinkouzi365.com/api/v2/bizhi/tags";
-//    NSURL *URL = [NSURL URLWithString:urlStr];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//    
-//    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            NSLog(@"---%@ \n ---%@", response, responseObject);
-//        }
-//    }];
-//    [dataTask resume];
-//}
-//
-//- (void)testRequest2
-//{
-//    NSString *urlStr = @"https://h5.xinkouzi365.com/api/v2/bizhi/tags";
-//    NSDictionary *parameters = @{@"": @""};
-//    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:urlStr parameters:parameters error:nil];
-//    
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    
-//    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            NSLog(@"---%@ \n ---%@", response, responseObject);
-//        }
-//    }];
-//    [dataTask resume];
-//}
+#pragma mark DataTOjsonString
+-(NSString*)DataTOjsonString:(id)infoDict
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:infoDict
+                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error:&error];
+    
+    NSString *jsonString = @"";
+    
+    if (! jsonData)
+    {
+        NSLog(@"Got an error: %@", error);
+    }else
+    {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+    
+    [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    return jsonString;
+}
 
 @end
