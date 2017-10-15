@@ -11,6 +11,9 @@
 
 @interface BearBaseRequestManager : NSObject
 
+// Default Yes
+@property (assign, nonatomic) BOOL autoAddAgent;
+
 - (void)getRequestWithURLStr:(NSString *)URLStr
                     paraDict:(NSDictionary *)paraDict
                 successBlock:(void (^)(id responseObject))successBlock

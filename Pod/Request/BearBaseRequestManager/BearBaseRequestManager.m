@@ -17,7 +17,7 @@
     self = [super init];
     
     if (self) {
-        
+        _autoAddAgent = YES;
     }
     
     return self;
@@ -66,7 +66,9 @@
     
     NSURL *URL = components.URL;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    [self setUserAgentWithRequest:request];
+    if (_autoAddAgent) {
+        [self setUserAgentWithRequest:request];
+    }
     [self baseRequestWithManager:manager
                          request:request
                completionHandler:^(BearBaseResponseVO *responseBaseVO) {
@@ -102,7 +104,9 @@
             completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:urlStr parameters:paraDict error:nil];
-    [self setUserAgentWithRequest:request];
+    if (_autoAddAgent) {
+        [self setUserAgentWithRequest:request];
+    }
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -156,16 +160,23 @@
         secretAgent = @"";
     }
     
-    NSDictionary *agentDict = @{@"appName" : appName,
-                                @"bundleIdentifier" : bundleIdentifier,
-                                @"version" : version,
-                                @"modelString" : devInfo.modelString,
-                                @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
-                                @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
-                                @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
-                                @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
-                                @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
-                                };
+    
+    NSDictionary *baseAgentDict = @{
+                                    @"bundleIdentifier" : bundleIdentifier,
+                                    @"version" : version,
+                                    @"modelString" : devInfo.modelString,
+                                    @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
+                                    @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
+                                    @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
+                                    @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
+                                    @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
+                                    };
+    
+    NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
+    if (appName) {
+        [agentDict setObject:appName forKey:@"appName"];
+    }
+    
     NSString *newAgent = [self convertDictToString:agentDict];
     NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
     
