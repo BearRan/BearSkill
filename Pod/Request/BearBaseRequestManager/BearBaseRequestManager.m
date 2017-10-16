@@ -62,8 +62,9 @@
             
             //  Dict Convert to JsonString
             if ([value isKindOfClass:[NSDictionary class]]) {
-                value = [self DataTojsonString:value];
-            }else{
+                value = [self DictTojsonString:value];
+            }
+            else{
                 value = [NSString stringWithFormat:@"%@", value];
             }
             
@@ -192,6 +193,44 @@
     [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
 }
 
+#pragma mark - 自定义Request
+- (void)customRequestWithRequest:(NSMutableURLRequest *)request
+                    successBlock:(void (^)(id responseObject))successBlock
+                    failureBlock:(void (^)(NSString *errorStr))failureBlock
+{
+    [self customRequestWithRequest:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+        if (responseBaseVO.error) {
+            if (failureBlock) {
+                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code]);
+            }
+        }else{
+            if (successBlock) {
+                successBlock(responseBaseVO.responseObject);
+            }
+        }
+    }];
+}
+
+- (void)customRequestWithRequest:(NSMutableURLRequest *)request
+               completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
+{
+    if (_autoAddAgent) {
+        [self setUserAgentWithRequest:request];
+    }
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    [self baseRequestWithManager:manager
+                         request:request
+               completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+                   if (completionHandler) {
+                       completionHandler(responseBaseVO);
+                   }
+               }];
+}
+
+#pragma mark - Func
 - (NSString*)convertDictToString:(NSDictionary *)infoDict
 {
     __block NSMutableString *string = [NSMutableString new];
@@ -204,7 +243,6 @@
     return string;
 }
 
-#pragma mark - Func
 #pragma mark Decode
 - (NSString *)URLDecodedString:(NSString *)str
 {
@@ -238,8 +276,8 @@
     return jsonString;
 }
 
-#pragma mark DataTOjsonString
--(NSString*)DataTojsonString:(NSDictionary *)infoDict
+#pragma mark DictTojsonString
+-(NSString*)DictTojsonString:(NSDictionary *)infoDict
 {
     NSMutableString *str = [NSMutableString new];
     NSArray *keys = infoDict.allKeys;
@@ -252,6 +290,9 @@
         }
     }
     NSString *jsonStr = [NSString stringWithFormat:@"{%@}", str];
+    
+    jsonStr =[jsonStr stringByReplacingOccurrencesOfString:@"(" withString:@"["];
+    jsonStr =[jsonStr stringByReplacingOccurrencesOfString:@")" withString:@"]"];
     
     return jsonStr;
 }

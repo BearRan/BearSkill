@@ -24,4 +24,9 @@
                  successBlock:(void (^)(id responseObject))successBlock
                  failureBlock:(void (^)(NSString *errorStr))failureBlock;
 
+#pragma mark - 自定义Request
+- (void)customRequestWithRequest:(NSMutableURLRequest *)request
+                    successBlock:(void (^)(id responseObject))successBlock
+                    failureBlock:(void (^)(NSString *errorStr))failureBlock;
+
 @end
