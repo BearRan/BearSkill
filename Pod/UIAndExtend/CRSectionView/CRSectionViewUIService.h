@@ -11,9 +11,16 @@
 
 typedef void (^DidSelectIndexPath) (NSIndexPath *indexPath);
 
+@protocol CRSectionViewUIServiceDelegate <NSObject>
+
+- (void)CRSectionDidSelectIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface CRSectionViewUIService : NSObject <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (copy, nonatomic) DidSelectIndexPath didSelectIndexPath;
+@property (weak, nonatomic) id <CRSectionViewUIServiceDelegate> delegate;
 @property (strong, nonatomic) NSArray *titles;
 
 @end

@@ -54,6 +54,10 @@
     if (_didSelectIndexPath) {
         _didSelectIndexPath(indexPath);
     }
+    
+    if ([_delegate respondsToSelector:@selector(CRSectionDidSelectIndexPath:)]) {
+        [_delegate CRSectionDidSelectIndexPath:indexPath];
+    }
 }
 
 @end
