@@ -99,4 +99,16 @@
     [self relayUI];
 }
 
+#pragma mark - Usage
+- (void)Usage
+{
+    BearCustomNaviBarView *_customNaviBarView = [BearCustomNaviBarView commonNaviBarView];
+    [_customNaviBarView setTitleString:@"猩球崛起"];
+//    _customNaviBarView.inVC = weakSelf;
+    _customNaviBarView.backgroundColor = [UIColor clearColor];
+    _customNaviBarView.titleLabel.textColor = [UIColor whiteColor];
+    [_customNaviBarView.popBtn setImage:[[UIImage imageNamed:@"tool_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [_customNaviBarView.popBtn setTintColor:[UIColor whiteColor]];
+}
+
 @end

@@ -22,4 +22,7 @@
 - (void)relayUI;
 - (void)setTitleString:(NSString *)titleString;
 
+#pragma mark - Usage
+- (void)Usage;
+
 @end
