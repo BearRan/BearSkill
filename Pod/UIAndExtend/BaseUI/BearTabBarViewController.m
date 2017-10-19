@@ -75,6 +75,9 @@
         [self setViewControllers:viewControllers];
         
         UITabBar *tabBar = self.tabBar;
+        if (over_iOS10) {
+            tabBar.translucent = NO;
+        }
         if (!backgroundColor) {
             backgroundColor = [UIColor whiteColor];
         }
