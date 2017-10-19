@@ -101,6 +101,11 @@
         
         if ([_navigationBar respondsToSelector:@selector(setShadowImage:)])
         {
+            if (over_iOS10) {
+                [_navigationBar layoutSubviews];
+                _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
+            }
+            
             if (_navBarColor) {
                 _navBarBottomlayer.hidden = YES;
             } else {
