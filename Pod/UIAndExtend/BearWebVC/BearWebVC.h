@@ -10,6 +10,8 @@
 
 @interface BearWebVC : BearBaseViewController
 
+@property (strong, nonatomic) UIWebView *webView;
+
 - (instancetype)initWithURLStr:(NSString *)urlStr;
 
 @end

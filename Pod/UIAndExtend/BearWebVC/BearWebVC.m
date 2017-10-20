@@ -10,7 +10,6 @@
 
 @interface BearWebVC () <UIWebViewDelegate>
 {
-    UIWebView *_webView;
     NSString *_urlStr;
 }
 @end
@@ -23,6 +22,7 @@
     
     if (self) {
         _urlStr = urlStr;
+        [self createUI];
     }
     
     return self;
@@ -32,13 +32,13 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self createUI];
+    _webView.frame = self.contentView.bounds;
     [self loadWithURLStr:_urlStr];
 }
 
 - (void)createUI
 {
-    _webView = [[UIWebView alloc] initWithFrame:self.contentView.bounds];
+    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [_webView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
     _webView.backgroundColor = [UIColor grayColor];
     [_webView setScalesPageToFit:YES];
