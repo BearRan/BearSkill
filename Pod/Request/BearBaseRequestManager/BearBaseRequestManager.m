@@ -183,12 +183,13 @@
                                     };
     
     NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
-    if (appName) {
-        [agentDict setObject:appName forKey:@"appName"];
-    }
     
     NSString *newAgent = [self convertDictToString:agentDict];
     NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
+    
+//    if (appName) {
+//        allAgent = [allAgent stringByAppendingString:[NSString stringWithFormat:@"allAgent:%@//", appName]];
+//    }
     
     [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
 }
