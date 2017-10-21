@@ -29,4 +29,6 @@
                     successBlock:(void (^)(id responseObject))successBlock
                     failureBlock:(void (^)(NSString *errorStr))failureBlock;
 
++ (NSDictionary *)convertDictValueToJson:(NSDictionary *)dict;
+
 @end

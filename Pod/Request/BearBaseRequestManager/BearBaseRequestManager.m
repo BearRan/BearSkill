@@ -62,7 +62,7 @@
             
             //  Dict Convert to JsonString
             if ([value isKindOfClass:[NSDictionary class]]) {
-                value = [self DictTojsonString:value];
+                value = [BearBaseRequestManager DictTojsonString:value];
             }
             else{
                 value = [NSString stringWithFormat:@"%@", value];
@@ -278,7 +278,7 @@
 }
 
 #pragma mark DictTojsonString
--(NSString*)DictTojsonString:(NSDictionary *)infoDict
++ (NSString*)DictTojsonString:(NSDictionary *)infoDict
 {
     NSMutableString *str = [NSMutableString new];
     NSArray *keys = infoDict.allKeys;
@@ -296,6 +296,31 @@
     jsonStr =[jsonStr stringByReplacingOccurrencesOfString:@")" withString:@"]"];
     
     return jsonStr;
+}
+
++ (NSDictionary *)convertDictValueToJson:(NSDictionary *)dict
+{
+    NSAssert(dict, @"转换的字典不能为空！");
+    if (!dict) {
+        return [NSDictionary new];
+    }
+    
+    NSMutableDictionary *finalParaDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    for (NSString *key in finalParaDict.allKeys) {
+        id value = [finalParaDict objectForKey:key];
+        
+        //  Dict Convert to JsonString
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            value = [BearBaseRequestManager DictTojsonString:value];
+        }
+        else{
+            value = [NSString stringWithFormat:@"%@", value];
+        }
+        
+        [finalParaDict setObject:value forKey:key];
+    }
+    
+    return finalParaDict;
 }
 
 @end
