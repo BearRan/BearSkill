@@ -52,6 +52,53 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
+    NSMutableURLRequest *request = [self generateRequestWithURLStr:urlStr paraDict:paraDict];
+    [self getRequestWithRequest:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+        if (completionHandler) {
+            completionHandler(responseBaseVO);
+        }
+    }];
+}
+
+/// new
+- (void)getRequestWithRequest:(NSMutableURLRequest *)request
+                successBlock:(void (^)(id responseObject))successBlock
+                failureBlock:(void (^)(NSString *errorStr))failureBlock
+{
+    [self getRequestWithRequest:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+        if (responseBaseVO.error) {
+            if (failureBlock) {
+                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code]);
+            }
+        }else{
+            if (successBlock) {
+                successBlock(responseBaseVO.responseObject);
+            }
+        }
+    }];
+}
+
+- (void)getRequestWithRequest:(NSMutableURLRequest *)request
+           completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    if (_autoAddAgent) {
+        [self setUserAgentWithRequest:request];
+    }
+    [self baseRequestWithManager:manager
+                         request:request
+               completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+                   if (completionHandler) {
+                       completionHandler(responseBaseVO);
+                   }
+               }];
+}
+
+- (NSMutableURLRequest *)generateRequestWithURLStr:(NSString *)urlStr
+                         paraDict:(NSDictionary *)paraDict
+{
     NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
     
     //Append Para
@@ -76,16 +123,8 @@
     
     NSURL *URL = components.URL;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    if (_autoAddAgent) {
-        [self setUserAgentWithRequest:request];
-    }
-    [self baseRequestWithManager:manager
-                         request:request
-               completionHandler:^(BearBaseResponseVO *responseBaseVO) {
-                   if (completionHandler) {
-                       completionHandler(responseBaseVO);
-                   }
-               }];
+    
+    return request;
 }
 
 #pragma mark Post
@@ -143,11 +182,12 @@
             completionHandler(responseBaseVO);
         }
         
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"success");
 //            NSLog(@"---%@ \n ---%@", response, responseObject);
-//        }
+        }
     }];
     [dataTask resume];
 }
@@ -214,9 +254,9 @@
 - (void)customRequestWithRequest:(NSMutableURLRequest *)request
                completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
-    if (_autoAddAgent) {
-        [self setUserAgentWithRequest:request];
-    }
+//    if (_autoAddAgent) {
+//        [self setUserAgentWithRequest:request];
+//    }
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

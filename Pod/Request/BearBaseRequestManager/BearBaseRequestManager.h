@@ -29,4 +29,10 @@
                     successBlock:(void (^)(id responseObject))successBlock
                     failureBlock:(void (^)(NSString *errorStr))failureBlock;
 
+- (NSMutableURLRequest *)generateRequestWithURLStr:(NSString *)urlStr
+                                          paraDict:(NSDictionary *)paraDict;
+
+- (void)getRequestWithRequest:(NSMutableURLRequest *)request
+                 successBlock:(void (^)(id responseObject))successBlock
+                 failureBlock:(void (^)(NSString *errorStr))failureBlock;
 @end
