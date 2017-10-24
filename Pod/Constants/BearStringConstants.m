@@ -9,6 +9,7 @@
 
 @implementation BearStringConstants
 
+// 获取prefixStr和suffixStr之间的字符串
 + (NSString *)getContentFromOriginStr:(NSString *)originStr
                             prefixStr:(NSString *)prefixStr
                             suffixStr:(NSString *)suffixStr
@@ -26,6 +27,26 @@
     NSString *contentStr = [originStr substringWithRange:NSMakeRange(contentStrLocation, contentStrLength)];
     
     return contentStr;
+}
+
+// dict->string
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 @end
