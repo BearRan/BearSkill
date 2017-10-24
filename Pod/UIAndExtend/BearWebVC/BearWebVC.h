@@ -8,7 +8,7 @@
 
 #import <BearSkill/BearBaseViewController.h>
 
-@interface BearWebVC : BearBaseViewController
+@interface BearWebVC : BearBaseViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 

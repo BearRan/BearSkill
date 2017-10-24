@@ -8,7 +8,7 @@
 
 #import "BearWebVC.h"
 
-@interface BearWebVC () <UIWebViewDelegate>
+@interface BearWebVC ()
 {
     NSString *_urlStr;
 }
