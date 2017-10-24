@@ -49,6 +49,9 @@
 
 - (void)loadWithURLStr:(NSString *)urlStr
 {
+//    NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
+//    NSLog(@"--absoluteStr:%@", url.absoluteString);
+    
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [_webView loadRequest:req];
 }
