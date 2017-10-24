@@ -22,7 +22,6 @@
     
     if (self) {
         _urlStr = urlStr;
-        [self createUI];
     }
     
     return self;
@@ -30,6 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self createUI];
     
     self.view.backgroundColor = [UIColor whiteColor];
     _webView.frame = self.contentView.bounds;
