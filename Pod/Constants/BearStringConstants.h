@@ -14,7 +14,10 @@
                             prefixStr:(NSString *)prefixStr
                             suffixStr:(NSString *)suffixStr;
 
-// dict->string
+// json->Dict
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
+
+// dict->Json
++ (NSString*)convertToJSONData:(id)infoDict;
 
 @end

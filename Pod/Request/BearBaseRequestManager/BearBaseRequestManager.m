@@ -284,7 +284,7 @@
     NSArray *keys = infoDict.allKeys;
     for (int i = 0; i < [keys count]; i++) {
         NSString *keyStr = keys[i];
-        NSString *tempStr = [NSString stringWithFormat:@"%@:%@", keyStr, [infoDict objectForKey:keyStr]];
+        NSString *tempStr = [NSString stringWithFormat:@"\"%@\":\"%@\"", keyStr, [infoDict objectForKey:keyStr]];
         [str appendString:tempStr];
         if (i < [keys count] - 1) {
             [str appendString:@","];
@@ -296,31 +296,6 @@
     jsonStr =[jsonStr stringByReplacingOccurrencesOfString:@")" withString:@"]"];
     
     return jsonStr;
-}
-
-+ (NSDictionary *)convertDictValueToJson:(NSDictionary *)dict
-{
-    NSAssert(dict, @"转换的字典不能为空！");
-    if (!dict) {
-        return [NSDictionary new];
-    }
-    
-    NSMutableDictionary *finalParaDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
-    for (NSString *key in finalParaDict.allKeys) {
-        id value = [finalParaDict objectForKey:key];
-        
-        //  Dict Convert to JsonString
-        if ([value isKindOfClass:[NSDictionary class]]) {
-            value = [BearBaseRequestManager DictTojsonString:value];
-        }
-        else{
-            value = [NSString stringWithFormat:@"%@", value];
-        }
-        
-        [finalParaDict setObject:value forKey:key];
-    }
-    
-    return finalParaDict;
 }
 
 @end
