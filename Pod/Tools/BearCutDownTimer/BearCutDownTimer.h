@@ -6,6 +6,7 @@
 
 @protocol BearCutDownTimerDelegate <NSObject>
 
+@optional
 - (void)cutDownTimerBurnUpEvent;
 - (void)cutDownTimerUpdatePerSecondEventWithDateComponents:(NSDateComponents *)dateComponents;
 

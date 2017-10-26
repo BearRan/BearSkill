@@ -9,6 +9,9 @@
 
 @interface BearStringConstants : NSObject
 
+// 判断字符串是否包含字符串
++ (BOOL)judgeOriginStr:(NSString *)originStr containStr:(NSString *)containStr;
+
 // 获取prefixStr和suffixStr之间的字符串
 + (NSString *)getContentFromOriginStr:(NSString *)originStr
                             prefixStr:(NSString *)prefixStr

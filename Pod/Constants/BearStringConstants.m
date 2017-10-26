@@ -9,6 +9,17 @@
 
 @implementation BearStringConstants
 
+// 判断字符串是否包含字符串
++ (BOOL)judgeOriginStr:(NSString *)originStr containStr:(NSString *)containStr
+{
+    NSRange range = [originStr rangeOfString:containStr];
+    if (range.location == NSNotFound) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 // 获取prefixStr和suffixStr之间的字符串
 + (NSString *)getContentFromOriginStr:(NSString *)originStr
                             prefixStr:(NSString *)prefixStr
