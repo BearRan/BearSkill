@@ -41,6 +41,7 @@
 @property (weak, nonatomic) id <CRSectionViewDataSource> dataSource;
 @property (weak, nonatomic) id <CRSectionViewDelegate> delegate;
 
+- (void)calculatePara;
 - (void)reloadData;
 - (void)scrollToIndexPath:(NSIndexPath *)indexPath animate:(BOOL)animate;
 
