@@ -42,7 +42,7 @@
 
 - (void)initPara
 {
-    _trainsitionDuring = 2.0;
+    _trainsitionDuring = 0.5;
     _needTrainsition = NO;
 }
 
