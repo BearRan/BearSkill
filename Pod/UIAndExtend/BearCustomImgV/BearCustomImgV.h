@@ -10,7 +10,9 @@
 
 @interface BearCustomImgV : UIImageView
 
+//在切换图片时是否需要过渡效果（Default:NO）
 @property (assign, nonatomic) BOOL needTrainsition;
+//过渡效果时常（Default:2.0）
 @property (assign, nonatomic) CGFloat trainsitionDuring;
 
 - (void)setImageWithURL:(NSURL *)imgUrl;
