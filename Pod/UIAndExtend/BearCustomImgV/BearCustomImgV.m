@@ -11,7 +11,7 @@
 
 @interface BearCustomImgV ()
 {
-    NSString *_imgUrl;
+    NSURL *_imgUrl;
 }
 @end
 
@@ -22,61 +22,92 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        [self initPara];
         [self createUI];
     }
     
     return self;
 }
 
-- (void)createUI
+- (instancetype)init
 {
-    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    _imageView.backgroundColor = [UIColor whiteColor];
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    _imageView.clipsToBounds = YES;
-    [self addSubview:_imageView];
+    self = [super init];
+    
+    if (self) {
+        [self initPara];
+    }
+    
+    return self;
 }
 
-- (void)loadImageWithImgUrl:(NSString *)imgUrl
+- (void)initPara
+{
+    _trainsitionDuring = 2.0;
+    _needTrainsition = NO;
+}
+
+#pragma mark - CreateUI
+- (void)createUI
+{
+    self.backgroundColor = [UIColor whiteColor];
+    self.contentMode = UIViewContentModeScaleAspectFill;
+    self.clipsToBounds = YES;
+}
+
+#pragma mark - Load Image
+- (void)setImageWithURL:(NSURL *)imgUrl
+{
+    [self setImageWithURL:imgUrl placeholderImage:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)imgUrl placeholderImage:(UIImage *)placeholderImage
 {
     _imgUrl = imgUrl;
     
-    NSData *imageData = [self imageDataFromDiskCacheWithKey:imgUrl];
+    NSData *imageData = [self imageDataFromDiskCacheWithKey:imgUrl.absoluteString];
     
     __weak typeof(self) weakSelf = self;
     
     if (imageData) {
-        [self loadImageWithData:imageData];
+        [self loadImageWithData:imageData needTrainsition:_needTrainsition];
     }else{
-        NSURL *url = [NSURL URLWithString:imgUrl];
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url
+        if (placeholderImage) {
+            self.image = placeholderImage;
+        }
+        
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imgUrl
                                                               options:0
                                                              progress:nil
-            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                
-                [[[SDWebImageManager sharedManager] imageCache] storeImage:image
-                                                                 imageData:data
-                                                                    forKey:url.absoluteString
-                                                                    toDisk:YES
-                                                                completion:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([imgUrl isEqualToString:_imgUrl]) {
-                        [weakSelf loadImageWithData:data];
-                    }
-                });
-            }];
+                                                            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                
+                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image
+                                                                                                                 imageData:data
+                                                                                                                    forKey:imgUrl.absoluteString
+                                                                                                                    toDisk:YES
+                                                                                                                completion:nil];
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    if ([imgUrl.absoluteString isEqualToString:_imgUrl.absoluteString]) {
+                                                                        [weakSelf loadImageWithData:data needTrainsition:YES];
+                                                                    }
+                                                                });
+                                                            }];
     }
 }
 
-- (void)loadImageWithData:(NSData *)imageData
+- (void)loadImageWithData:(NSData *)imageData needTrainsition:(BOOL)needTrainsition
 {
-    CATransition *trainsition = [CATransition animation];
-    trainsition.duration = 2.0;
-    trainsition.type = kCATransitionFade;
-    [_imageView.layer addAnimation:trainsition forKey:nil];
-    
-    UIImage *image = [UIImage imageWithData:imageData];
-    _imageView.image = image;
+    if (needTrainsition) {
+        CATransition *trainsition = [CATransition animation];
+        trainsition.duration = _trainsitionDuring;
+        trainsition.type = kCATransitionFade;
+        [self.layer addAnimation:trainsition forKey:nil];
+        
+        UIImage *image = [UIImage imageWithData:imageData];
+        self.image = image;
+    }else{
+        UIImage *image = [UIImage imageWithData:imageData];
+        self.image = image;
+    }
 }
 
 - (NSData *)imageDataFromDiskCacheWithKey:(NSString *)key {
