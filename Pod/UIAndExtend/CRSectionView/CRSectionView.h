@@ -42,6 +42,7 @@
 @property (weak, nonatomic) id <CRSectionViewDelegate> delegate;
 
 @property (strong, nonatomic, readonly) UICollectionView *mainCollectionView;
+@property (strong, nonatomic, readonly) CRSectionViewUIService *sectionUIService;
 
 - (void)calculatePara;
 - (void)reloadData;
