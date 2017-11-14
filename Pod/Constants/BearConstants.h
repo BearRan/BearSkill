@@ -154,6 +154,9 @@ static NSString *usTest = @"usTest";
 //  在主线程处理
 + (void)processInMainThreadWithBlock:(void (^)())block;
 
++ (BOOL)isDebug;
++ (BOOL)isRelease;
+
 + (void)debug:(void (^)())debug release:(void (^)())release;
 
 + (void)resignCurrentFirstResponder;

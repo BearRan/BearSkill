@@ -574,6 +574,24 @@
     });
 }
 
++ (BOOL)isDebug
+{
+#ifdef DEBUG
+    return YES;
+#else
+    return NO;
+#endif
+}
+
++ (BOOL)isRelease
+{
+#ifdef DEBUG
+    return NO;
+#else
+    return YES;
+#endif
+}
+
 + (void)debug:(void (^)())debug release:(void (^)())release
 {
 #ifdef DEBUG
