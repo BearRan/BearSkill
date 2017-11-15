@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BearAlertManager.h"
 
 typedef void (^RetryClickBlock) (void);
 
 @interface BearErrorNetAlertManager : NSObject
+
+@property (strong, nonatomic) BearAlertManager *alertManager;
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *noticeLabel;
@@ -19,5 +22,12 @@ typedef void (^RetryClickBlock) (void);
 
 - (void)show;
 - (void)showWithErrorStr:(NSString *)errorStr;
+
+- (void)relayUI;
+- (void)setErrorStr:(NSString *)errorStr;
+- (void)showInView:(UIView *)inView;
+
+#pragma mark - Usage
+- (void)Usage;
 
 @end

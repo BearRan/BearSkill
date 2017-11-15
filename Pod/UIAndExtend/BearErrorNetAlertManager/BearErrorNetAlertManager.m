@@ -7,12 +7,10 @@
 //
 
 #import "BearErrorNetAlertManager.h"
-#import "BearAlertManager.h"
 #import "BearSkill.h"
 
 @interface BearErrorNetAlertManager ()
 {
-    BearAlertManager *_alertManager;
     UIView *_contentView;
 }
 
@@ -106,8 +104,7 @@
 #pragma mark - Show
 - (void)showWithErrorStr:(NSString *)errorStr
 {
-    _noticeLabel.text = errorStr;
-    [self relayUI];
+    [self setErrorStr:errorStr];
     [self show];
 }
 
@@ -118,6 +115,24 @@
     [_alertManager showInViewAndFadeIn:[UIApplication sharedApplication].keyWindow];
 }
 
+- (void)setErrorStr:(NSString *)errorStr
+{
+    _noticeLabel.text = errorStr;
+    [self relayUI];
+}
 
+- (void)showInView:(UIView *)inView
+{
+    [_alertManager createAlertBgViewWithFrame:inView.bounds];
+    [_alertManager setContentView:_contentView];
+    [_alertManager showInViewAndFadeIn:inView];
+}
+
+#pragma mark - Usage
+- (void)Usage
+{
+    [[BearErrorNetAlertManager new] show];
+    [[BearErrorNetAlertManager new] showWithErrorStr:@"Error"];
+}
 
 @end
