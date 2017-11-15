@@ -13,11 +13,7 @@
 @interface BearErrorNetAlertManager ()
 {
     BearAlertManager *_alertManager;
-    
     UIView *_contentView;
-    UIImageView *_imageView;
-    UILabel *_noticeLabel;
-    UIButton *_retryBtn;
 }
 
 @end
@@ -52,14 +48,14 @@
     _contentView.layer.masksToBounds = YES;
     
     _imageView = [UIImageView new];
-    _imageView.image = [UIImage imageNamed:@"空白页-木有收藏"];
+    _imageView.image = [UIImage imageNamed:@"BearImg_空白页"];
     [_contentView addSubview:_imageView];
     
     _noticeLabel = [UILabel new];
     _noticeLabel.numberOfLines = 0;
     _noticeLabel.textAlignment = NSTextAlignmentCenter;
     _noticeLabel.font = [UIFont systemFontOfSize:15];
-    _noticeLabel.text = @"您还没有收藏视频哦～";
+    _noticeLabel.text = @"请检查您的网络～";
     _noticeLabel.textColor = [UIColor blackColor];
     [_contentView addSubview:_noticeLabel];
     

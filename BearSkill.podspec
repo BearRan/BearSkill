@@ -25,6 +25,7 @@ BearSkill contain some methods used frequently in project. And many other method
   s.license          = 'MIT'
   s.author           = { "Bear" => "648070256@qq.com" }
   s.source           = { :git => "https://github.com/BearRan/BearSkill.git", :tag => s.version.to_s }
+  s.resource         = 'Pod/Resource/*'
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '7.0'
@@ -62,6 +63,7 @@ BearSkill contain some methods used frequently in project. And many other method
     #Tools
     s.subspec 'Tools' do |tools|
         tools.source_files = 'Pod/Tools/**/*'
+        tools.dependency 'Reachability'
     end
 
     #Request

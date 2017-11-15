@@ -12,6 +12,9 @@ typedef void (^RetryClickBlock) (void);
 
 @interface BearErrorNetAlertManager : NSObject
 
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UILabel *noticeLabel;
+@property (strong, nonatomic) UIButton *retryBtn;
 @property (copy, nonatomic) RetryClickBlock retryClickBlock;
 
 - (void)show;
