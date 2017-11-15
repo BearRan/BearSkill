@@ -47,6 +47,7 @@
     
     _imageView = [UIImageView new];
     _imageView.image = [UIImage imageNamed:@"BearImg_空白页"];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_contentView addSubview:_imageView];
     
     _noticeLabel = [UILabel new];
@@ -82,7 +83,8 @@
     }
     [_contentView setWidth:_noticeLabel.width + 2 * offX];
     
-    [_imageView sizeToFit];
+    CGRect imageViewFrame = [UIView caculateBoundsRemainWHRatio_referWidth:@196 referHeight:@128 setSort:kSetNeed_Width setValue:@XX_6(196/2.0)];
+    _imageView.frame = imageViewFrame;
     [_imageView BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:offY center:YES];
     
     [_noticeLabel sizeToFit];
