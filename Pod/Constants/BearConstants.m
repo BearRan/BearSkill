@@ -649,6 +649,31 @@
     return [UIImage imageNamed:launchImage];
 }
 
+/** 支持iPhone和iPad， 获取app的icon图标名称 */
++ (UIImage *)getAppIconImage
+{
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    //获取app中所有icon名字数组
+    NSArray *iconsArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
+    //取最后一个icon的名字
+    NSString *iconLastName = [iconsArr lastObject];
+    
+    /*
+     打印日志(29pt和40pt iPhone和iPad都用到；60pt --- iPhone, 76pt和83.5pt --- iPad)：
+     iconsArr: (
+     AppIcon29x29,
+     AppIcon40x40,
+     AppIcon60x60,
+     AppIcon76x76,
+     "AppIcon83.5x83.5"
+     )
+     iconLastName: AppIcon83.5x83.5
+     */
+    
+    UIImage *appIconImg = [UIImage imageNamed:iconLastName];
+    return appIconImg;
+}
+
 @end
 
 

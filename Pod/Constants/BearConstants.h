@@ -166,6 +166,8 @@ static NSString *usTest = @"usTest";
 
 //  获取启动图
 + (UIImage *)getLaunchImage;
+/** 支持iPhone和iPad， 获取app的icon图标名称 */
++ (UIImage *)getAppIconImage;
 
 @end
 
