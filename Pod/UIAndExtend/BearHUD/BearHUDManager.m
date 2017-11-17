@@ -7,15 +7,12 @@
 //
 
 #import "BearHUDManager.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import <BearSkill/BearSkill.h>
 
 @interface BearHUDManager () <MBProgressHUDDelegate>
 {
     UIView *_inView;
 }
-
-@property (nonatomic, strong) MBProgressHUD *stateHud;
 
 @end
 
@@ -48,9 +45,14 @@
     self.stateHud.label.text = @"";
 }
 
-- (void)BearHUDLoadingAnimation
+- (void)customHUDLoadingAnimation
 {
-    self.stateHud.mode = MBProgressHUDModeIndeterminate;
+    if (self.customView) {
+        self.stateHud.mode = MBProgressHUDModeCustomView;
+        self.stateHud.customView = self.customView;
+    }else{
+        self.stateHud.mode = MBProgressHUDModeIndeterminate;
+    }
     
     [self.stateHud showAnimated:YES];
 }
@@ -99,7 +101,7 @@
         self.stateHud.label.text = text;
     }
     
-    [self BearHUDLoadingAnimation];
+    [self customHUDLoadingAnimation];
 }
 
 - (void)hideHUDView
@@ -148,12 +150,5 @@
         self.stateHud = nil;
     }
 }
-
-//- (void)addHudInWindow
-//{
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    [self addHUDToView:window];
-//    [window bringSubviewToFront:self.stateHud];
-//}
 
 @end
