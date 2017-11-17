@@ -464,8 +464,6 @@
     }
     _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, self.view.width, 0.5);
     
-    NSLog(@"--frame:%@", NSStringFromCGRect(_navigationBar.frame));
-    
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
     CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.maxY;
