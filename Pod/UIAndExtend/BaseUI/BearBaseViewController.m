@@ -7,7 +7,6 @@
 #import "UIView+BearSet.h"
 #import "BearConstants.h"
 #import "BearDefines.h"
-#import "BearHUDManager.h"
 
 @interface BearBaseViewController () <UIGestureRecognizerDelegate>
 {
@@ -15,8 +14,6 @@
     NSArray       *   _hiddenLeftItems;
     NSArray       *   _hiddenRightItems;
 }
-
-@property (strong, nonatomic) BearHUDManager *hudManager;
 
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation;
 

@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import <BearSkill/BearNavigationBar.h>
+#import "BearHUDManager.h"
 
 static BOOL OSVersionIsAtLeastiOS7()
 {
@@ -25,6 +26,7 @@ typedef void(^ViewWillDisappearBlock)();
 @property (strong, nonatomic) UIView                *   customStatusView;
 @property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
+@property (strong, nonatomic) BearHUDManager        *   hudManager;
 @property (nonatomic, strong) UIColor               *   navBarColor;
 @property (nonatomic, strong) NSDictionary          *   vcParamsDict;
 @property (nonatomic, strong) UIViewController      *   popToDestinationVC;         //跳转回指定VC
