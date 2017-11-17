@@ -292,7 +292,6 @@
     {
         CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
         CGFloat naviHeight = NAVIGATIONBAR_HEIGHT;
-        NSLog(@"--naviHeight:%f", naviHeight);
         CGFloat yOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
         
         _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA) backgroundColor:_backgroundColor];
