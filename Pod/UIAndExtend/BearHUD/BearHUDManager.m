@@ -124,6 +124,7 @@
         _stateHud = [[MBProgressHUD alloc] initWithView:_inView];
         _stateHud.label.font = [UIFont systemFontOfSize:13.0f];
         _stateHud.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        _stateHud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
         _stateHud.contentColor = [UIColor whiteColor];
         _stateHud.label.text = @"";
         _stateHud.detailsLabel.text = @"";
