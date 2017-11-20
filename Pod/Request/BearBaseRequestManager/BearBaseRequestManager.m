@@ -10,6 +10,13 @@
 #import <GBDeviceInfo/GBDeviceInfo.h>
 #import <AFNetworking/AFNetworking.h>
 
+@interface BearBaseRequestManager ()
+{
+    NSURLSessionConfiguration *_configuration;
+    AFURLSessionManager *_manager;
+}
+@end
+
 @implementation BearBaseRequestManager
 
 - (instancetype)init
@@ -49,8 +56,8 @@
                     paraDict:(NSDictionary *)paraDict
            completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    _configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:_configuration];
     
     NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
     
@@ -79,7 +86,7 @@
     if (_autoAddAgent) {
         [self setUserAgentWithRequest:request];
     }
-    [self baseRequestWithManager:manager
+    [self baseRequestWithManager:_manager
                          request:request
                completionHandler:^(BearBaseResponseVO *responseBaseVO) {
                    if (completionHandler) {
@@ -118,10 +125,10 @@
         [self setUserAgentWithRequest:request];
     }
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    _configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:_configuration];
     
-    [self baseRequestWithManager:manager
+    [self baseRequestWithManager:_manager
                          request:request
                completionHandler:^(BearBaseResponseVO *responseBaseVO) {
                    if (completionHandler) {
