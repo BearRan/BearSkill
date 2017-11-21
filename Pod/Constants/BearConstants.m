@@ -120,8 +120,8 @@
 + (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)newsize
 {
     // 创建一个bitmap的context
-    // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(newsize);
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(newsize, YES, [UIScreen mainScreen].scale);
     // 绘制改变大小的图片
     [img drawInRect:CGRectMake(0, 0, newsize.width, newsize.height)];
     // 从当前context中创建一个改变大小后的图片
