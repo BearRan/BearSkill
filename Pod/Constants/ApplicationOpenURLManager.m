@@ -27,7 +27,7 @@
         [[UIApplication sharedApplication] openURL:url];
     }
     else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"无法进行跳转，请手动前往设置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"无法进行跳转，请手动前往设置" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     }
 }
 
