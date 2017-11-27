@@ -37,6 +37,7 @@ BearSkill contain some methods used frequently in project. And many other method
     s.subspec 'UIAndExtend' do |uiAndExtend|
         uiAndExtend.dependency 'MBProgressHUD'
         uiAndExtend.dependency 'UIImage-Helpers',          '~> 0.0.2'
+        uiAndExtend.dependency 'SDWebImage'
         uiAndExtend.source_files = 'Pod/UIAndExtend/**/*'
     end
 
