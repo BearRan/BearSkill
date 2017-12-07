@@ -72,33 +72,12 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
-    
-    //Append Para
-    if (paraDict) {
-        NSMutableArray *queryItems = [NSMutableArray new];
-        for (NSString *key in paraDict.allKeys) {
-            id value = [paraDict objectForKey:key];
-            
-            //  Dict Convert to JsonString
-            if ([value isKindOfClass:[NSDictionary class]]) {
-                value = [BearBaseRequestManager DictTojsonString:value];
-            }
-            else{
-                value = [NSString stringWithFormat:@"%@", value];
-            }
-            
-            NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:value];
-            [queryItems addObject:queryItem];
-        }
-        components.queryItems = queryItems;
-    }
-    
-    NSURL *URL = components.URL;
+    NSURL *URL = [self generateGetURLWithURLStr:urlStr paraDict:paraDict];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     if (_autoAddAgent) {
         [self setUserAgentWithRequest:request];
     }
+    
     [self baseRequestWithManager:manager
                          request:request
                completionHandler:^(BearBaseResponseVO *responseBaseVO) {
@@ -316,6 +295,37 @@
     jsonStr =[jsonStr stringByReplacingOccurrencesOfString:@")" withString:@"]"];
     
     return jsonStr;
+}
+
+#pragma mark generateGetURL
+- (NSURL *)generateGetURLWithURLStr:(NSString *)urlStr
+                           paraDict:(NSDictionary *)paraDict
+{
+    NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
+    
+    //Append Para
+    if (paraDict) {
+        NSMutableArray *queryItems = [NSMutableArray new];
+        for (NSString *key in paraDict.allKeys) {
+            id value = [paraDict objectForKey:key];
+            
+            //  Dict Convert to JsonString
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                value = [BearBaseRequestManager DictTojsonString:value];
+            }
+            else{
+                value = [NSString stringWithFormat:@"%@", value];
+            }
+            
+            NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:value];
+            [queryItems addObject:queryItem];
+        }
+        components.queryItems = queryItems;
+    }
+    
+    NSURL *URL = components.URL;
+    
+    return URL;
 }
 
 @end
