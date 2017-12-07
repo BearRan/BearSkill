@@ -69,8 +69,7 @@
                     paraDict:(NSDictionary *)paraDict
            completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
 {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFURLSessionManager *manager = [self generateManager];
     
     NSURL *URL = [self generateGetURLWithURLStr:urlStr paraDict:paraDict];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -117,8 +116,7 @@
         [self setUserAgentWithRequest:request];
     }
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFURLSessionManager *manager = [self generateManager];
     
     [self baseRequestWithManager:manager
                          request:request
@@ -218,8 +216,7 @@
         [self setUserAgentWithRequest:request];
     }
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    AFURLSessionManager *manager = [self generateManager];
     
     [self baseRequestWithManager:manager
                          request:request
@@ -326,6 +323,14 @@
     NSURL *URL = components.URL;
     
     return URL;
+}
+
+- (AFURLSessionManager *)generateManager
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    return manager;
 }
 
 @end
