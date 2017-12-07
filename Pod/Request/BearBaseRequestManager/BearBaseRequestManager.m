@@ -8,7 +8,6 @@
 
 #import "BearBaseRequestManager.h"
 #import <GBDeviceInfo/GBDeviceInfo.h>
-#import <AFNetworking/AFNetworking.h>
 
 @implementation BearBaseRequestManager
 
@@ -127,70 +126,6 @@
                }];
 }
 
-- (void)baseRequestWithManager:(AFURLSessionManager *)manager
-                       request:(NSURLRequest *)request
-             completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
-{
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (completionHandler) {
-            BearBaseResponseVO *responseBaseVO = [BearBaseResponseVO new];
-            responseBaseVO.response = response;
-            responseBaseVO.responseObject = responseObject;
-            responseBaseVO.error = error;
-            completionHandler(responseBaseVO);
-        }
-        
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            NSLog(@"---%@ \n ---%@", response, responseObject);
-//        }
-    }];
-    [dataTask resume];
-}
-
-- (void)setUserAgentWithRequest:(NSMutableURLRequest *)request
-{
-    GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    
-    NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
-    NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
-    NSString *diskFreeSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemFreeSize"] floatValue]/1024/1024/1024];
-    
-    NSString *secretAgent = [request valueForHTTPHeaderField:@"User-Agent"];
-    if (!secretAgent)
-    {
-        secretAgent = @"";
-    }
-    
-    
-    NSDictionary *baseAgentDict = @{
-                                    @"bundleIdentifier" : bundleIdentifier,
-                                    @"version" : version,
-                                    @"modelString" : devInfo.modelString,
-                                    @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
-                                    @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
-                                    @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
-                                    @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
-                                    @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
-                                    };
-    
-    NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
-    
-    NSString *newAgent = [self convertDictToString:agentDict];
-    NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
-    
-//    if (appName) {
-//        allAgent = [allAgent stringByAppendingString:[NSString stringWithFormat:@"allAgent:%@//", appName]];
-//    }
-    
-    [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
-}
-
 #pragma mark - 自定义Request
 - (void)customRequestWithRequest:(NSMutableURLRequest *)request
                     successBlock:(void (^)(id responseObject))successBlock
@@ -294,6 +229,42 @@
     return jsonStr;
 }
 
+#pragma mark - New
+#pragma mark - BaseRequestWithManager
+- (void)baseRequestWithManager:(AFURLSessionManager *)manager
+                       request:(NSURLRequest *)request
+             completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler
+{
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (completionHandler) {
+            BearBaseResponseVO *responseBaseVO = [BearBaseResponseVO new];
+            responseBaseVO.response = response;
+            responseBaseVO.responseObject = responseObject;
+            responseBaseVO.error = error;
+            completionHandler(responseBaseVO);
+        }
+    }];
+    [dataTask resume];
+}
+
+- (void)baseRequestWithManager:(AFURLSessionManager *)manager
+                       request:(NSURLRequest *)request
+                  successBlock:(void (^)(id responseObject))successBlock
+                  failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock
+{
+    [self baseRequestWithManager:manager request:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+        if (responseBaseVO.error) {
+            if (failureBlock) {
+                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code], responseBaseVO.responseObject);
+            }
+        }else{
+            if (successBlock) {
+                successBlock(responseBaseVO.responseObject);
+            }
+        }
+    }];
+}
+
 #pragma mark generateGetURL
 - (NSURL *)generateGetURLWithURLStr:(NSString *)urlStr
                            paraDict:(NSDictionary *)paraDict
@@ -325,12 +296,56 @@
     return URL;
 }
 
+#pragma mark - generateManager
 - (AFURLSessionManager *)generateManager
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     return manager;
+}
+
+#pragma mark - setUserAgentWithRequest
+- (void)setUserAgentWithRequest:(NSMutableURLRequest *)request
+{
+    GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
+    NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
+    NSString *diskFreeSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemFreeSize"] floatValue]/1024/1024/1024];
+    
+    NSString *secretAgent = [request valueForHTTPHeaderField:@"User-Agent"];
+    if (!secretAgent)
+    {
+        secretAgent = @"";
+    }
+    
+    
+    NSDictionary *baseAgentDict = @{
+                                    @"bundleIdentifier" : bundleIdentifier,
+                                    @"version" : version,
+                                    @"modelString" : devInfo.modelString,
+                                    @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
+                                    @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
+                                    @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
+                                    @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
+                                    @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
+                                    };
+    
+    NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
+    
+    NSString *newAgent = [self convertDictToString:agentDict];
+    NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
+    
+    //    if (appName) {
+    //        allAgent = [allAgent stringByAppendingString:[NSString stringWithFormat:@"allAgent:%@//", appName]];
+    //    }
+    
+    [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
 }
 
 @end

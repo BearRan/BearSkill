@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BearBaseResponseVO.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface BearBaseRequestManager : NSObject
 
@@ -33,5 +34,23 @@
 - (void)customRequestWithRequest:(NSMutableURLRequest *)request
                     successBlock:(void (^)(id responseObject))successBlock
                     failureBlock:(void (^)(NSString *errorStr))failureBlock;
+
+
+#pragma mark - New
+#pragma mark - baseRequestWithManager
+- (void)baseRequestWithManager:(AFURLSessionManager *)manager
+                       request:(NSURLRequest *)request
+                  successBlock:(void (^)(id responseObject))successBlock
+                  failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock;
+
+#pragma mark generateGetURL
+- (NSURL *)generateGetURLWithURLStr:(NSString *)urlStr
+                           paraDict:(NSDictionary *)paraDict;
+
+#pragma mark - generateManager
+- (AFURLSessionManager *)generateManager;
+
+#pragma mark - setUserAgentWithRequest
+- (void)setUserAgentWithRequest:(NSMutableURLRequest *)request;
 
 @end
