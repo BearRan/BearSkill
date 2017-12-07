@@ -71,7 +71,7 @@
     AFURLSessionManager *manager = [self generateManager];
     
     NSURL *URL = [self generateGetURLWithURLStr:urlStr paraDict:paraDict];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    NSMutableURLRequest *request = [self generateRequestWithURL:URL];
     if (_autoAddAgent) {
         [self setUserAgentWithRequest:request];
     }
@@ -303,6 +303,12 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     return manager;
+}
+
+#pragma mark - generateRequestWithURL
+- (NSMutableURLRequest *)generateRequestWithURL:(NSURL *)URL
+{
+    return [NSMutableURLRequest requestWithURL:URL];
 }
 
 #pragma mark - setUserAgentWithRequest

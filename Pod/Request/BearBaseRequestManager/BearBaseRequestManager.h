@@ -50,6 +50,9 @@
 #pragma mark - generateManager
 - (AFURLSessionManager *)generateManager;
 
+#pragma mark - generateRequestWithURL
+- (NSMutableURLRequest *)generateRequestWithURL:(NSURL *)URL;
+
 #pragma mark - setUserAgentWithRequest
 - (void)setUserAgentWithRequest:(NSMutableURLRequest *)request;
 
