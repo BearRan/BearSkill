@@ -45,6 +45,26 @@
              }];
 }
 
+- (void)getRequestV2WithURLStr:(NSString *)URLStr
+                    paraDict:(NSDictionary *)paraDict
+                successBlock:(void (^)(id responseObject))successBlock
+                failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock
+{
+    [self getRequestWithURLStr:URLStr
+                      paraDict:paraDict
+             completionHandler:^(BearBaseResponseVO *responseBaseVO) {
+                 if (responseBaseVO.error) {
+                     if (failureBlock) {
+                         failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code], responseBaseVO.responseObject);
+                     }
+                 }else{
+                     if (successBlock) {
+                         successBlock(responseBaseVO.responseObject);
+                     }
+                 }
+             }];
+}
+
 - (void)getRequestWithURLStr:(NSString *)urlStr
                     paraDict:(NSDictionary *)paraDict
            completionHandler:(void (^)(BearBaseResponseVO *responseBaseVO))completionHandler

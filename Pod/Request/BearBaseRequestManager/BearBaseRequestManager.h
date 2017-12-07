@@ -17,7 +17,12 @@
 - (void)getRequestWithURLStr:(NSString *)URLStr
                     paraDict:(NSDictionary *)paraDict
                 successBlock:(void (^)(id responseObject))successBlock
-                failureBlock:(void (^)(NSString *errorStr))failureBlock;
+                failureBlock:(void (^)(NSString *errorStr))failureBlock __attribute__((deprecated("使用getRequestV2WithURLStr")));
+
+- (void)getRequestV2WithURLStr:(NSString *)URLStr
+                      paraDict:(NSDictionary *)paraDict
+                  successBlock:(void (^)(id responseObject))successBlock
+                  failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock;
 
 - (void)postRequestWithURLStr:(NSString *)URLStr
                      paraDict:(NSDictionary *)paraDict
