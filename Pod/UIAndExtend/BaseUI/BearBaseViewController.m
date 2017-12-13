@@ -73,23 +73,6 @@
 {
     [super viewWillAppear:animated];
     
-    if (_navigationBar)
-    {
-//        if ([_navigationBar respondsToSelector:@selector(setShadowImage:)])
-//        {
-//            if (over_iOS10) {
-//                [_navigationBar layoutSubviews];
-//                _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
-//            }
-//
-//            if (_navBarColor) {
-//                _navBarBottomlayer.hidden = YES;
-//            } else {
-//                _navBarBottomlayer.hidden = NO;
-//            }
-//        }
-    }
-    
     [self setNeedsStatusBarAppearanceUpdate];
 }
 

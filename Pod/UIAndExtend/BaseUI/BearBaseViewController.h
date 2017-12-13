@@ -26,7 +26,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (nonatomic, strong) UIColor               *   naviBackBtnTintColor;       //导航器返回按钮tintColor
 @property (assign, nonatomic) UIStatusBarStyle          statusBarStyle;             //状态栏颜色
 
-
 @property (nonatomic, assign) BOOL                      hideNavigationBarWhenPush;
 @property (nonatomic, assign) BOOL                      ifPopToRootView;
 @property (nonatomic, assign) BOOL                      ifAddBackButton;
