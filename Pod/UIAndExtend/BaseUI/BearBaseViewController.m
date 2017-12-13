@@ -40,18 +40,6 @@
     return self;
 }
 
-- (instancetype)initWithParamsDict:(NSDictionary *)params
-{
-    self = [self init];
-    
-    if (self)
-    {
-        _vcParamsDict = params;
-    }
-    
-    return self;
-}
-
 - (void)loadView
 {
     [super loadView];

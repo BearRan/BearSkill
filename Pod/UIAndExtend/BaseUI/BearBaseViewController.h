@@ -18,7 +18,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (strong, nonatomic) BearHUDManager        *   hudManager;
-@property (nonatomic, strong) NSDictionary          *   vcParamsDict;
 @property (nonatomic, strong) UIViewController      *   popToDestinationVC;         //跳转回指定VC
 @property (nonatomic, strong) NSString              *   popToDestiantionClassName;  //跳转回指定class
 @property (strong, nonatomic) BearBaseViewController  *   aheadVC;                    //从哪里跳来的VC，适用于Push和Present，便于找到上一个VC
@@ -41,7 +40,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (copy, nonatomic) ViewDidDisappearBlock     viewDidDisappearBlock;
 @property (copy, nonatomic) ViewWillDisappearBlock    viewWillDisappearBlock;
 
-- (instancetype)initWithParamsDict:(NSDictionary *)params;
 - (void)resignCurrentFirstResponder;
 - (void)createUI;
 - (void)popSelf;
