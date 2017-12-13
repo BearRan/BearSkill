@@ -264,7 +264,7 @@
         CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
         CGFloat yOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
         
-        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA) backgroundColor:_backgroundColor];
+        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA)];
         _navigationBar.delegate = self;
         
         UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];

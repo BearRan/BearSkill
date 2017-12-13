@@ -23,7 +23,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (strong, nonatomic) BearBaseViewController  *   aheadVC;                    //从哪里跳来的VC，适用于Push和Present，便于找到上一个VC
 
 @property (nonatomic, strong) NSString              *   imgNameBack;                //返回按钮图片名称
-@property (nonatomic, strong) UIColor               *   backgroundColor;            //背景色，导航栏背景色
 @property (nonatomic, strong) UIColor               *   contentViewBackgroundColor; //contentView背景色
 @property (nonatomic, strong) UIColor               *   naviBackBtnTintColor;       //导航器返回按钮tintColor
 @property (assign, nonatomic) UIStatusBarStyle          statusBarStyle;             //状态栏颜色

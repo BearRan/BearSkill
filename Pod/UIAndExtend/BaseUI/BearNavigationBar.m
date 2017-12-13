@@ -15,7 +15,7 @@
 
 @implementation BearNavigationBar
 
-- (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -24,7 +24,6 @@
         _titleFont = [UIFont boldSystemFontOfSize:18];
         
         [self reloadNaviAttribute];
-        [self setNaviBackgroundColor:backgroundColor];
         
         self.shadowImage = [[UIImage alloc] init];
     }

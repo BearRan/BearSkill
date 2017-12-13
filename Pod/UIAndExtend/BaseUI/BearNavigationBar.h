@@ -15,7 +15,7 @@
 //设置状态栏是否为透明
 @property (nonatomic, assign) BOOL      isNavBarClear;
 
-- (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor;
+- (instancetype)initWithFrame:(CGRect)frame;
 - (void)reloadNaviAttribute;
 
 @end
