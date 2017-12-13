@@ -12,7 +12,8 @@
 @property (nonatomic, strong) UIFont    *titleFont;
 @property (nonatomic, strong) UIColor   *sepLineColor;
 
-@property (nonatomic, assign) BOOL   isNavBarClear;
+//设置状态栏是否为透明
+@property (nonatomic, assign) BOOL      isNavBarClear;
 
 - (instancetype)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor;
 - (void)reloadNaviAttribute;

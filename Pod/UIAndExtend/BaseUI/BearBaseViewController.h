@@ -6,10 +6,6 @@
 #import <BearSkill/BearNavigationBar.h>
 #import "BearHUDManager.h"
 
-static BOOL OSVersionIsAtLeastiOS7()
-{
-    return (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1);
-}
 static const CGFloat kNavigationBarHeight       =       44.0f;
 static const CGFloat kNavigationBarHeight7      =       64.0f;
 static const CGFloat kStatusBarHeight           =       20.0f;

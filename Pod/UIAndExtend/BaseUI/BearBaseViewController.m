@@ -250,13 +250,7 @@
 
 - (UIBarButtonItem *)createBackBarButonItem
 {
-    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 73/3.0, 45/3.0)];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if ( OSVersionIsAtLeastiOS7() ) {
-        [backBarButton setFrame:CGRectMake(0, 0, 74/3.0, 74/3.0)];
-    }
-#endif
-    
+    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 74/3.0, 74/3.0)];
     
     if (_naviBackBtnTintColor) {
         [backBarButton setImage:[[UIImage imageNamed:_imgNameBack] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -280,19 +274,10 @@
     if (!_navigationBar)
     {
         CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
-        CGFloat naviHeight = NAVIGATIONBAR_HEIGHT;
         CGFloat yOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
         
         _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA) backgroundColor:_backgroundColor];
         _navigationBar.delegate = self;
-        
-//        if (!_navBarBottomlayer)
-//        {
-//            _navBarBottomlayer = [CALayer layer];
-//            _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, CGRectGetWidth(viewRect), 0.5);
-//            _navBarBottomlayer.backgroundColor = _isNavBarClear ? [UIColor clearColor].CGColor : _backgroundColor.CGColor;
-//            [_navigationBar.layer addSublayer:_navBarBottomlayer];
-//        }
         
         UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
         [_navigationBar setItems:@[item]];
@@ -450,7 +435,6 @@
     }else{
         _navigationBar.frame = CGRectMake(0, 0 - naviYOffset, self.view.width, NAV_STA);
     }
-//    _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, self.view.width, 0.5);
     
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
