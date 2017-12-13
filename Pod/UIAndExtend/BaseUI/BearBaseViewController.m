@@ -409,10 +409,9 @@
     }
     
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
-    CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
+    CGRect viewRect = [UIScreen mainScreen].bounds;
     CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.maxY;
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
-    CGFloat statusHeight = [[UIApplication sharedApplication] isStatusBarHidden] ? 0 : STATUS_HEIGHT;
     
     if (_hideNavigationBarWhenPush) {
         [_navigationBar removeFromSuperview];
@@ -439,7 +438,7 @@
     _contentView.frame = CGRectMake(0,
                                     yOffset,
                                     CGRectGetWidth(viewRect),
-                                    CGRectGetHeight(viewRect) - ((yOffset - statusHeight)) - bottomHeight);
+                                    CGRectGetHeight(viewRect) - yOffset - bottomHeight);
     
 }
 
