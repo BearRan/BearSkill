@@ -6,11 +6,6 @@
 #import <BearSkill/BearNavigationBar.h>
 #import "BearHUDManager.h"
 
-static const CGFloat kNavigationBarHeight       =       44.0f;
-static const CGFloat kNavigationBarHeight7      =       64.0f;
-static const CGFloat kStatusBarHeight           =       20.0f;
-static const CGFloat kBottomBarHeight           =       49.0f;
-
 typedef void(^ViewDidDisappearBlock)();
 typedef void(^ViewWillDisappearBlock)();
 
