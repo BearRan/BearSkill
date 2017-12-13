@@ -33,7 +33,6 @@
         _ifDismissView = NO;
         _ifAddPopGR = YES;
         _ifTapResignFirstResponder = NO;
-        _contentViewBackgroundColor = [UIColor clearColor];
         self.statusBarStyle = UIStatusBarStyleLightContent;
     }
     
@@ -56,7 +55,7 @@
     
     [self navigationBar];
     [self refreshContentViewFrame];
-    [_contentView setBackgroundColor:_contentViewBackgroundColor];
+    _contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_contentView];
     
     if (over_iOS11) {
