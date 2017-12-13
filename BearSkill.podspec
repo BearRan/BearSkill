@@ -30,6 +30,7 @@ BearSkill contain some methods used frequently in project. And many other method
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
+  s.resource = 'Pod/Sources/*'
 
 #s.source_files = 'Pod/Classes/**/*'
 

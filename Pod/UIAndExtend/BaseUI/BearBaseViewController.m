@@ -33,6 +33,7 @@
         _ifDismissView = NO;
         _ifAddPopGR = YES;
         _ifTapResignFirstResponder = NO;
+        _imgNameBack = @"BearSkill_NaviBack";
         self.statusBarStyle = UIStatusBarStyleLightContent;
     }
     
@@ -229,6 +230,7 @@
         [backBarButton setImage:[UIImage imageNamed:_imgNameBack] forState:UIControlStateNormal];
     }
     
+    backBarButton.imageView.contentMode = UIViewContentModeCenter;
     [backBarButton setImageEdgeInsets:UIEdgeInsetsMake(0, -6, 0, 0)];
     backBarButton.adjustsImageWhenHighlighted = NO;
     [backBarButton addTarget:self action:@selector(popSelf) forControlEvents:UIControlEventTouchUpInside];
