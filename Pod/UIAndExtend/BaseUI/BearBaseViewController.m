@@ -29,11 +29,9 @@
     {
         _hideNavigationBarWhenPush = NO;
         _ifPopToRootView = NO;
-        _isNavBarClear = NO;
         _ifAddBackButton = YES;
         _ifDismissView = NO;
         _ifAddPopGR = YES;
-        _navBarColor = nil;
         _ifTapResignFirstResponder = NO;
         _contentViewBackgroundColor = [UIColor clearColor];
         self.statusBarStyle = UIStatusBarStyleLightContent;
@@ -90,25 +88,19 @@
     
     if (_navigationBar)
     {
-        if (_isNavBarClear) {
-            [_navigationBar setTranslucent:YES]; //则状态栏及导航栏底部为透明的
-        } else {
-            [_navigationBar setTranslucent:NO];
-        }
-        
-        if ([_navigationBar respondsToSelector:@selector(setShadowImage:)])
-        {
-            if (over_iOS10) {
-                [_navigationBar layoutSubviews];
-                _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
-            }
-            
-            if (_navBarColor) {
-                _navBarBottomlayer.hidden = YES;
-            } else {
-                _navBarBottomlayer.hidden = NO;
-            }
-        }
+//        if ([_navigationBar respondsToSelector:@selector(setShadowImage:)])
+//        {
+//            if (over_iOS10) {
+//                [_navigationBar layoutSubviews];
+//                _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
+//            }
+//
+//            if (_navBarColor) {
+//                _navBarBottomlayer.hidden = YES;
+//            } else {
+//                _navBarBottomlayer.hidden = NO;
+//            }
+//        }
     }
     
     [self setNeedsStatusBarAppearanceUpdate];
@@ -292,16 +284,15 @@
         CGFloat yOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
         
         _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA) backgroundColor:_backgroundColor];
-        _navigationBar.navBarColor = _isNavBarClear ? [UIColor clearColor] : _navBarColor;
         _navigationBar.delegate = self;
         
-        if (!_navBarBottomlayer)
-        {
-            _navBarBottomlayer = [CALayer layer];
-            _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, CGRectGetWidth(viewRect), 0.5);
-            _navBarBottomlayer.backgroundColor = _isNavBarClear ? [UIColor clearColor].CGColor : _backgroundColor.CGColor;
-            [_navigationBar.layer addSublayer:_navBarBottomlayer];
-        }
+//        if (!_navBarBottomlayer)
+//        {
+//            _navBarBottomlayer = [CALayer layer];
+//            _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, CGRectGetWidth(viewRect), 0.5);
+//            _navBarBottomlayer.backgroundColor = _isNavBarClear ? [UIColor clearColor].CGColor : _backgroundColor.CGColor;
+//            [_navigationBar.layer addSublayer:_navBarBottomlayer];
+//        }
         
         UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
         [_navigationBar setItems:@[item]];
@@ -459,7 +450,7 @@
     }else{
         _navigationBar.frame = CGRectMake(0, 0 - naviYOffset, self.view.width, NAV_STA);
     }
-    _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, self.view.width, 0.5);
+//    _navBarBottomlayer.frame = CGRectMake(0,_navigationBar.frame.size.height - 0.5, self.view.width, 0.5);
     
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [self viewBoundsWithOrientation:self.interfaceOrientation];
@@ -490,9 +481,9 @@
     self.modalPresentationCapturesStatusBarAppearance = NO;
 
     _contentView.frame = CGRectMake(0,
-                                    _isNavBarClear ? 0 : yOffset,
+                                    yOffset,
                                     CGRectGetWidth(viewRect),
-                                    CGRectGetHeight(viewRect) - (_isNavBarClear ? -statusHeight : (yOffset - statusHeight)) - bottomHeight);
+                                    CGRectGetHeight(viewRect) - ((yOffset - statusHeight)) - bottomHeight);
     
 }
 

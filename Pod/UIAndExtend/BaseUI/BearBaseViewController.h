@@ -27,7 +27,6 @@ typedef void(^ViewWillDisappearBlock)();
 @property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (strong, nonatomic) BearHUDManager        *   hudManager;
-@property (nonatomic, strong) UIColor               *   navBarColor;
 @property (nonatomic, strong) NSDictionary          *   vcParamsDict;
 @property (nonatomic, strong) UIViewController      *   popToDestinationVC;         //跳转回指定VC
 @property (nonatomic, strong) NSString              *   popToDestiantionClassName;  //跳转回指定class
@@ -42,14 +41,12 @@ typedef void(^ViewWillDisappearBlock)();
 
 @property (nonatomic, assign) BOOL                      hideNavigationBarWhenPush;
 @property (nonatomic, assign) BOOL                      ifPopToRootView;
-@property (nonatomic, assign) BOOL                      isNavBarClear;
 @property (nonatomic, assign) BOOL                      ifAddBackButton;
 @property (nonatomic, assign) BOOL                      ifDismissView;
 @property (nonatomic, assign) BOOL                      ifAddPopGR;                           //  是否添加原生手势返回标记
 @property (nonatomic, assign) BOOL                      ifTapResignFirstResponder;
 @property (nonatomic, assign) BOOL                      removeSelfAfterDidDisappear;          //  自己消失后从navi移除
 
-@property (nonatomic) CALayer *navBarBottomlayer;
 @property (copy, nonatomic) ViewDidDisappearBlock     viewDidDisappearBlock;
 @property (copy, nonatomic) ViewWillDisappearBlock    viewWillDisappearBlock;
 

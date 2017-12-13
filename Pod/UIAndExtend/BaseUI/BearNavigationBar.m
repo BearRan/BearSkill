@@ -76,6 +76,17 @@
     }
 }
 
+- (void)setIsNavBarClear:(BOOL)isNavBarClear
+{
+    _isNavBarClear = isNavBarClear;
+    
+    if (_isNavBarClear) {
+        [self setTranslucent:YES]; //则状态栏及导航栏底部为透明的
+    } else {
+        [self setTranslucent:NO];
+    }
+}
+
 #pragma mark - Rewrite
 
 @synthesize sepLineColor = _sepLineColor;
