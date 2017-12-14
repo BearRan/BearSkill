@@ -10,7 +10,7 @@ typedef void (^ContentTapBlock) (void);
 typedef void (^BgTapBlock) (void);
 
 @property (nonatomic, strong) UIView  *contentView;
-@property (assign, nonatomic) CGFloat scaleAniamtionDuration;;
+@property (assign, nonatomic) CGFloat scaleAniamtionDuration;
 @property (assign, nonatomic) BOOL  needTapBgToFadeOut;
 
 @property (copy, nonatomic) BgTapBlock bgTapBlock;
