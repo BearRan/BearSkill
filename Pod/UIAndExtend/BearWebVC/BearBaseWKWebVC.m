@@ -124,19 +124,18 @@
 
 #pragma mark - WKScriptMessageHandler
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    
-//    //这里可以通过name处理多组交互
-//    if ([message.name isEqualToString:@"demoName"]) {
-//        //body只支持NSNumber, NSString, NSDate, NSArray,NSDictionary 和 NSNull类型
-//        NSLog(@"%@",message.body);
-//    }
+    //这里可以通过name处理多组交互
+    if ([message.name isEqualToString:@"demoName"]) {
+        //body只支持NSNumber, NSString, NSDate, NSArray,NSDictionary 和 NSNull类型
+        NSLog(@"%@",message.body);
+    }
     
 }
 
 #pragma mark = WKNavigationDelegate
 //在发送请求之前，决定是否跳转
--(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    
+//-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+//
 //    NSString *hostname = navigationAction.request.URL.host.lowercaseString;
 //    NSLog(@"%@",hostname);
 //    if (navigationAction.navigationType == WKNavigationTypeLinkActivated
@@ -149,15 +148,13 @@
 //    } else {
 //        self.progressView.alpha = 1.0;
 //        decisionHandler(WKNavigationActionPolicyAllow);
-//    }
-    
-    
-}
+//    } 
+//
+//}
 //在响应完成时，调用的方法。如果设置为不允许响应，web内容就不会传过来
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-    
-//    decisionHandler(WKNavigationResponsePolicyAllow);
+    decisionHandler(WKNavigationResponsePolicyAllow);
 }
 //接收到服务器跳转请求之后调用
 -(void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
@@ -182,8 +179,8 @@
     
 }
 
-#pragma mark WKUIDelegate
-
+//#pragma mark WKUIDelegate
+//
 ////alert 警告框
 //-(void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
 //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"调用alert提示框" preferredStyle:UIAlertControllerStyleAlert];
@@ -192,7 +189,7 @@
 //    }]];
 //    [self presentViewController:alert animated:YES completion:nil];
 //    NSLog(@"alert message:%@",message);
-//    
+//
 //}
 //
 ////confirm 确认框
@@ -205,9 +202,9 @@
 //        completionHandler(NO);
 //    }]];
 //    [self presentViewController:alert animated:YES completion:NULL];
-//    
+//
 //    NSLog(@"confirm message:%@", message);
-//    
+//
 //}
 //
 //- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler {
@@ -215,11 +212,11 @@
 //    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
 //        textField.textColor = [UIColor blackColor];
 //    }];
-//    
+//
 //    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //        completionHandler([[alert.textFields lastObject] text]);
 //    }]];
-//    
+//
 //    [self presentViewController:alert animated:YES completion:NULL];
 //}
 
