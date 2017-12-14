@@ -38,7 +38,6 @@
     [super viewWillAppear:animated];
     
 #warning DAD Test
-//    _urlStr = @"http://www.baidu.com";
     _urlStr = @"http://192.168.4.189:8080/#/js-bridge";
     
     
@@ -62,15 +61,15 @@
 
 #pragma mark - CreateUI
 - (void)creatProgressView{
-    self.progressView = [[UIProgressView alloc]initWithFrame:self.view.bounds];
+    self.progressView = [[UIProgressView alloc]initWithFrame:self.contentView.bounds];
     self.progressView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:self.progressView];
+    [self.contentView addSubview:self.progressView];
 }
 
 //创建webView
 - (void)creatWebView{
-    self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:self.config];
-    [self.view addSubview:self.webView];
+    self.webView = [[WKWebView alloc]initWithFrame:self.contentView.bounds configuration:self.config];
+    [self.contentView addSubview:self.webView];
     
     self.webView.backgroundColor = [UIColor whiteColor];
     self.webView.navigationDelegate = self;
@@ -148,7 +147,7 @@
 //    } else {
 //        self.progressView.alpha = 1.0;
 //        decisionHandler(WKNavigationActionPolicyAllow);
-//    } 
+//    }
 //
 //}
 //在响应完成时，调用的方法。如果设置为不允许响应，web内容就不会传过来

@@ -8,7 +8,7 @@
 #import <BearSkill/BearBaseViewController.h>
 #import <WebKit/WebKit.h>
 
-@interface BearBaseWKWebVC : UIViewController
+@interface BearBaseWKWebVC : BearBaseViewController
 
 @property (strong, nonatomic) WKWebViewConfiguration *config;
 
