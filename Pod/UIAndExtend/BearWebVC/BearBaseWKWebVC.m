@@ -7,7 +7,6 @@
 
 #import "BearBaseWKWebVC.h"
 #import "BearConstants.h"
-#import <WebKit/WebKit.h>
 
 @interface BearBaseWKWebVC () <WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
@@ -48,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self creatWebView];
     [self creatProgressView];
@@ -69,21 +68,7 @@
 
 //创建webView
 - (void)creatWebView{
-    
-    WKWebViewConfiguration *config = [WKWebViewConfiguration new];
-    //初始化偏好设置属性：preferences
-    config.preferences = [WKPreferences new];
-    //The minimum font size in points default is 0;
-    config.preferences.minimumFontSize = 10;
-    //是否支持JavaScript
-    config.preferences.javaScriptEnabled = YES;
-    //不通过用户交互，是否可以打开窗口
-    config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
-    //通过JS与webView内容交互
-    config.userContentController = [WKUserContentController new];
-    // 注入JS对象名称senderModel，当JS通过senderModel来调用时，我们可以在WKScriptMessageHandler代理中接收到
-    [config.userContentController addScriptMessageHandler:self name:@"senderModel"];
-    self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:config];
+    self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:self.config];
     [self.view addSubview:self.webView];
     
     self.webView.backgroundColor = [UIColor whiteColor];
@@ -139,7 +124,7 @@
 #pragma mark - WKScriptMessageHandler
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     //这里可以通过name处理多组交互
-    if ([message.name isEqualToString:@"senderModel"]) {
+    if ([message.name isEqualToString:@"demoName"]) {
         //body只支持NSNumber, NSString, NSDate, NSArray,NSDictionary 和 NSNull类型
         NSLog(@"%@",message.body);
     }
@@ -234,5 +219,24 @@
     [self presentViewController:alert animated:YES completion:NULL];
 }
 
+#pragma mark - Setter & Getter
+- (WKWebViewConfiguration *)config
+{
+    if (!_config) {
+        _config = [WKWebViewConfiguration new];
+        //初始化偏好设置属性：preferences
+        _config.preferences = [WKPreferences new];
+        //The minimum font size in points default is 0;
+        _config.preferences.minimumFontSize = 10;
+        //是否支持JavaScript
+        _config.preferences.javaScriptEnabled = YES;
+        //不通过用户交互，是否可以打开窗口
+        _config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        //通过JS与webView内容交互
+        _config.userContentController = [WKUserContentController new];
+    }
+    
+    return _config;
+}
 
 @end

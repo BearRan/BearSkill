@@ -6,8 +6,11 @@
 //
 
 #import <BearSkill/BearBaseViewController.h>
+#import <WebKit/WebKit.h>
 
 @interface BearBaseWKWebVC : UIViewController
+
+@property (strong, nonatomic) WKWebViewConfiguration *config;
 
 - (instancetype)initWithURLStr:(NSString *)urlStr;
 
