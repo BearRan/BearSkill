@@ -37,10 +37,6 @@
 {
     [super viewWillAppear:animated];
     
-#warning DAD Test
-    _urlStr = @"http://192.168.4.189:8080/#/js-bridge";
-    
-    
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
 }
 
