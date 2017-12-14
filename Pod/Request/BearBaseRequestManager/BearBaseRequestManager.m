@@ -237,10 +237,13 @@
 {
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (completionHandler) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+            
             BearBaseResponseVO *responseBaseVO = [BearBaseResponseVO new];
             responseBaseVO.response = response;
             responseBaseVO.responseObject = responseObject;
             responseBaseVO.error = error;
+            responseBaseVO.httpResponse = httpResponse;
             completionHandler(responseBaseVO);
         }
     }];
@@ -249,17 +252,17 @@
 
 - (void)baseRequestWithManager:(AFURLSessionManager *)manager
                        request:(NSURLRequest *)request
-                  successBlock:(void (^)(id responseObject))successBlock
-                  failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock
+                  successBlock:(void (^)(id responseObject, BearBaseResponseVO *responseBaseVO))successBlock
+                  failureBlock:(void (^)(NSString *errorStr, id responseObject, BearBaseResponseVO *responseBaseVO))failureBlock
 {
     [self baseRequestWithManager:manager request:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
         if (responseBaseVO.error) {
             if (failureBlock) {
-                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code], responseBaseVO.responseObject);
+                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code], responseBaseVO.responseObject, responseBaseVO);
             }
         }else{
             if (successBlock) {
-                successBlock(responseBaseVO.responseObject);
+                successBlock(responseBaseVO.responseObject, responseBaseVO);
             }
         }
     }];

@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSURLResponse *response;
 @property (strong, nonatomic) id responseObject;
 @property (strong, nonatomic) NSError *error;
+@property (strong, nonatomic) NSHTTPURLResponse *httpResponse;
 
 @end

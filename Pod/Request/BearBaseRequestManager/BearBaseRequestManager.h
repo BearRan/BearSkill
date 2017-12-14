@@ -40,8 +40,8 @@
 #pragma mark - baseRequestWithManager
 - (void)baseRequestWithManager:(AFURLSessionManager *)manager
                        request:(NSURLRequest *)request
-                  successBlock:(void (^)(id responseObject))successBlock
-                  failureBlock:(void (^)(NSString *errorStr, id responseObject))failureBlock;
+                  successBlock:(void (^)(id responseObject, BearBaseResponseVO *responseBaseVO))successBlock
+                  failureBlock:(void (^)(NSString *errorStr, id responseObject, BearBaseResponseVO *responseBaseVO))failureBlock;
 
 #pragma mark generateGetURL
 - (NSURL *)generateGetURLWithURLStr:(NSString *)urlStr
