@@ -7,7 +7,7 @@
 
 #import <BearSkill/BearBaseViewController.h>
 
-@interface BearBaseWKWebVC : BearBaseViewController
+@interface BearBaseWKWebVC : UIViewController
 
 - (instancetype)initWithURLStr:(NSString *)urlStr;
 
