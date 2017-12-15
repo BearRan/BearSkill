@@ -274,9 +274,17 @@
 {
     NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
     
+    NSArray<NSURLQueryItem *> *originQueryItems = components.queryItems;
+    
     //Append Para
+    NSMutableArray *queryItems;
+    if (originQueryItems) {
+        queryItems = [[NSMutableArray alloc] initWithArray:originQueryItems];
+    }else{
+        queryItems = [[NSMutableArray alloc] init];
+    }
+    
     if (paraDict) {
-        NSMutableArray *queryItems = [NSMutableArray new];
         for (NSString *key in paraDict.allKeys) {
             id value = [paraDict objectForKey:key];
             

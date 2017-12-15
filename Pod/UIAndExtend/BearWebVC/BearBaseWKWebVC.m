@@ -7,10 +7,12 @@
 
 #import "BearBaseWKWebVC.h"
 #import "BearConstants.h"
+#import "BearBaseRequestManager.h"
 
 @interface BearBaseWKWebVC () <WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
     NSString *_urlStr;
+    NSDictionary *_paraDict;
 }
 
 //webView
@@ -33,11 +35,24 @@
     return self;
 }
 
+- (instancetype)initWithURLStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict
+{
+    self = [super init];
+    
+    if (self) {
+        _urlStr = urlStr;
+        _paraDict = paraDict;
+    }
+    
+    return self;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+    NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:_urlStr paraDict:_paraDict];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)viewDidLoad {

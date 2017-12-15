@@ -13,5 +13,6 @@
 @property (strong, nonatomic) WKWebViewConfiguration *config;
 
 - (instancetype)initWithURLStr:(NSString *)urlStr;
+- (instancetype)initWithURLStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict;
 
 @end
