@@ -1,4 +1,4 @@
-//
+///
 //  BearBaseWKWebVC.m
 //  AFNetworking
 //
@@ -67,7 +67,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self removeKVO];
 }
 
 #pragma mark - CreateUI
@@ -248,6 +247,11 @@
     }
     
     return _config;
+}
+
+- (void)dealloc
+{
+    [self removeKVO];
 }
 
 @end
