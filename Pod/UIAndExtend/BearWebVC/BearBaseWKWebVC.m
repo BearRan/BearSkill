@@ -229,6 +229,16 @@
 //    [self presentViewController:alert animated:YES completion:NULL];
 //}
 
+#pragma mark - Rewrite
+- (void)popSelf
+{
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
+    }else{
+        [super popSelf];
+    }
+}
+
 #pragma mark - Setter & Getter
 - (WKWebViewConfiguration *)config
 {
