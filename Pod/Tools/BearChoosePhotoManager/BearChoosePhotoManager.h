@@ -7,7 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^SelectedImageBlock) (UIImage *image);
+
 @interface BearChoosePhotoManager : NSObject
+
+@property (copy, nonatomic) SelectedImageBlock selectedImageBlock;
 
 - (void)showActionViewInVC:(UIViewController *)inVC;
 

@@ -82,8 +82,8 @@
     
     
     [_inVC dismissViewControllerAnimated:YES completion:^{
-        if (image) {
-            
+        if (image && self.selectedImageBlock) {
+            self.selectedImageBlock(image);
         }
     }];
 }
