@@ -44,7 +44,6 @@
 }
 
 #pragma mark - UIActionSheet Delegate
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
