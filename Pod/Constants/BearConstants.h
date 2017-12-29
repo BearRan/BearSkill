@@ -169,6 +169,9 @@ static NSString *usTest = @"usTest";
 /** 支持iPhone和iPad， 获取app的icon图标名称 */
 + (UIImage *)getAppIconImage;
 
+//通过urlStr解析出参数
++ (NSDictionary *)getUrlParams:(NSString *)urlStr;
+
 @end
 
 

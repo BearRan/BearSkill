@@ -674,6 +674,25 @@
     return appIconImg;
 }
 
+//通过urlStr解析出参数
++ (NSDictionary *)getUrlParams:(NSString *)urlStr
+{
+    if (![BearConstants judgeStringExist:urlStr]) {
+        return nil;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:urlStr];
+    NSArray<NSURLQueryItem *> *originQueryItems = components.queryItems;
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    for (NSURLQueryItem *originQueryItem in originQueryItems) {
+        NSString *objStr = [NSString stringWithFormat:@"%@", originQueryItem.value];
+        NSString *keyStr = [NSString stringWithFormat:@"%@", originQueryItem.name];
+        [dict setObject:objStr forKey:keyStr];
+    }
+    
+    return dict;
+}
+
 @end
 
 
