@@ -172,6 +172,14 @@ static NSString *usTest = @"usTest";
 //通过urlStr解析出参数
 + (NSDictionary *)getUrlParams:(NSString *)urlStr;
 
+/**
+ * 图片压缩到指定大小
+ * @param targetSize 目标图片的大小
+ * @param sourceImage 源图片
+ * @return 目标图片
+ */
++ (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize withSourceImage:(UIImage *)sourceImage;
+
 @end
 
 
