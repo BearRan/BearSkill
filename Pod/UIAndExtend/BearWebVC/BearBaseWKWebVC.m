@@ -11,10 +11,10 @@
 
 @interface BearBaseWKWebVC () <WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
-    NSString *_urlStr;
     NSDictionary *_paraDict;
 }
 
+@property(nonatomic,strong)NSString *originUrl;
 //webView
 @property(nonatomic,strong)WKWebView *webView;
 //进度条
@@ -29,7 +29,7 @@
     self = [super init];
     
     if (self) {
-        _urlStr = urlStr;
+        _originUrl = urlStr;
     }
     
     return self;
@@ -40,7 +40,7 @@
     self = [super init];
     
     if (self) {
-        _urlStr = urlStr;
+        _originUrl = urlStr;
         _paraDict = paraDict;
     }
     
@@ -51,7 +51,7 @@
 {
     [super viewWillAppear:animated];
     
-    NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:_urlStr paraDict:_paraDict];
+    NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:_originUrl paraDict:_paraDict];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
