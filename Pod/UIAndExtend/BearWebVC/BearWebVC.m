@@ -67,7 +67,7 @@
     [self hideHUDView];
     
     NSString *title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    self.title =  title;
+    self.navigationController.title = title;
 }
 
 @end

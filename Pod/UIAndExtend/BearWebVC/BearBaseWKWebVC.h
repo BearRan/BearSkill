@@ -10,6 +10,8 @@
 
 @interface BearBaseWKWebVC : BearBaseViewController
 
+@property (strong, nonatomic) NSString  *staticTitle;
+
 @property (strong, nonatomic) WKWebViewConfiguration *config;
 
 - (instancetype)initWithURLStr:(NSString *)urlStr;
