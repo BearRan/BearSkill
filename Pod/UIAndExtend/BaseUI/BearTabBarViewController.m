@@ -6,6 +6,8 @@
 #import "UIView+BearSet.h"
 #import "BearDefines.h"
 #import "UIImage-Helpers.h"
+#import "BearImageManager.h"
+#import "BearConstants.h"
 
 @interface BearTabBarViewController ()
 
@@ -91,16 +93,37 @@
         
         for (NSInteger i = 0; i < tabBar.items.count; i++) {
             UITabBarItem *tabBarItem = [tabBar.items objectAtIndex:i];
-            [tabBarItem setImage:[[UIImage imageNamed:imageNameStrs[i]]
-                                  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            NSString *imageName = imageNameStrs[i];
+            NSString *imageNameSelected = imageNameSelectedStrs[i];
             
-            if (haveImageTintColor) {
-                [tabBarItem setSelectedImage:[[UIImage imageNamed:imageNameSelectedStrs[i]]
-                                              imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            NSNumber *imageWidth = @20;
+            if ([self judgeIsUrl:imageName]) {
+                [[BearImageManager new] getImageWithUrl:[NSURL URLWithString:imageName]
+                                               getImage:^(UIImage *image) {
+                                                   image = [BearConstants scaleToSize:image size:CGSizeMake([imageWidth floatValue], [imageWidth floatValue]) opaque:NO];
+                                                   [tabBarItem setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                                               }];
             }else{
-                [tabBarItem setSelectedImage:[[UIImage imageNamed:imageNameSelectedStrs[i]]
-                                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                [tabBarItem setImage:[[UIImage imageNamed:imageName]
+                                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
             }
+            
+            
+            UIImageRenderingMode selectedRenderMode = UIImageRenderingModeAlwaysOriginal;
+            if (haveImageTintColor) {
+                selectedRenderMode = UIImageRenderingModeAlwaysTemplate;
+            }
+            if ([self judgeIsUrl:imageName]) {
+                [[BearImageManager new] getImageWithUrl:[NSURL URLWithString:imageName]
+                                               getImage:^(UIImage *image) {
+                                                   image = [BearConstants scaleToSize:image size:CGSizeMake([imageWidth floatValue], [imageWidth floatValue]) opaque:NO];
+                                                   [tabBarItem setSelectedImage:[image imageWithRenderingMode:selectedRenderMode]];
+                                               }];
+            }else{
+                [tabBarItem setSelectedImage:[[UIImage imageNamed:imageNameSelected]
+                                              imageWithRenderingMode:selectedRenderMode]];
+            }
+            
             
             tabBarItem.titlePositionAdjustment = tabBarItemUIOffSet;
             tabBarItem.title = titles[i];
@@ -122,6 +145,15 @@
         
     }
     return self;
+}
+
+- (BOOL)judgeIsUrl:(NSString *)url
+{
+    if ([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"] || [url hasPrefix:@"ftp://"]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - UITabBarController Delegate

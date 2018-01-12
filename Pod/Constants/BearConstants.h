@@ -48,6 +48,7 @@ static NSString *usTest = @"usTest";
 
 //  修改iamge尺寸
 + (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)newsize;
++ (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)newsize opaque:(BOOL)opaque;
 
 //  验证姓名
 + (BOOL)validateNameString:(NSString *)nameStr;
