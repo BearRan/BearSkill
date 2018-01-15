@@ -51,8 +51,10 @@
 {
     [super viewWillAppear:animated];
     
-    NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:_originUrl paraDict:_paraDict];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    if (!self.webView.URL) {
+        NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:_originUrl paraDict:_paraDict];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
 }
 
 - (void)viewDidLoad {
