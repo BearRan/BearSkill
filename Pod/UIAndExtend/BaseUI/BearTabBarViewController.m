@@ -96,7 +96,7 @@
             NSString *imageName = imageNameStrs[i];
             NSString *imageNameSelected = imageNameSelectedStrs[i];
             
-            NSNumber *imageWidth = @20;
+            NSNumber *imageWidth = @30;
             if ([self judgeIsUrl:imageName]) {
                 [[BearImageManager new] getImageWithUrl:[NSURL URLWithString:imageName]
                                                getImage:^(UIImage *image) {
