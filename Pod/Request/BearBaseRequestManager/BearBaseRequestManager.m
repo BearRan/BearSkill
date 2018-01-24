@@ -328,6 +328,7 @@
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *bundleName = [infoDictionary objectForKey:@"CFBundleName"];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
