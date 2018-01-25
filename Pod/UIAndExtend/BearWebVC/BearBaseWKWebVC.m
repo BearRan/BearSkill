@@ -118,9 +118,9 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"title"]) {
         if ([BearConstants judgeStringExist:_staticTitle]) {
-            self.navigationController.title = _staticTitle;
+            self.title = _staticTitle;
         }else{
-            self.navigationController.title = self.webView.title;
+            self.title = self.webView.title;
         }
     }else if([keyPath isEqualToString:@"loading"]){
         NSLog(@"loading");
