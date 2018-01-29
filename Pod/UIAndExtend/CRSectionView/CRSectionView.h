@@ -44,7 +44,11 @@
 @property (strong, nonatomic, readonly) UICollectionView *mainCollectionView;
 @property (strong, nonatomic, readonly) CRSectionViewUIService *sectionUIService;
 
+//Rewrite
+- (void)initPara;
 - (void)calculatePara;
+
+//Func
 - (void)reloadData;
 - (void)scrollToIndexPath:(NSIndexPath *)indexPath animate:(BOOL)animate;
 
