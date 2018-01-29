@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class CRSectionViewUIService;
 
 typedef void (^DidSelectIndexPath) (NSIndexPath *indexPath);
 
 @protocol CRSectionViewUIServiceDelegate <NSObject>
 
-- (void)CRSectionDidSelectIndexPath:(NSIndexPath *)indexPath;
+@optional
+- (void)CRSectionDidSelectIndexPath:(NSIndexPath *)indexPath __attribute__((deprecated("使用CRSectionUIService")));
+- (void)CRSectionUIService:(CRSectionViewUIService *)sectionViewUIService sectionDidSelectIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -58,6 +58,10 @@
     if ([_delegate respondsToSelector:@selector(CRSectionDidSelectIndexPath:)]) {
         [_delegate CRSectionDidSelectIndexPath:indexPath];
     }
+    
+    if ([_delegate respondsToSelector:@selector(CRSectionUIService:sectionDidSelectIndexPath:)]) {
+        [_delegate CRSectionUIService:self sectionDidSelectIndexPath:indexPath];
+    }
 }
 
 @end

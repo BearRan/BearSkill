@@ -45,7 +45,6 @@
 @property (strong, nonatomic, readonly) CRSectionViewUIService *sectionUIService;
 
 //Rewrite
-- (void)initPara;
 - (void)calculatePara;
 
 //Func
