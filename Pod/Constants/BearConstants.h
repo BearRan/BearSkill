@@ -50,6 +50,12 @@ static NSString *usTest = @"usTest";
 + (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)newsize;
 + (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)newsize opaque:(BOOL)opaque;
 
+// 对View截屏
++ (UIImage *)convertViewToImage:(UIView *)view;
+
+//  图片合成
++ (UIImage *)imageSynthesisWithImage1:(UIImage *)image1 image2:(UIImage *)image2 size:(CGSize)size;
+
 //  验证姓名
 + (BOOL)validateNameString:(NSString *)nameStr;
 

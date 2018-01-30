@@ -138,6 +138,32 @@
     return scaledImage;
 }
 
+// 对View截屏
++ (UIImage *)convertViewToImage:(UIView *)view
+{
+    //https://github.com/alskipp/ASScreenRecorder 录屏代码
+    // 第二个参数表示是否非透明。如果需要显示半透明效果，需传NO，否则YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, [UIScreen mainScreen].scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+//  图片合成
++ (UIImage *)imageSynthesisWithImage1:(UIImage *)image1 image2:(UIImage *)image2 size:(CGSize)size
+{
+    CGRect imageRect = CGRectMake(0, 0, size.width, size.height);
+    
+    UIGraphicsBeginImageContext(size);
+    [image1 drawInRect:imageRect];
+    [image2 drawInRect:imageRect];
+    UIImage *resultImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resultImg;
+}
+
 //  验证姓名
 + (BOOL)validateNameString:(NSString *)nameStr
 {
