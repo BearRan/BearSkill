@@ -410,7 +410,7 @@
     
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [UIScreen mainScreen].bounds;
-    CGFloat yOffset = [self hideNavigationBarWhenPush] ? 0 : _navigationBar.maxY;
+    CGFloat yOffset = [self hideNavigationBarWhenPush] ? STATUS_HEIGHT : _navigationBar.maxY;
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
     
     if (_hideNavigationBarWhenPush) {
