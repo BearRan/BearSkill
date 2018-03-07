@@ -18,4 +18,7 @@
 - (instancetype)initWithURLStr:(NSString *)urlStr;
 - (instancetype)initWithURLStr:(NSString *)urlStr paraDict:(NSDictionary *)paraDict;
 
+#pragma mark - Func
+- (void)loadWithUrlStr:(NSString *)urlStr;
+
 @end

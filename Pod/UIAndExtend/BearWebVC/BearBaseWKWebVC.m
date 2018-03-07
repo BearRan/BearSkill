@@ -88,6 +88,15 @@
     self.webView.UIDelegate = self;
 }
 
+#pragma mark - Func
+- (void)loadWithUrlStr:(NSString *)urlStr
+{
+    if (urlStr) {
+        NSURL *url = [[BearBaseRequestManager new] generateGetURLWithURLStr:urlStr paraDict:_paraDict];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+}
+
 #pragma mark - KVO
 - (void)addKVO
 {
@@ -189,7 +198,7 @@
     NSLog(@"title:%@",webView.title);
 }
 // 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
 {
     
 }
