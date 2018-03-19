@@ -47,4 +47,37 @@
     return [NSData dataWithContentsOfFile:path];
 }
 
+- (UIImage *)generateImageWithFrame:(CGRect)frame originImage:(UIImage *)originImage
+{
+    CGFloat rationScale = 1.0 * [UIScreen mainScreen].scale;
+    
+    CGFloat origX = frame.origin.x * rationScale;
+    CGFloat origY = frame.origin.y * rationScale;
+    CGFloat oriWidth = frame.size.width * rationScale;
+    CGFloat oriHeight = frame.size.height * rationScale;
+    
+    CGRect myRect = CGRectMake(origX, origY, oriWidth, oriHeight);
+    
+    CGImageRef  imageRef = CGImageCreateWithImageInRect(originImage.CGImage, myRect);
+    UIGraphicsBeginImageContextWithOptions(myRect.size, YES, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, myRect, imageRef);
+    UIImage * clipImage = [UIImage imageWithCGImage:imageRef];
+    UIGraphicsEndImageContext();
+    
+    return clipImage;
+}
+
+- (UIImage *)normalizedImageWithOriginImage:(UIImage *)originImage
+{
+    UIImageOrientation imageOrientation = originImage.imageOrientation;
+    if (imageOrientation == UIImageOrientationUp) return originImage;
+    
+    UIGraphicsBeginImageContextWithOptions(originImage.size, NO, originImage.scale);
+    [originImage drawInRect:(CGRect){0, 0, originImage.size}];
+    UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return normalizedImage;
+}
+
 @end

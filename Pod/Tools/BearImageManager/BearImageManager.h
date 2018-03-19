@@ -11,4 +11,7 @@
 
 - (void)getImageWithUrl:(NSURL *)url getImage:(void (^)(UIImage *image))getImage;
 
+- (UIImage *)generateImageWithFrame:(CGRect)frame originImage:(UIImage *)originImage;
+- (UIImage *)normalizedImageWithOriginImage:(UIImage *)originImage;
+
 @end
