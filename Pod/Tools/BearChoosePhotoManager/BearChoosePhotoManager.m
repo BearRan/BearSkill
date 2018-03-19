@@ -58,6 +58,8 @@
 
 - (void)presentCameraInVC:(UIViewController *)inVC
 {
+    _inVC = inVC;
+    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
@@ -69,6 +71,8 @@
 
 - (void)presentPhotoLibraryInVC:(UIViewController *)inVC
 {
+    _inVC = inVC;
+    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
