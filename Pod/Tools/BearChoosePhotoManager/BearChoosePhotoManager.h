@@ -15,4 +15,7 @@ typedef void (^SelectedImageBlock) (UIImage *image);
 
 - (void)showActionViewInVC:(UIViewController *)inVC;
 
+- (void)presentCameraInVC:(UIViewController *)inVC;
+- (void)presentPhotoLibraryInVC:(UIViewController *)inVC;
+
 @end

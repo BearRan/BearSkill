@@ -48,24 +48,34 @@
 {
     if (buttonIndex == 0)
     {
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [_inVC presentViewController:imagePickerController animated:YES completion:^{
-        }];
+        [self presentCameraInVC:_inVC];
     }
     else if (buttonIndex == 1)
     {
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [_inVC presentViewController:imagePickerController animated:YES completion:^{
-        }];
+        [self presentPhotoLibraryInVC:_inVC];
     }
+}
+
+- (void)presentCameraInVC:(UIViewController *)inVC
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [inVC presentViewController:imagePickerController animated:YES completion:^{
+    }];
+}
+
+- (void)presentPhotoLibraryInVC:(UIViewController *)inVC
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.modalTransitionStyle = UIModalPresentationPopover;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [inVC presentViewController:imagePickerController animated:YES completion:^{
+    }];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
