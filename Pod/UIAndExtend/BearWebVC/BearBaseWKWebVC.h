@@ -12,7 +12,7 @@
 
 @property(nonatomic,strong, readonly) NSString *originUrl;
 @property (strong, nonatomic) NSString  *staticTitle;
-
+@property(nonatomic,strong,readonly)WKWebView *webView;
 @property (strong, nonatomic) WKWebViewConfiguration *config;
 
 - (instancetype)initWithURLStr:(NSString *)urlStr;
