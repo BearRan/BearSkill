@@ -4,7 +4,15 @@
 
 #import <UIKit/UIKit.h>
 #import <BearSkill/BearNavigationBar.h>
-#import "BearHUDManager.h"
+
+static BOOL OSVersionIsAtLeastiOS7()
+{
+    return (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1);
+}
+static const CGFloat kNavigationBarHeight       =       44.0f;
+static const CGFloat kNavigationBarHeight7      =       64.0f;
+static const CGFloat kStatusBarHeight           =       20.0f;
+static const CGFloat kBottomBarHeight           =       49.0f;
 
 typedef void(^ViewDidDisappearBlock)();
 typedef void(^ViewWillDisappearBlock)();
@@ -17,26 +25,33 @@ typedef void(^ViewWillDisappearBlock)();
 @property (strong, nonatomic) UIView                *   customStatusView;
 @property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
-@property (strong, nonatomic) BearHUDManager        *   hudManager;
+@property (nonatomic, strong) UIColor               *   navBarColor;
+@property (nonatomic, strong) NSDictionary          *   vcParamsDict;
 @property (nonatomic, strong) UIViewController      *   popToDestinationVC;         //跳转回指定VC
 @property (nonatomic, strong) NSString              *   popToDestiantionClassName;  //跳转回指定class
 @property (strong, nonatomic) BearBaseViewController  *   aheadVC;                    //从哪里跳来的VC，适用于Push和Present，便于找到上一个VC
 
 @property (nonatomic, strong) NSString              *   imgNameBack;                //返回按钮图片名称
+@property (nonatomic, strong) UIColor               *   backgroundColor;            //背景色，导航栏背景色
+@property (nonatomic, strong) UIColor               *   contentViewBackgroundColor; //contentView背景色
 @property (nonatomic, strong) UIColor               *   naviBackBtnTintColor;       //导航器返回按钮tintColor
 @property (assign, nonatomic) UIStatusBarStyle          statusBarStyle;             //状态栏颜色
 
+
 @property (nonatomic, assign) BOOL                      hideNavigationBarWhenPush;
 @property (nonatomic, assign) BOOL                      ifPopToRootView;
+@property (nonatomic, assign) BOOL                      isNavBarClear;
 @property (nonatomic, assign) BOOL                      ifAddBackButton;
 @property (nonatomic, assign) BOOL                      ifDismissView;
 @property (nonatomic, assign) BOOL                      ifAddPopGR;                           //  是否添加原生手势返回标记
 @property (nonatomic, assign) BOOL                      ifTapResignFirstResponder;
 @property (nonatomic, assign) BOOL                      removeSelfAfterDidDisappear;          //  自己消失后从navi移除
 
+@property (nonatomic) CALayer *navBarBottomlayer;
 @property (copy, nonatomic) ViewDidDisappearBlock     viewDidDisappearBlock;
 @property (copy, nonatomic) ViewWillDisappearBlock    viewWillDisappearBlock;
 
+- (instancetype)initWithParamsDict:(NSDictionary *)params;
 - (void)resignCurrentFirstResponder;
 - (void)createUI;
 - (void)popSelf;
