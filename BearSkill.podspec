@@ -49,6 +49,7 @@ BearSkill contain some methods used frequently in project. And many other method
 
     #Constants
     s.subspec 'Constants' do |constants|
+        constants.dependency 'MBProgressHUD'
         constants.source_files = 'Pod/Constants/*'
     end
 
