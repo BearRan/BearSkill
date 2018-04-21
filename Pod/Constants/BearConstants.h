@@ -187,6 +187,9 @@ static NSString *usTest = @"usTest";
  */
 + (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize withSourceImage:(UIImage *)sourceImage;
 
+// 生成基本的DeviceInfo
++ (void)generateDeviceInfoBaseInDict:(NSMutableDictionary *)finalParaDict;
+
 @end
 
 
