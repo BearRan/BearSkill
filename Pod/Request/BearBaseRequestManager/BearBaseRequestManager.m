@@ -335,13 +335,14 @@
     NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
     NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
     NSString *diskFreeSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemFreeSize"] floatValue]/1024/1024/1024];
+    NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *uuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     
     NSString *secretAgent = [request valueForHTTPHeaderField:@"User-Agent"];
     if (!secretAgent)
     {
         secretAgent = @"";
     }
-    
     
     NSDictionary *baseAgentDict = @{
                                     @"bundleIdentifier" : bundleIdentifier,
@@ -352,6 +353,8 @@
                                     @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
                                     @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
                                     @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
+                                    @"build" : [NSString stringWithFormat:@"%@", build],
+                                    @"uuid": [NSString stringWithFormat:@"%@", uuid],
                                     };
     
     NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
