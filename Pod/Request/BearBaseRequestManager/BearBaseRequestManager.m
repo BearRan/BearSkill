@@ -162,19 +162,6 @@
                }];
 }
 
-#pragma mark - Func
-- (NSString*)convertDictToString:(NSDictionary *)infoDict
-{
-    __block NSMutableString *string = [NSMutableString new];
-    for (NSString *keyStr in infoDict.allKeys) {
-        NSString *valueStr = [infoDict objectForKey:keyStr];
-        NSString *tempStr = [NSString stringWithFormat:@"%@:%@//", keyStr, valueStr];
-        [string appendString:tempStr];
-    }
-    
-    return string;
-}
-
 #pragma mark Decode
 - (NSString *)URLDecodedString:(NSString *)str
 {
@@ -328,45 +315,34 @@
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-    NSString *bundleName = [infoDictionary objectForKey:@"CFBundleName"];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    
-    NSDictionary *systemAttributes = [[NSFileManager defaultManager] fileSystemAttributesAtPath:NSHomeDirectory()];
-    NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
-    NSString *diskFreeSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemFreeSize"] floatValue]/1024/1024/1024];
     NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
     NSString *uuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     
-    NSString *secretAgent = [request valueForHTTPHeaderField:@"User-Agent"];
-    if (!secretAgent)
-    {
-        secretAgent = @"";
-    }
-    
+    NSDictionary *systemAttributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
+    NSString *diskTotalSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemSize"] floatValue]/1024/1024/1024];
+    NSString *diskFreeSize = [NSString stringWithFormat:@"%.2f", [[systemAttributes objectForKey:@"NSFileSystemFreeSize"] floatValue]/1024/1024/1024];
+   
     NSDictionary *baseAgentDict = @{
-                                    @"bundleIdentifier" : bundleIdentifier,
+                                    @"appName" : appName,
+                                    @"bundleId" : bundleId,
                                     @"version" : version,
+                                    @"build" : [NSString stringWithFormat:@"%@", build],
+                                    @"uuid": [NSString stringWithFormat:@"%@", uuid],
+                                    
+                                    @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
+                                    
                                     @"modelString" : devInfo.modelString,
                                     @"osVersion" : [NSString stringWithFormat:@"iOS%lu.%lu.%lu", devInfo.osVersion.major, devInfo.osVersion.minor, devInfo.osVersion.patch],
                                     @"pixelsPerInch" : [NSString stringWithFormat:@"%.0fppi", devInfo.displayInfo.pixelsPerInch],
                                     @"physicalMemory" : [NSString stringWithFormat:@"%.0fG", devInfo.physicalMemory],
                                     @"cpuInfo" : [NSString stringWithFormat:@"%.0fGHz(%lu)Cache%.0fKB", devInfo.cpuInfo.frequency, devInfo.cpuInfo.numberOfCores, devInfo.cpuInfo.l2CacheSize],
-                                    @"diskInfo" : [NSString stringWithFormat:@"%@GB(%@GB)", diskTotalSize, diskFreeSize],
-                                    @"build" : [NSString stringWithFormat:@"%@", build],
-                                    @"uuid": [NSString stringWithFormat:@"%@", uuid],
                                     };
     
-    NSMutableDictionary *agentDict = [[NSMutableDictionary alloc] initWithDictionary:baseAgentDict];
-    
-    NSString *newAgent = [self convertDictToString:agentDict];
-    NSString *allAgent = [secretAgent stringByAppendingString:newAgent];
-    
-    //    if (appName) {
-    //        allAgent = [allAgent stringByAppendingString:[NSString stringWithFormat:@"allAgent:%@//", appName]];
-    //    }
-    
-    [request setValue:allAgent forHTTPHeaderField:@"User-Agent"];
+    for (NSString *key in baseAgentDict.allKeys) {
+        [request setValue:baseAgentDict[key] forHTTPHeaderField:key];
+    }
 }
 
 @end
