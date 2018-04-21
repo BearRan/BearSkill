@@ -780,6 +780,32 @@
     return newImage;
 }
 
+// 生成基本的DeviceInfo
++ (void)generateDeviceInfoBaseInDict:(NSMutableDictionary *)finalParaDict
+{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *uuid = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    
+    if ([BearConstants judgeStringExist:bundleId]) {
+        [finalParaDict setObject:bundleId forKey:@"bundleId"];
+    }
+    
+    if ([BearConstants judgeStringExist:version]) {
+        [finalParaDict setObject:version forKey:@"version"];
+    }
+    
+    if ([BearConstants judgeStringExist:build]) {
+        [finalParaDict setObject:build forKey:@"build"];
+    }
+    
+    if ([BearConstants judgeStringExist:uuid]) {
+        [finalParaDict setObject:uuid forKey:@"uuid"];
+    }
+}
+
 @end
 
 
