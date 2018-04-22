@@ -8,6 +8,8 @@
 
 #import "BearBaseRequestManager.h"
 #import <GBDeviceInfo/GBDeviceInfo.h>
+#import "BearProxyManager.h"
+#import "BearConstants.h"
 
 @implementation BearBaseRequestManager
 
@@ -131,10 +133,20 @@
                     successBlock:(void (^)(id responseObject))successBlock
                     failureBlock:(void (^)(NSString *errorStr))failureBlock
 {
+    BOOL haveProxyKey = [[[NSUserDefaults standardUserDefaults] objectForKey:UDProxyEnableKey] boolValue];
+    if (!haveProxyKey) {
+        if ([BearProxyManager getProxyStatus]) {
+            if (failureBlock) {
+                failureBlock(@"网络异常～");
+            }
+            return;
+        }
+    }
+    
     [self customRequestWithRequest:request completionHandler:^(BearBaseResponseVO *responseBaseVO) {
         if (responseBaseVO.error) {
             if (failureBlock) {
-                failureBlock([NSString stringWithFormat:@"请求失败:%ld", responseBaseVO.error.code]);
+                failureBlock([NSString stringWithFormat:@"请求失败:%ld", (long)responseBaseVO.error.code]);
             }
         }else{
             if (successBlock) {

@@ -74,6 +74,17 @@ BearSkill contain some methods used frequently in project. And many other method
         request.dependency 'GBDeviceInfo'
         request.dependency 'AFNetworking'
         request.source_files = 'Pod/Request/**/*'
+        request.frameworks = 'CFNetWork'
+
+        #这是需要添加mrc标识的文件，为相对路径
+        non_arc_files = 'Pod/Request/BearBaseRequestManager/BearProxyManager.m'
+        #在工程中首先排除一下
+        request.exclude_files = non_arc_files
+        #一下就是子设置，为需要添加mrc标识的文件进行设置
+        request.subspec 'no-arc' do |sp|
+            sp.source_files = non_arc_files
+            sp.requires_arc = false
+        end
     end
 
 end
