@@ -147,9 +147,11 @@
 - (void)dealloc
 {
     if (_stateHud != nil) {
-        if (_stateHud.superview) {
-            [_stateHud removeFromSuperview];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self->_stateHud.superview) {
+                [self->_stateHud removeFromSuperview];
+            }
+        });
         //会导致循环调启
         self.stateHud.delegate = nil;
         self.stateHud = nil;
