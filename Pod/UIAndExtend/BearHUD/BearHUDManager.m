@@ -73,13 +73,15 @@
         self.stateHud.detailsLabel.text = text;
     }
     
-    if (text && text.length > 0) {
-        self.stateHud.mode = MBProgressHUDModeText;
-        [self.stateHud showAnimated:YES];
-        [self.stateHud hideAnimated:NO afterDelay:1.7f];
-    } else {
-        [self hideHUDView];
-    }
+    [BearConstants processInMainThreadWithBlock:^{
+        if (text && text.length > 0) {
+            self.stateHud.mode = MBProgressHUDModeText;
+            [self.stateHud showAnimated:YES];
+            [self.stateHud hideAnimated:NO afterDelay:1.7f];
+        } else {
+            [self hideHUDView];
+        }
+    }];
 }
 
 - (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock
@@ -145,11 +147,11 @@
 - (void)dealloc
 {
     if (_stateHud != nil) {
+        if (_stateHud.superview) {
+            [_stateHud removeFromSuperview];
+        }
         //会导致循环调启
         self.stateHud.delegate = nil;
-        [BearConstants processInMainThreadWithBlock:^{
-            [self.stateHud removeFromSuperview];
-        }];
         self.stateHud = nil;
     }
 }
