@@ -147,7 +147,9 @@
     if (_stateHud != nil) {
         //会导致循环调启
         self.stateHud.delegate = nil;
-        [self.stateHud removeFromSuperview];
+        [BearConstants processInMainThreadWithBlock:^{
+            [self.stateHud removeFromSuperview];
+        }];
         self.stateHud = nil;
     }
 }
