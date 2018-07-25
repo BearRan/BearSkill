@@ -411,7 +411,6 @@
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [UIScreen mainScreen].bounds;
     CGFloat yOffset = [self hideNavigationBarWhenPush] ? STATUS_HEIGHT : _navigationBar.maxY;
-    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
     
     if (_hideNavigationBarWhenPush) {
         [_navigationBar removeFromSuperview];
@@ -435,11 +434,20 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
 
+//    _contentView.frame = CGRectMake(0,
+//                                    yOffset,
+//                                    CGRectGetWidth(viewRect),
+//                                    CGRectGetHeight(viewRect) - yOffset - bottomHeight);
+    
+    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
+        bottomHeight += safeAreaInsets.bottom;
+    }
     _contentView.frame = CGRectMake(0,
                                     yOffset,
                                     CGRectGetWidth(viewRect),
                                     CGRectGetHeight(viewRect) - yOffset - bottomHeight);
-    
 }
 
 #pragma mark - Setter & Getter
