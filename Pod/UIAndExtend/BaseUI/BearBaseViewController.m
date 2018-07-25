@@ -433,11 +433,6 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
-
-//    _contentView.frame = CGRectMake(0,
-//                                    yOffset,
-//                                    CGRectGetWidth(viewRect),
-//                                    CGRectGetHeight(viewRect) - yOffset - bottomHeight);
     
     CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
     if (@available(iOS 11.0, *)) {
