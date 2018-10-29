@@ -326,7 +326,9 @@
 {
     GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleName"];
+    if(!appName) appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    if(!appName) appName = @"BearTestName";
     NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
