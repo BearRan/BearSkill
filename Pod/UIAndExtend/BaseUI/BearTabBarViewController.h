@@ -30,4 +30,6 @@
                         backgroundColor:(UIColor *)backgroundColor
                      tabBarItemUIOffSet:(UIOffset)tabBarItemUIOffSet;
 
+- (void)setAllImageInsets:(UIEdgeInsets)edgeInsets;
+
 @end

@@ -147,6 +147,15 @@
     return self;
 }
 
+- (void)setAllImageInsets:(UIEdgeInsets)edgeInsets
+{
+    UITabBar *tabBar = self.tabBar;
+    for (NSInteger i = 0; i < tabBar.items.count; i++) {
+        UITabBarItem *tabBarItem = [tabBar.items objectAtIndex:i];
+        tabBarItem.imageInsets = UIEdgeInsetsMake(10, 0, -10, 0);
+    }
+}
+
 - (BOOL)judgeIsUrl:(NSString *)url
 {
     if ([url hasPrefix:@"http://"] || [url hasPrefix:@"https://"] || [url hasPrefix:@"ftp://"]) {
