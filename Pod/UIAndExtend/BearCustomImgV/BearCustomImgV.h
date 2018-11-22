@@ -18,6 +18,9 @@
 - (void)setImageWithURL:(NSURL *)imgUrl;
 - (void)setImageWithURL:(NSURL *)imgUrl placeholderImage:(UIImage *)placeholderImage;
 
+- (void)loadImageWithData:(NSData *)imageData needTrainsition:(BOOL)needTrainsition;
+- (void)loadImageWithImage:(UIImage *)image needTrainsition:(BOOL)needTrainsition;
+
 //注意，如果需要加Blur毛玻璃效果，建议多套一层View，再处理。
 /*
 - (void)createTransitionView

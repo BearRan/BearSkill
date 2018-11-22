@@ -23,7 +23,6 @@
     
     if (self) {
         [self initPara];
-        [self createUI];
     }
     
     return self;
@@ -44,14 +43,6 @@
 {
     _trainsitionDuring = 0.5;
     _needTrainsition = NO;
-}
-
-#pragma mark - CreateUI
-- (void)createUI
-{
-    self.backgroundColor = [UIColor whiteColor];
-    self.contentMode = UIViewContentModeScaleAspectFill;
-    self.clipsToBounds = YES;
 }
 
 #pragma mark - Load Image
@@ -86,7 +77,7 @@
                                                                                                                     toDisk:YES
                                                                                                                 completion:nil];
                                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                                    if ([imgUrl.absoluteString isEqualToString:_imgUrl.absoluteString]) {
+                                                                    if ([imgUrl.absoluteString isEqualToString:self->_imgUrl.absoluteString]) {
                                                                         [weakSelf loadImageWithData:data needTrainsition:YES];
                                                                     }
                                                                 });
@@ -96,16 +87,19 @@
 
 - (void)loadImageWithData:(NSData *)imageData needTrainsition:(BOOL)needTrainsition
 {
+    [self loadImageWithImage:[UIImage imageWithData:imageData] needTrainsition:needTrainsition];
+}
+
+- (void)loadImageWithImage:(UIImage *)image needTrainsition:(BOOL)needTrainsition
+{
     if (needTrainsition) {
         CATransition *trainsition = [CATransition animation];
         trainsition.duration = _trainsitionDuring;
         trainsition.type = kCATransitionFade;
         [self.layer addAnimation:trainsition forKey:nil];
         
-        UIImage *image = [UIImage imageWithData:imageData];
         self.image = image;
     }else{
-        UIImage *image = [UIImage imageWithData:imageData];
         self.image = image;
     }
 }
