@@ -23,6 +23,7 @@
 #define over_iOS9   ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 #define over_iOS10  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 #define over_iOS11  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0)
+#define over_iOS12  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 12.0)
 
 
 #define KeyWindow [[UIApplication sharedApplication] keyWindow]
@@ -61,6 +62,14 @@
 /**
  *  屏幕尺寸
  */
+
+//  X (物理点)
+#define WIDTHX 375.0
+#define HEIGHTX 812.0
+
+//  X_N (像素点)
+#define NWIDTHX 1125.0
+#define NHEIGHTX 2436.0
 
 //  6p (物理点)
 #define WIDTH6P 414.0
@@ -106,11 +115,13 @@
 #define XX_5(value)     (1.0 * (value) * WIDTH / WIDTH5)
 #define XX_6(value)     (1.0 * (value) * WIDTH / WIDTH6)
 #define XX_6P(value)    (1.0 * (value) * WIDTH / WIDTH6P)
+#define XX_X(value)    (1.0 * (value) * WIDTH / WIDTHX)
 
 #define YY_4(value)     (1.0 * (value) * LayOutHeight / HEIGHT4)
 #define YY_5(value)     (1.0 * (value) * LayOutHeight / HEIGHT5)
 #define YY_6(value)     (1.0 * (value) * LayOutHeight / HEIGHT6)
 #define YY_6P(value)    (1.0 * (value) * LayOutHeight / HEIGHT6P)
+#define YY_X(value)    (1.0 * (value) * LayOutHeight / HEIGHTX)
 
 
 //  ceil天花板 物理点 为单位
@@ -118,11 +129,13 @@
 #define XXC_5(value)     ceil(XX_5(value))
 #define XXC_6(value)     ceil(XX_6(value))
 #define XXC_6P(value)    ceil(XX_6P(value))
+#define XXC_X(value)    ceil(XX_X(value))
 
 #define YYC_4(value)     ceil(YY_4(value))
 #define YYC_5(value)     ceil(YY_5(value))
 #define YYC_6(value)     ceil(YY_6(value))
 #define YYC_6P(value)    ceil(YY_6P(value))
+#define YYC_X(value)    ceil(YY_X(value))
 
 
 //  像素点 为单位
@@ -130,11 +143,13 @@
 #define XX_5N(value)     (1.0 * (value) * WIDTH / NWIDTH5)
 #define XX_6N(value)     (1.0 * (value) * WIDTH / NWIDTH6)
 #define XX_6PN(value)    (1.0 * (value) * WIDTH / NWIDTH6P)
+#define XX_XN(value)    (1.0 * (value) * WIDTH / NWIDTHX)
 
 #define YY_4N(value)     (1.0 * (value) * LayOutHeight / NHEIGHT4)
 #define YY_5N(value)     (1.0 * (value) * LayOutHeight / NHEIGHT5)
 #define YY_6N(value)     (1.0 * (value) * LayOutHeight / NHEIGHT6)
 #define YY_6PN(value)    (1.0 * (value) * LayOutHeight / NHEIGHT6P)
+#define YY_XN(value)    (1.0 * (value) * LayOutHeight / NHEIGHTX)
 
 
 //  ceil天花板 像素点 为单位
@@ -142,11 +157,13 @@
 #define XXC_5N(value)     ceil(XX_5N(value))
 #define XXC_6N(value)     ceil(XX_6N(value))
 #define XXC_6PN(value)    ceil(XX_6PN(value))
+#define XXC_XN(value)    ceil(XX_X(value))
 
 #define YYC_4N(value)     ceil(YY_4N(value))
 #define YYC_5N(value)     ceil(YY_5N(value))
 #define YYC_6N(value)     ceil(YY_6N(value))
 #define YYC_6PN(value)    ceil(YY_6PN(value))
+#define YYC_XN(value)    ceil(YY_X(value))
 
 
 //  Scale Based on Width
@@ -180,16 +197,19 @@
 #define FontSize_5(value)       FontSize(XX_5(value))
 #define FontSize_6(value)       FontSize(XX_6(value))
 #define FontSize_6P(value)      FontSize(XX_6P(value))
+#define FontSize_X(value)      FontSize(XX_X(value))
 
 #define FontSize_4N(value)       FontSize(XX_4(value / 3.0))
 #define FontSize_5N(value)       FontSize(XX_5(value / 3.0))
 #define FontSize_6N(value)       FontSize(XX_6(value / 3.0))
 #define FontSize_6PN(value)      FontSize(XX_6P(value / 3.0))
+#define FontSize_X(value)      FontSize(XX_X(value / 3.0))
 
 #define FontSize_4N_2(value)       FontSize(XX_4(value / 2.0))
 #define FontSize_5N_2(value)       FontSize(XX_5(value / 2.0))
 #define FontSize_6N_2(value)       FontSize(XX_6(value / 2.0))
 #define FontSize_6PN_2(value)      FontSize(XX_6P(value / 2.0))
+#define FontSize_X_2(value)      FontSize(XX_X(value / 2.0))
 
 #define BoldSysFont(value)                  [UIFont boldSystemFontOfSize:value]
 #define WidthBasedScaleSysFont(value)       SystemFont(WidthBasedScale(value))
