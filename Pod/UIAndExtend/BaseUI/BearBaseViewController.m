@@ -371,7 +371,7 @@
     [self.hudManager textStateHUD:text];
 }
 
-- (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock
+- (void)textStateHUD:(NSString *)text finishBlock:(void (^)(void))finishBlock
 {
     [self.hudManager textStateHUD:text finishBlock:^{
         if (finishBlock) {
@@ -401,16 +401,19 @@
 //  刷新ContentView的Frame
 - (void)refreshContentViewFrame
 {
-    CGFloat naviYOffset = [self hideNavigationBarWhenPush] ? NAV_STA : 0;
     if (over_iOS10) {
         _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
     }else{
-        _navigationBar.frame = CGRectMake(0, 0 - naviYOffset, self.view.width, NAV_STA);
+        if (self.hideNavigationBarWhenPush) {
+            _navigationBar.frame = CGRectMake(0, 0, self.view.width, 0);
+        }else{
+            _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
+        }
     }
     
     BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
     CGRect viewRect = [UIScreen mainScreen].bounds;
-    CGFloat yOffset = [self hideNavigationBarWhenPush] ? STATUS_HEIGHT : _navigationBar.maxY;
+    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
     
     if (_hideNavigationBarWhenPush) {
         [_navigationBar removeFromSuperview];

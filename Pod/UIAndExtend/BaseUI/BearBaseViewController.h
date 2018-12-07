@@ -6,8 +6,8 @@
 #import <BearSkill/BearNavigationBar.h>
 #import "BearHUDManager.h"
 
-typedef void(^ViewDidDisappearBlock)();
-typedef void(^ViewWillDisappearBlock)();
+typedef void(^ViewDidDisappearBlock)(void);
+typedef void(^ViewWillDisappearBlock)(void);
 
 @interface BearBaseViewController : UIViewController <UINavigationBarDelegate>
 {
@@ -54,7 +54,7 @@ typedef void(^ViewWillDisappearBlock)();
 
 #pragma mark - HUD
 - (void)textStateHUD:(NSString *)text;
-- (void)textStateHUD:(NSString *)text finishBlock:(void (^)())finishBlock;
+- (void)textStateHUD:(NSString *)text finishBlock:(void (^)(void))finishBlock;
 - (void)showHud:(NSString *)text;
 - (void)hideHUDView;
 
