@@ -410,7 +410,7 @@
     }
     
 //    _navigationBar
-    if (_hideNavigationBarWhenPush) {
+    if (self.hideNavigationBarWhenPush) {
         if (_navigationBar.superview) {
             [_navigationBar removeFromSuperview];
         }
@@ -422,7 +422,7 @@
     
 //    customStatusView
     if (over_iOS11) {
-        if (_hideNavigationBarWhenPush) {
+        if (self.hideNavigationBarWhenPush) {
             if (self.customStatusView) {
                 [self.customStatusView removeFromSuperview];
             }
