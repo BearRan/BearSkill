@@ -20,15 +20,32 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        _titleColor = [UIColor whiteColor];
-        _titleFont = [UIFont boldSystemFontOfSize:18];
-        
-        [self reloadNaviAttribute];
-        
-        self.shadowImage = [[UIImage alloc] init];
+        [self createUI];
     }
     return self;
 }
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        [self createUI];
+    }
+    
+    return self;
+}
+
+- (void)createUI
+{
+    _titleColor = [UIColor whiteColor];
+    _titleFont = [UIFont boldSystemFontOfSize:18];
+    
+    [self reloadNaviAttribute];
+    
+    self.shadowImage = [[UIImage alloc] init];
+}
+
 
 - (void)setNavTextColor:(UIColor *)navTextColor
 {
@@ -93,6 +110,7 @@
 - (void)setSepLineColor:(UIColor *)sepLineColor
 {
     _sepLineColor = sepLineColor;
+    
     
     self.sepLineView.backgroundColor = _sepLineColor;
 }

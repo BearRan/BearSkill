@@ -16,6 +16,8 @@
 @property (nonatomic, assign) BOOL      isNavBarClear;
 
 - (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)init;
+
 - (void)reloadNaviAttribute;
 
 @end
