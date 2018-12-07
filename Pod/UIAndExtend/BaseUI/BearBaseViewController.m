@@ -401,6 +401,7 @@
 //  刷新ContentView的Frame
 - (void)refreshContentViewFrame
 {
+//    _navigationBar frame
     if (over_iOS10) {
         _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
     }else{
@@ -411,27 +412,38 @@
         }
     }
     
-    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
-    CGRect viewRect = [UIScreen mainScreen].bounds;
-    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
-    
+//    _navigationBar
     if (_hideNavigationBarWhenPush) {
-        [_navigationBar removeFromSuperview];
+        if (_navigationBar.superview) {
+            [_navigationBar removeFromSuperview];
+        }
     }else{
-        [self.view addSubview:_navigationBar];
-    }
-    
-    if (over_iOS11) {
-        if (_hideNavigationBarWhenPush) {
-            [self.customStatusView removeFromSuperview];
-        }else{
-            [self.view addSubview:self.customStatusView];
+        if (_navigationBar.superview != self.view) {
+            [self.view addSubview:_navigationBar];
         }
     }
     
+//    customStatusView
+    if (over_iOS11) {
+        if (_hideNavigationBarWhenPush) {
+            if (self.customStatusView) {
+                [self.customStatusView removeFromSuperview];
+            }
+        }else{
+            if (self.customStatusView.superview != self.view) {
+                [self.view addSubview:self.customStatusView];
+            }
+        }
+    }
+    
+//    _contentView
     if (!_contentView) {
         _contentView = [UIView new];
     }
+    
+    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
+    CGRect viewRect = [UIScreen mainScreen].bounds;
+    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
