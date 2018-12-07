@@ -16,8 +16,6 @@
     NSArray       *   _hiddenRightItems;
 }
 
-- (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation;
-
 @end
 
 @implementation BearBaseViewController
@@ -259,7 +257,7 @@
 }
 
 #pragma mark - Get the size of view in the main screen
-
+#warning DAD
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation
 {
     CGRect bounds = [UIScreen mainScreen].bounds;
@@ -458,33 +456,33 @@
 
 - (void)refreshContentViewFrame
 {
-    //    _navigationBar frame
-    if (over_iOS10) {
-        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
-    }else{
-        if (self.hideNavigationBarWhenPush) {
-            _navigationBar.frame = CGRectMake(0, 0, self.view.width, 0);
-        }else{
-            _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
-        }
-    }
-    
-    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
-    if (@available(iOS 11.0, *)) {
-        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
-        bottomHeight += safeAreaInsets.bottom;
-    }else{
-        
-    }
-    
-    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
-    [self.view addSubview:self.contentView];
-    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(yOffset);
-        make.left.offset(0);
-        make.right.offset(0);
-        make.bottom.offset(-(yOffset + bottomHeight));
-    }];
+//    //    _navigationBar frame
+//    if (over_iOS10) {
+//        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
+//    }else{
+//        if (self.hideNavigationBarWhenPush) {
+//            _navigationBar.frame = CGRectMake(0, 0, self.view.width, 0);
+//        }else{
+//            _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
+//        }
+//    }
+//
+//    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
+//    if (@available(iOS 11.0, *)) {
+//        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
+//        bottomHeight += safeAreaInsets.bottom;
+//    }else{
+//
+//    }
+//
+//    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
+//    [self.view addSubview:self.contentView];
+//    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.top.offset(yOffset);
+//        make.left.offset(0);
+//        make.right.offset(0);
+//        make.bottom.offset(-(yOffset + bottomHeight));
+//    }];
 }
 
 - (void)updateViewConstraints
@@ -539,6 +537,11 @@
     }
     
     return _contentView;
+}
+
+- (void)setHideNavigationBarWhenPush:(BOOL)hideNavigationBarWhenPush
+{
+    _hideNavigationBarWhenPush = hideNavigationBarWhenPush;
 }
 
 #pragma mark - dealloc
