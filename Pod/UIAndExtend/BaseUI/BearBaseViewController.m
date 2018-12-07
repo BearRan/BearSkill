@@ -7,6 +7,7 @@
 #import "UIView+BearSet.h"
 #import "BearConstants.h"
 #import "BearDefines.h"
+#import <Masonry/Masonry.h>
 
 @interface BearBaseViewController () <UIGestureRecognizerDelegate>
 {
@@ -44,6 +45,8 @@
 {
     [super loadView];
     
+    NSLog(@"--loadView");
+    
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
@@ -55,9 +58,7 @@
     }
     
     [self navigationBar];
-    [self refreshContentViewFrame];
-    _contentView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_contentView];
+    [self refreshManyKKKViewFrame];
     
     if (over_iOS11) {
         [self.view addSubview:self.customStatusView];
@@ -66,7 +67,7 @@
     if (_ifTapResignFirstResponder) {
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignCurrentFirstResponder)];
         tapGR.delegate = self;
-        [_contentView addGestureRecognizer:tapGR];
+        [self.contentView addGestureRecognizer:tapGR];
     }
 }
 
@@ -399,7 +400,7 @@
 }
 
 //  刷新ContentView的Frame
-- (void)refreshContentViewFrame
+- (void)refreshManyKKKViewFrame
 {
 //    _navigationBar frame
     if (over_iOS10) {
@@ -436,28 +437,32 @@
         }
     }
     
-//    _contentView
-    if (!_contentView) {
-        _contentView = [UIView new];
-    }
+//    contentView
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.extendedLayoutIncludesOpaqueBars = NO;
+//    self.modalPresentationCapturesStatusBarAppearance = NO;
     
-    BOOL hidesBottomBarWhenPushed = [self hidesBottomBarWhenPushed];
-    CGRect viewRect = [UIScreen mainScreen].bounds;
-    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.extendedLayoutIncludesOpaqueBars = NO;
-    self.modalPresentationCapturesStatusBarAppearance = NO;
-    
-    CGFloat bottomHeight = hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
+    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
     if (@available(iOS 11.0, *)) {
         UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
         bottomHeight += safeAreaInsets.bottom;
+    }else{
+        
     }
-    _contentView.frame = CGRectMake(0,
-                                    yOffset,
-                                    CGRectGetWidth(viewRect),
-                                    CGRectGetHeight(viewRect) - yOffset - bottomHeight);
+    
+    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
+    [self.view addSubview:self.contentView];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(yOffset);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.bottom.offset(-(yOffset + bottomHeight));
+    }];
+}
+
+- (void)refreshContentViewFrame
+{
+    
 }
 
 #pragma mark - Setter & Getter
@@ -477,6 +482,16 @@
     }
     
     return _customStatusView;
+}
+
+- (UIView *)contentView
+{
+    if (!_contentView) {
+        _contentView = [UIView new];
+        _contentView.backgroundColor = [UIColor whiteColor];
+    }
+    
+    return _contentView;
 }
 
 #pragma mark - dealloc
