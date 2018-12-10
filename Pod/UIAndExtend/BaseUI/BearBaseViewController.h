@@ -61,7 +61,7 @@ typedef void(^ViewWillDisappearBlock)(void);
 #pragma mark - Func
 //  当前是否为Navi的顶层
 - (BOOL)IsSelfTopMostOfNav;
-//  刷新ContentView的Frame
-- (void)refreshContentViewFrame;
+////  刷新ContentView的Frame
+//- (void)refreshContentViewFrame;
 
 @end
