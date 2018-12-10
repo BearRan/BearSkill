@@ -507,7 +507,7 @@
 {
     _hideNavigationBarWhenPush = hideNavigationBarWhenPush;
     
-    // customStatusView
+    // customStatusView 
     if (over_iOS11) {
         if (_hideNavigationBarWhenPush) {
             if (self.customStatusView) {
