@@ -646,6 +646,8 @@
 //  判断是否为pad
 + (BOOL)getIsIpad
 {
+    // 判断类型
+    // e.g. @"iPhone", @"iPod touch", @"iPad"
     NSString *deviceType = [UIDevice currentDevice].model;
     
     if([deviceType isEqualToString:@"iPad"]) {
@@ -658,7 +660,9 @@
 //  判断是否为X系列（带刘海）
 + (BOOL)getIsXSeries
 {
-    NSString *deviceType = [UIDevice currentDevice].model;
+    // 判断型号
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *deviceType = device.name;
     
     NSArray *xSeriesArr = @[@"iPhone X",
                             @"iPhone XS",
