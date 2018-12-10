@@ -489,7 +489,10 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self refreshBaseViewsMasonry];
+//    [self refreshBaseViewsMasonry];
+    
+//    [self refreshNavigationBarMasonry];
+    [self refreshContentViewMasonry];
 
     [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
     NSLog(@"--viewWillTransitionToSize");
@@ -512,7 +515,7 @@
             make.top.offset(STATUS_HEIGHT);
         }else{
 //            make.top.mas_offset(self.navigationBar.mas_bottom);//.equalTo(self.navigationBar.mas_bottom);
-            make.top.equalTo(self.navigationBar.mas_bottom).offset(10);
+            make.top.equalTo(self.navigationBar.mas_bottom);
         }
         
         make.left.offset(0);
