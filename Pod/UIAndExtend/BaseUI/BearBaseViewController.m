@@ -414,14 +414,21 @@
     if (orientation == UIDeviceOrientationPortrait
         ||orientation == UIDeviceOrientationPortraitUpsideDown)
     {
-        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(STATUS_HEIGHT);
-        }];
+//        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(STATUS_HEIGHT);
+//        }];
         
+        if (@available(iOS 11.0, *)) {
+            self.customStatusView.hidden = NO;
+        }
     } else { // 横屏
-        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0);
-        }];
+//        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(0);
+//        }];
+        
+        if (@available(iOS 11.0, *)) {
+            self.customStatusView.hidden = YES;
+        }
     }
     
     CGFloat screenWidth = WIDTH;
@@ -487,6 +494,7 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self refreshBaseViewsMasonry];
 
+    [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
     NSLog(@"--viewWillTransitionToSize");
 }
 
