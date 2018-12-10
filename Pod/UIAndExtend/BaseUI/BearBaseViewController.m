@@ -14,7 +14,6 @@
     UIImageView   *   _bgImageView;
     NSArray       *   _hiddenLeftItems;
     NSArray       *   _hiddenRightItems;
-    BOOL _isFirstMakeNavi;
 }
 
 @end
@@ -27,7 +26,6 @@
     
     if (self)
     {
-        _isFirstMakeNavi = YES;
         self.hideNavigationBarWhenPush = NO;
         _ifPopToRootView = NO;
         _ifAddBackButton = YES;
@@ -523,13 +521,6 @@
                 [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
                     firstMake(make);
                 }];
-//                if (_isFirstMakeNavi) {
-//                    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
-//                        firstMake(make);
-//                    }];
-//                }else{
-//                    
-//                }
             }else{
                 
                 CGFloat navsta = NAV_STA;
@@ -543,19 +534,6 @@
                 [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
                     firstMake(make);
                 }];
-//                if (_isFirstMakeNavi) {
-//                    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
-//                        firstMake(make);
-//                    }];
-//                }else{
-//
-//                }
-            }
-            
-            
-            
-            if (_isFirstMakeNavi) {
-                _isFirstMakeNavi = NO;
             }
         }
     }
