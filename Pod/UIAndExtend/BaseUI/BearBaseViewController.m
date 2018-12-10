@@ -430,9 +430,6 @@
             self.customStatusView.hidden = YES;
         }
     }
-    
-    CGFloat screenWidth = WIDTH;
-    NSLog(@"--screenWidth:%f", screenWidth);
 }
     
 - (void)refreshContentViewFrame
