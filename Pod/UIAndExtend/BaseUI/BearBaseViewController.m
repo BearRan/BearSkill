@@ -259,35 +259,6 @@
     return backBarButtonItem;
 }
 
-#pragma mark - Get the size of view in the main screen
-#warning DAD
-- (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation
-{
-    CGRect bounds = [UIScreen mainScreen].bounds;
-    
-    if([[UIApplication sharedApplication] isStatusBarHidden])
-    {
-        if(UIInterfaceOrientationIsLandscape(orientation))
-        {
-            CGFloat width = bounds.size.width;
-            bounds.size.width = bounds.size.height;
-            bounds.size.height = width;
-        }
-    }
-    else
-    {
-        if (UIInterfaceOrientationIsLandscape(orientation))
-        {
-            CGFloat width = bounds.size.width;
-            bounds.size.width = bounds.size.height;
-            bounds.size.height = width - 20;
-        } else {
-            bounds.size.height -= 20;
-        }
-    }
-    return bounds;
-}
-
 #pragma mark 设置标题
 
 - (void)setTitle:(NSString *)title
@@ -400,78 +371,45 @@
     return [self.navigationController.topViewController isEqual:self];
 }
 
-//  刷新ContentView的Frame
-- (void)refreshBaseViewsMasonry
+#pragma mark - Rotate Orientation
+// 该方法不知什么原因，每次旋转屏幕都会调用四次
+// 暂时不使用该方法
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [self refreshNavigationBarMasonry];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
     [self refreshContentViewMasonry];
+    
+    [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
 }
 
 -(void)shouldRotateToOrientation:(UIDeviceOrientation)orientation {
-    
-    NSLog(@"--shouldRotateToOrientation");
     // 竖屏
     if (orientation == UIDeviceOrientationPortrait
         ||orientation == UIDeviceOrientationPortraitUpsideDown)
     {
-//        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(STATUS_HEIGHT);
-//        }];
-        
         if ([BearConstants getIsXSeries]) {
             self.customStatusView.hidden = NO;
         }
     } else { // 横屏
-//        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(0);
-//        }];
-        
         if ([BearConstants getIsXSeries]) {
             self.customStatusView.hidden = YES;
         }
     }
 }
-    
-- (void)refreshContentViewFrame
+
+#pragma mark - System Update Constraints
+
+- (void)refreshContentViewFrame __attribute__((deprecated("该方法已被弃用")))
 {
     
-    
-//    //    _navigationBar frame
-//    if (over_iOS10) {
-//        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
-//    }else{
-//        if (self.hideNavigationBarWhenPush) {
-//            _navigationBar.frame = CGRectMake(0, 0, self.view.width, 0);
-//        }else{
-//            _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
-//        }
-//    }
-//
-//    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
-//    if (@available(iOS 11.0, *)) {
-//        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
-//        bottomHeight += safeAreaInsets.bottom;
-//    }else{
-//
-//    }
-//
-//    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : _navigationBar.maxY;
-//    [self.view addSubview:self.contentView];
-//    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.top.offset(yOffset);
-//        make.left.offset(0);
-//        make.right.offset(0);
-//        make.bottom.offset(-(yOffset + bottomHeight));
-//    }];
 }
 
 - (void)updateViewConstraints
 {
     [super updateViewConstraints];
     
-    NSLog(@"--updateViewConstraints");
     [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
-//    [self refreshBaseViewsMasonry];
 }
 
 // 改方法第一次创建时会多次调用
@@ -481,24 +419,16 @@
     [super viewWillLayoutSubviews];
 
     [self refreshBaseViewsMasonry];
-    NSLog(@"--viewWillLayoutSubviews");
-}
-
-// 该方法不知什么原因，每次旋转屏幕都会调用四次
-// 暂时不使用该方法
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//    [self refreshBaseViewsMasonry];
-    
-//    [self refreshNavigationBarMasonry];
-    [self refreshContentViewMasonry];
-
-    [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
-    NSLog(@"--viewWillTransitionToSize");
 }
 
 #pragma mark - Refresh Masonry
+//  刷新ContentView的Frame
+- (void)refreshBaseViewsMasonry
+{
+    [self refreshNavigationBarMasonry];
+    [self refreshContentViewMasonry];
+}
+
 - (void)refreshContentViewMasonry
 {
 //    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
@@ -507,21 +437,17 @@
 //        bottomHeight += safeAreaInsets.bottom;
 //    }
     
-//    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : self.navigationBar.maxY;
     [self.view addSubview:self.contentView];
-//    self.navigationBar.mas_bottom
     [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         if (self.hideNavigationBarWhenPush) {
             make.top.offset(STATUS_HEIGHT);
         }else{
-//            make.top.mas_offset(self.navigationBar.mas_bottom);//.equalTo(self.navigationBar.mas_bottom);
             make.top.equalTo(self.navigationBar.mas_bottom);
         }
         
         make.left.offset(0);
         make.right.offset(0);
         make.bottom.offset(0);
-//        make.bottom.offset(-(yOffset + bottomHeight));
     }];
 }
 
@@ -530,8 +456,6 @@
     //    _navigationBar
     if (!self.hideNavigationBarWhenPush) {
         if (over_iOS10) {
-            CGFloat navHeight = NAVIGATIONBAR_HEIGHT;
-            NSLog(@"--navHeight:%f", navHeight);
             [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.offset(0);
                 make.right.offset(0);
@@ -607,9 +531,6 @@
 {
     if (!_navigationBar)
     {
-        //        CGRect viewRect = [self viewBoundsWithOrientation:self.finterfaceOrientation];
-        //        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA)];
-        
         _navigationBar = [[BearNavigationBar alloc] init];
         _navigationBar.delegate = self;
         
