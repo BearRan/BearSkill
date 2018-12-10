@@ -418,7 +418,7 @@
 //            make.height.mas_equalTo(STATUS_HEIGHT);
 //        }];
         
-        if (@available(iOS 11.0, *)) {
+        if ([BearConstants getIsXSeries]) {
             self.customStatusView.hidden = NO;
         }
     } else { // 横屏
@@ -426,7 +426,7 @@
 //            make.height.mas_equalTo(0);
 //        }];
         
-        if (@available(iOS 11.0, *)) {
+        if ([BearConstants getIsXSeries]) {
             self.customStatusView.hidden = YES;
         }
     }

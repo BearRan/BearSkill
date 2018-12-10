@@ -206,7 +206,7 @@
 /**
  *  Block Demo
  */
-+ (void)requestClearMessage:(NSNumber *)notificationId success:(void (^) ())success failure:(void (^) ())failure
++ (void)requestClearMessage:(NSNumber *)notificationId success:(void (^) (void))success failure:(void (^) (void))failure
 {
     
     if (success) {
@@ -219,7 +219,7 @@
 }
 
 //  延时block
-+ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)())dealBlock
++ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)(void))dealBlock
 {
     dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime *NSEC_PER_SEC));
     dispatch_after(timer, dispatch_get_main_queue(), ^{
@@ -496,7 +496,7 @@
  *  @param during     循环间隔
  *  @param eventBlock block事件
  */
-+ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)())eventBlock
++ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)(void))eventBlock
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
@@ -597,7 +597,7 @@
 }
 
 //  在主线程处理
-+ (void)processInMainThreadWithBlock:(void (^)())block
++ (void)processInMainThreadWithBlock:(void (^)(void))block
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (block) {
@@ -624,7 +624,7 @@
 #endif
 }
 
-+ (void)debug:(void (^)())debug release:(void (^)())release
++ (void)debug:(void (^)(void))debug release:(void (^)(void))release
 {
 #ifdef DEBUG
     if (debug) {
@@ -648,19 +648,30 @@
 {
     NSString *deviceType = [UIDevice currentDevice].model;
     
-    if([deviceType isEqualToString:@"iPhone"]) {
-        //iPhone
-        return NO;
-    }
-    else if([deviceType isEqualToString:@"iPod touch"]) {
-        //iPod Touch
-        return NO;
-    }
-    else if([deviceType isEqualToString:@"iPad"]) {
+    if([deviceType isEqualToString:@"iPad"]) {
         //iPad
         return YES;
     }
     return NO;
+}
+
+//  判断是否为X系列（带刘海）
++ (BOOL)getIsXSeries
+{
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    NSArray *xSeriesArr = @[@"iPhone X",
+                            @"iPhone XS",
+                            @"iPhone XS Max",
+                            @"iPhone XR"];
+    BOOL isSeries = NO;
+    for (NSString *xSeriesString in xSeriesArr) {
+        if([deviceType isEqualToString:xSeriesString]) {
+            isSeries = YES;
+        }
+    }
+    
+    return isSeries;
 }
 
 //  获取启动图

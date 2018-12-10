@@ -65,10 +65,10 @@ static NSString *usTest = @"usTest";
 /**
  *  Block Demo
  */
-+ (void)requestClearMessage:(NSNumber *)notificationId success:(void (^) ())success failure:(void (^) ())failure;
++ (void)requestClearMessage:(NSNumber *)notificationId success:(void (^) (void))success failure:(void (^) (void))failure;
 
 //  延时block
-+ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)())dealBlock;
++ (void)delayAfter:(CGFloat)delayTime dealBlock:(void (^)(void))dealBlock;
 
 //  获取随机颜色
 + (UIColor *)randomColor;
@@ -132,7 +132,7 @@ static NSString *usTest = @"usTest";
  *  @param during     循环间隔
  *  @param eventBlock block事件
  */
-+ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)())eventBlock;
++ (void)loopTestDuring:(CGFloat)during eventBlock:(void (^)(void))eventBlock;
 
 //  imageView设置tintColor
 + (void)imageView:(UIImageView *)imageView setImage:(UIImage *)image tintColor:(UIColor *)tintColor;
@@ -159,17 +159,20 @@ static NSString *usTest = @"usTest";
 + (BOOL)validateArray:(NSArray *)array index:(NSInteger)index;
 
 //  在主线程处理
-+ (void)processInMainThreadWithBlock:(void (^)())block;
++ (void)processInMainThreadWithBlock:(void (^)(void))block;
 
 + (BOOL)isDebug;
 + (BOOL)isRelease;
 
-+ (void)debug:(void (^)())debug release:(void (^)())release;
++ (void)debug:(void (^)(void))debug release:(void (^)(void))release;
 
 + (void)resignCurrentFirstResponder;
 
 //  判断是否为pad
 + (BOOL)getIsIpad;
+
+//  判断是否为X系列（带刘海）
++ (BOOL)getIsXSeries;
 
 //  获取启动图
 + (UIImage *)getLaunchImage;
