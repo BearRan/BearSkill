@@ -14,7 +14,7 @@ typedef void(^ViewWillDisappearBlock)(void);
     UIButton        *_reloadMask;
 }
 
-@property (strong, nonatomic) UIView                *   customStatusView;
+@property (strong, nonatomic) UIView                *   customStatusView;           //iOS11以上，并且竖屏状态下使用
 @property (nonatomic, strong) BearNavigationBar     *   navigationBar;
 @property (nonatomic, strong) UIView                *   contentView;
 @property (strong, nonatomic) BearHUDManager        *   hudManager;

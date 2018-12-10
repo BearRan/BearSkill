@@ -14,6 +14,7 @@
     UIImageView   *   _bgImageView;
     NSArray       *   _hiddenLeftItems;
     NSArray       *   _hiddenRightItems;
+    BOOL _isFirstMakeNavi;
 }
 
 @end
@@ -26,7 +27,8 @@
     
     if (self)
     {
-        _hideNavigationBarWhenPush = NO;
+        _isFirstMakeNavi = YES;
+        self.hideNavigationBarWhenPush = NO;
         _ifPopToRootView = NO;
         _ifAddBackButton = YES;
         _ifDismissView = NO;
@@ -240,22 +242,6 @@
     return backBarButtonItem;
 }
 
-- (BearNavigationBar *)navigationBar
-{
-    if (!_navigationBar)
-    {
-//        CGRect viewRect = [self viewBoundsWithOrientation:self.finterfaceOrientation];
-//        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA)];
-        
-        _navigationBar = [[BearNavigationBar alloc] init];
-        _navigationBar.delegate = self;
-        
-        UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
-        [_navigationBar setItems:@[item]];
-    }
-    return _navigationBar;
-}
-
 #pragma mark - Get the size of view in the main screen
 #warning DAD
 - (CGRect)viewBoundsWithOrientation:(UIInterfaceOrientation)orientation
@@ -400,36 +386,25 @@
 //  刷新ContentView的Frame
 - (void)refreshManyKKKViewFrame
 {
-//    _navigationBar frame
-    if (over_iOS10) {
-        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
-    }else{
-        _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
-    }
+    [self refreshNavigationBarMasonry];
     
-//    _navigationBar
-    if (self.hideNavigationBarWhenPush) {
-        if (_navigationBar.superview) {
-            [_navigationBar removeFromSuperview];
-        }
-    }else{
-        if (_navigationBar.superview != self.view) {
-            [self.view addSubview:_navigationBar];
-        }
-    }
-    
-//    customStatusView
-    if (over_iOS11) {
-        if (self.hideNavigationBarWhenPush) {
-            if (self.customStatusView) {
-                [self.customStatusView removeFromSuperview];
-            }
-        }else{
-            if (self.customStatusView.superview != self.view) {
-                [self.view addSubview:self.customStatusView];
-            }
-        }
-    }
+////    _navigationBar frame
+//    if (over_iOS10) {
+//        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
+//    }else{
+//        _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
+//    }
+//
+////    _navigationBar
+//    if (self.hideNavigationBarWhenPush) {
+//        if (_navigationBar.superview) {
+//            [_navigationBar removeFromSuperview];
+//        }
+//    }else{
+//        if (_navigationBar.superview != self.view) {
+//            [self.view addSubview:_navigationBar];
+//        }
+//    }
     
 //    contentView
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -454,8 +429,31 @@
     }];
 }
 
+-(void)shouldRotateToOrientation:(UIDeviceOrientation)orientation {
+    
+    NSLog(@"--shouldRotateToOrientation");
+    // 竖屏
+    if (orientation == UIDeviceOrientationPortrait
+        ||orientation == UIDeviceOrientationPortraitUpsideDown)
+    {
+        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(STATUS_HEIGHT);
+        }];
+        
+    } else { // 横屏
+        [self.customStatusView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    }
+    
+    CGFloat screenWidth = WIDTH;
+    NSLog(@"--screenWidth:%f", screenWidth);
+}
+    
 - (void)refreshContentViewFrame
 {
+    
+    
 //    //    _navigationBar frame
 //    if (over_iOS10) {
 //        _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
@@ -489,26 +487,29 @@
 {
     [super updateViewConstraints];
     
-    [self refreshContentViewFrame];
+//    [self refreshContentViewFrame];
+    
+    NSLog(@"--updateViewConstraints");
+    [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
 }
 
-//// 改方法第一次创建时会多次调用
-//// 暂时不使用该方法
-//- (void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//
-////    NSLog(@"--viewWillLayoutSubviews");
-//}
-//
-//// 该方法不知什么原因，每次旋转屏幕都会调用四次
-//// 暂时不使用该方法
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-//{
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//
-////    NSLog(@"--viewWillTransitionToSize");
-//}
+// 改方法第一次创建时会多次调用
+// 暂时不使用该方法
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+
+    NSLog(@"--viewWillLayoutSubviews");
+}
+
+// 该方法不知什么原因，每次旋转屏幕都会调用四次
+// 暂时不使用该方法
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    NSLog(@"--viewWillTransitionToSize");
+}
 
 #pragma mark - Setter & Getter
 - (BearHUDManager *)hudManager
@@ -523,7 +524,7 @@
 - (UIView *)customStatusView
 {
     if (!_customStatusView) {
-        _customStatusView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, STATUS_HEIGHT)];
+        _customStatusView = [[UIView alloc] init];
     }
     
     return _customStatusView;
@@ -542,6 +543,103 @@
 - (void)setHideNavigationBarWhenPush:(BOOL)hideNavigationBarWhenPush
 {
     _hideNavigationBarWhenPush = hideNavigationBarWhenPush;
+    
+    // customStatusView
+    if (over_iOS11) {
+        if (_hideNavigationBarWhenPush) {
+            if (self.customStatusView) {
+                [self.customStatusView removeFromSuperview];
+            }
+        }else{
+            if (self.customStatusView.superview != self.view) {
+                [self.view addSubview:self.customStatusView];
+                NSLog(@"--first create customStatusView");
+                [self.customStatusView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.offset(0);
+                    make.left.offset(0);
+                    make.right.offset(0);
+                    make.height.mas_equalTo(STATUS_HEIGHT);
+                }];
+            }
+        }
+    }
+    
+//    [self refreshNavigationBarMasonry];
+}
+
+- (void)refreshNavigationBarMasonry
+{
+    //    _navigationBar
+    if (self.hideNavigationBarWhenPush) {
+        if (self.navigationBar.superview) {
+            [self.navigationBar removeFromSuperview];
+        }
+    }else{
+        if (self.navigationBar.superview != self.view) {
+            [self.view addSubview:self.navigationBar];
+            
+            if (over_iOS10) {
+                void (^firstMake)(MASConstraintMaker *make) = ^(MASConstraintMaker *make) {
+                    make.left.offset(0);
+                    make.right.offset(0);
+                    make.top.offset(STATUS_HEIGHT);
+                    make.height.mas_equalTo(NAVIGATIONBAR_HEIGHT);
+                };
+                if (_isFirstMakeNavi) {
+                    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                        firstMake(make);
+                    }];
+                }else{
+                    [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+                        firstMake(make);
+                    }];
+                }
+                //                _navigationBar.frame = CGRectMake(0, STATUS_HEIGHT, self.view.width, NAVIGATIONBAR_HEIGHT);
+            }else{
+                
+                CGFloat navsta = NAV_STA;
+                NSLog(@"--navsta:%f", navsta);
+                void (^firstMake)(MASConstraintMaker *make) = ^(MASConstraintMaker *make) {
+                    make.left.offset(0);
+                    make.right.offset(0);
+                    make.top.offset(0);
+                    make.height.mas_equalTo(NAV_STA);
+                };
+                if (_isFirstMakeNavi) {
+                    [self.navigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                        firstMake(make);
+                    }];
+                }else{
+                    [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+                        firstMake(make);
+                    }];
+                }
+                //                _navigationBar.frame = CGRectMake(0, 0, self.view.width, NAV_STA);
+            }
+            
+            
+            
+            if (_isFirstMakeNavi) {
+                _isFirstMakeNavi = NO;
+            }
+        }
+    }
+}
+
+- (BearNavigationBar *)navigationBar
+{
+    if (!_navigationBar)
+    {
+        //        CGRect viewRect = [self viewBoundsWithOrientation:self.finterfaceOrientation];
+        //        _navigationBar = [[BearNavigationBar alloc] initWithFrame:CGRectMake(0, 0 - yOffset, CGRectGetWidth(viewRect), NAV_STA)];
+        
+        _navigationBar = [[BearNavigationBar alloc] init];
+        _navigationBar.delegate = self;
+        
+        UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
+        [_navigationBar setItems:@[item]];
+    }
+    return _navigationBar;
 }
 
 #pragma mark - dealloc
