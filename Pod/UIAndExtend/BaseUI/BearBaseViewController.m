@@ -135,6 +135,7 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor grayColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissViewController) name:@"disMiss" object:nil];
 }
 
