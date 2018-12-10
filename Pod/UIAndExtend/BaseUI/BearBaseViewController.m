@@ -53,7 +53,7 @@
         }
     }
     
-    [self navigationBar];
+    [self addNaviView];
     [self addContentView];
     
     if (over_iOS11) {
@@ -149,6 +149,18 @@
     [self.view addSubview:self.contentView];
 }
 
+- (void)addNaviView
+{
+    if (self.hideNavigationBarWhenPush) {
+        if (self.navigationBar.superview) {
+            [self.navigationBar removeFromSuperview];
+        }
+    }else{
+        if (self.navigationBar.superview != self.view) {
+            [self.view addSubview:self.navigationBar];
+        }
+    }
+}
 
 #pragma mark - 返回（back）
 
@@ -455,6 +467,7 @@
     
     NSLog(@"--updateViewConstraints");
     [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
+//    [self refreshManyKKKViewFrame];
 }
 
 // 改方法第一次创建时会多次调用
@@ -463,6 +476,7 @@
 {
     [super viewWillLayoutSubviews];
 
+    [self refreshManyKKKViewFrame];
     NSLog(@"--viewWillLayoutSubviews");
 }
 
@@ -471,6 +485,7 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self refreshManyKKKViewFrame];
 
     NSLog(@"--viewWillTransitionToSize");
 }
@@ -478,20 +493,21 @@
 #pragma mark - Refresh Masonry
 - (void)refreshContentViewMasonry
 {
-    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
-    if (@available(iOS 11.0, *)) {
-        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
-        bottomHeight += safeAreaInsets.bottom;
-    }
+//    CGFloat bottomHeight = self.hidesBottomBarWhenPushed ? 0 : TABBAR_HEIGHT;
+//    if (@available(iOS 11.0, *)) {
+//        UIEdgeInsets safeAreaInsets = [UIApplication sharedApplication].delegate.window.safeAreaInsets;
+//        bottomHeight += safeAreaInsets.bottom;
+//    }
     
 //    CGFloat yOffset = self.hideNavigationBarWhenPush ? STATUS_HEIGHT : self.navigationBar.maxY;
     [self.view addSubview:self.contentView];
+//    self.navigationBar.mas_bottom
     [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         if (self.hideNavigationBarWhenPush) {
             make.top.offset(STATUS_HEIGHT);
         }else{
 //            make.top.mas_offset(self.navigationBar.mas_bottom);//.equalTo(self.navigationBar.mas_bottom);
-            make.top.equalTo(self.navigationBar.mas_bottom).offset(0);
+            make.top.equalTo(self.navigationBar.mas_bottom).offset(10);
         }
         
         make.left.offset(0);
@@ -504,38 +520,24 @@
 - (void)refreshNavigationBarMasonry
 {
     //    _navigationBar
-    if (self.hideNavigationBarWhenPush) {
-        if (self.navigationBar.superview) {
-            [self.navigationBar removeFromSuperview];
-        }
-    }else{
-        if (self.navigationBar.superview != self.view) {
-            [self.view addSubview:self.navigationBar];
+    if (!self.hideNavigationBarWhenPush) {
+        if (over_iOS10) {
+            CGFloat navHeight = NAVIGATIONBAR_HEIGHT;
+            NSLog(@"--navHeight:%f", navHeight);
+            [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.offset(0);
+                make.right.offset(0);
+                make.top.offset(STATUS_HEIGHT);
+                make.height.mas_equalTo(NAVIGATIONBAR_HEIGHT);
+            }];
             
-            if (over_iOS10) {
-                void (^firstMake)(MASConstraintMaker *make) = ^(MASConstraintMaker *make) {
-                    make.left.offset(0);
-                    make.right.offset(0);
-                    make.top.offset(STATUS_HEIGHT);
-                    make.height.mas_equalTo(NAVIGATIONBAR_HEIGHT);
-                };
-                [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
-                    firstMake(make);
-                }];
-            }else{
-                
-                CGFloat navsta = NAV_STA;
-                NSLog(@"--navsta:%f", navsta);
-                void (^firstMake)(MASConstraintMaker *make) = ^(MASConstraintMaker *make) {
-                    make.left.offset(0);
-                    make.right.offset(0);
-                    make.top.offset(0);
-                    make.height.mas_equalTo(NAV_STA);
-                };
-                [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
-                    firstMake(make);
-                }];
-            }
+        }else{
+            [self.navigationBar mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.offset(0);
+                make.right.offset(0);
+                make.top.offset(0);
+                make.height.mas_equalTo(NAV_STA);
+            }];
         }
     }
 }
