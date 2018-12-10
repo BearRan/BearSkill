@@ -66,7 +66,7 @@
         [self.contentView addGestureRecognizer:tapGR];
     }
     
-    [self refreshManyKKKViewFrame];
+    [self refreshBaseViewsMasonry];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -401,7 +401,7 @@
 }
 
 //  刷新ContentView的Frame
-- (void)refreshManyKKKViewFrame
+- (void)refreshBaseViewsMasonry
 {
     [self refreshNavigationBarMasonry];
     [self refreshContentViewMasonry];
@@ -467,7 +467,7 @@
     
     NSLog(@"--updateViewConstraints");
     [self shouldRotateToOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
-//    [self refreshManyKKKViewFrame];
+//    [self refreshBaseViewsMasonry];
 }
 
 // 改方法第一次创建时会多次调用
@@ -476,7 +476,7 @@
 {
     [super viewWillLayoutSubviews];
 
-    [self refreshManyKKKViewFrame];
+    [self refreshBaseViewsMasonry];
     NSLog(@"--viewWillLayoutSubviews");
 }
 
@@ -485,7 +485,7 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self refreshManyKKKViewFrame];
+    [self refreshBaseViewsMasonry];
 
     NSLog(@"--viewWillTransitionToSize");
 }
