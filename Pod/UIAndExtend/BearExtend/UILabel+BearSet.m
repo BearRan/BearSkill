@@ -8,6 +8,7 @@
 
 #import "UILabel+BearSet.h"
 #import "UIView+BearSet.h"
+#import <BearSkill/NSMutableAttributedString+BearSet.h>
 
 @implementation UILabel (BearSet)
 
@@ -45,6 +46,15 @@
     CGPoint tempCenter = self.center;
     [self sizeToFit];
     self.center = tempCenter;
+}
+
+- (void)setLineSpacing:(CGFloat)lineSpacing
+{
+    if (self.text.length > 0) {
+        NSMutableAttributedString *mutableStr = [[NSMutableAttributedString alloc] initWithString:self.text];
+        [mutableStr setLineSpacing:lineSpacing];
+        self.attributedText = mutableStr;
+    }
 }
 
 @end

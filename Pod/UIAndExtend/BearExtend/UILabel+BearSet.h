@@ -19,4 +19,6 @@
 //  中心不变，自适应
 - (void)sizeToFit_DonotMoveCenter;
 
+- (void)setLineSpacing:(CGFloat)lineSpacing;
+
 @end
