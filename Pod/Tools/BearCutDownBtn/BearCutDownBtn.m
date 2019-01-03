@@ -15,17 +15,32 @@
 
 @implementation BearCutDownBtn
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self) {
-        _totalSecond = 60;
-        _autoSizeToFit = NO;
-        [self createUI];
+        [self commonInit];
     }
     
     return self;
+}
+
+- (void)commonInit
+{
+    _totalSecond = 60;
+    [self createUI];
 }
 
 - (void)createUI
@@ -44,9 +59,6 @@
     _btnStringNormal = btnStringNormal;
     
     [self setTitle:_btnStringNormal forState:UIControlStateNormal];
-    if (_autoSizeToFit) {
-        [self sizeToFit_DonotMoveCenter];
-    }
     
     if ([_delegate respondsToSelector:@selector(cutDownBtnTitleHasChanged:)]) {
         [_delegate cutDownBtnTitleHasChanged:self];
@@ -58,9 +70,6 @@
     _btnStringUnEnable = btnStringUnEnable;
     
     [self setTitle:_btnStringUnEnable forState:UIControlStateDisabled];
-    if (_autoSizeToFit) {
-        [self sizeToFit_DonotMoveCenter];
-    }
     
     if ([_delegate respondsToSelector:@selector(cutDownBtnTitleHasChanged:)]) {
         [_delegate cutDownBtnTitleHasChanged:self];

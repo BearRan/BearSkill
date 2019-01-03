@@ -18,10 +18,6 @@
 @property (strong, nonatomic) NSString *btnStringUnEnable;
 @property (strong, nonatomic) NSString *btnStringRetry;
 @property (assign, nonatomic) NSTimeInterval totalSecond;
-@property (assign, nonatomic) BOOL autoSizeToFit;
-
-- (instancetype)init UNAVAILABLE_ATTRIBUTE;
-+ (instancetype)new UNAVAILABLE_ATTRIBUTE;
 
 - (void)startCutDown;
 
