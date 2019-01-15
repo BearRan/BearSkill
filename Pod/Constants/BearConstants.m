@@ -7,6 +7,7 @@
 //
 
 #import "BearConstants.h"
+#import <GBDeviceInfo/GBDeviceInfo.h>
 
 @implementation BearConstants
 
@@ -661,8 +662,8 @@
 + (BOOL)getIsXSeries
 {
     // 判断型号
-    UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceType = device.name;
+    GBDeviceInfo *devInfo = [GBDeviceInfo deviceInfo];
+    NSString *deviceType = devInfo.modelString;
     
     NSArray *xSeriesArr = @[@"iPhone X",
                             @"iPhone XS",
