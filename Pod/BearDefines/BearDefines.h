@@ -107,6 +107,14 @@
 #define NHEIGHT4 960.0
 
 
+
+#define WIDTH ([UIScreen  mainScreen].bounds.size.width)
+#define HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define WIDTH6P 414.0
+#define HEIGHT6P 736.0
+#define XX_6P(value)    (1.0 * (value) * WIDTH / WIDTH6P)
+#define YY_6P(value)    (1.0 * (value) * HEIGHT / HEIGHT6P)
+
 //  适配对应 高度 < 5高度时，高度 = 5高度
 #define LayOutHeight  ((HEIGHT < HEIGHT5) ? HEIGHT5 : HEIGHT)
 
