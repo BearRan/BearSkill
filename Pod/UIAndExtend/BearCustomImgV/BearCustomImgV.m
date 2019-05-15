@@ -7,7 +7,8 @@
 //
 
 #import "BearCustomImgV.h"
-#import "UIImageView+WebCache.h"
+#import <SDWebImage/SDWebImage.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BearCustomImgV ()
 {
@@ -71,11 +72,7 @@
                                                              progress:nil
                                                             completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                                 
-                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image
-                                                                                                                 imageData:data
-                                                                                                                    forKey:imgUrl.absoluteString
-                                                                                                                    toDisk:YES
-                                                                                                                completion:nil];
+                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image imageData:data forKey:imgUrl.absoluteString cacheType:SDImageCacheTypeDisk completion:nil];
                                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                                     if ([imgUrl.absoluteString isEqualToString:self->_imgUrl.absoluteString]) {
                                                                         [weakSelf loadImageWithData:data needTrainsition:YES];
@@ -105,8 +102,8 @@
 }
 
 - (NSData *)imageDataFromDiskCacheWithKey:(NSString *)key {
-    
-    NSString *path = [[[SDWebImageManager sharedManager] imageCache] defaultCachePathForKey:key];
+    SDImageCache *imageCache = [[SDWebImageManager sharedManager] imageCache];
+    NSString *path = [imageCache cachePathForKey:key];
     return [NSData dataWithContentsOfFile:path];
 }
 

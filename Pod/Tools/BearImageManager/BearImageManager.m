@@ -6,7 +6,8 @@
 //
 
 #import "BearImageManager.h"
-#import "UIImageView+WebCache.h"
+#import <SDWebImage/SDWebImage.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation BearImageManager
 
@@ -25,11 +26,7 @@
                                                              progress:nil
                                                             completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                                 
-                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image
-                                                                                                                 imageData:data
-                                                                                                                    forKey:url.absoluteString
-                                                                                                                    toDisk:YES
-                                                                                                                completion:nil];
+                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image imageData:data forKey:url.absoluteString cacheType:SDImageCacheTypeDisk completion:nil];
                                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                                     if ([url.absoluteString isEqualToString:tempURL.absoluteString]) {
                                                                         if (getImage) {
@@ -42,8 +39,8 @@
 }
 
 - (NSData *)imageDataFromDiskCacheWithKey:(NSString *)key {
-    
-    NSString *path = [[[SDWebImageManager sharedManager] imageCache] defaultCachePathForKey:key];
+    SDImageCache *imageCache = [[SDWebImageManager sharedManager] imageCache];
+    NSString *path = [imageCache cachePathForKey:key];
     return [NSData dataWithContentsOfFile:path];
 }
 
