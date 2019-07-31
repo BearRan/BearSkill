@@ -6,7 +6,7 @@
 //
 
 #import "BearImageManager.h"
-#import <SDWebImage/SDWebImage.h>
+#import <SDWebImage/SDWebImageManager.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation BearImageManager
@@ -25,8 +25,7 @@
                                                               options:0
                                                              progress:nil
                                                             completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                                
-                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image imageData:data forKey:url.absoluteString cacheType:SDImageCacheTypeDisk completion:nil];
+                                                                [[[SDWebImageManager sharedManager] imageCache] storeImage:image imageData:data forKey:url.absoluteString toDisk:YES completion:nil];
                                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                                     if ([url.absoluteString isEqualToString:tempURL.absoluteString]) {
                                                                         if (getImage) {
@@ -40,7 +39,7 @@
 
 - (NSData *)imageDataFromDiskCacheWithKey:(NSString *)key {
     SDImageCache *imageCache = [[SDWebImageManager sharedManager] imageCache];
-    NSString *path = [imageCache cachePathForKey:key];
+    NSString *path = [imageCache defaultCachePathForKey:key];
     return [NSData dataWithContentsOfFile:path];
 }
 
