@@ -52,6 +52,11 @@ typedef void(^ViewWillDisappearBlock)(void);
 - (void)hideRightBarButtonItemsAnimation:(BOOL)animation;
 - (void)showRightBarButtonItemsAnimation:(BOOL)animation;
 
+#pragma mark - Refresh Masonry
+- (void)refreshBaseViewsMasonry;
+- (void)refreshContentViewMasonry;
+- (void)refreshNavigationBarMasonry;
+
 #pragma mark - HUD
 - (void)textStateHUD:(NSString *)text;
 - (void)textStateHUD:(NSString *)text finishBlock:(void (^)(void))finishBlock;
